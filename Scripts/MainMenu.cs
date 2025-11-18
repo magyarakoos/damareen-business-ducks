@@ -18,4 +18,13 @@ public partial class MainMenu : Control
 		// Called every frame. Delta is time since the last frame.
 		// Update game logic here.
 	}
+	
+	private void OnJatekmesterButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/jatekmester.tscn");
+	}
+	
+	private void OnJatekosButtonPressed() {
+		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
+	}
 }
