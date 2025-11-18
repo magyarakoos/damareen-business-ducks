@@ -1,6 +1,7 @@
 //using Godot;
 //
-//// Define a simple structure for your card data (optional, but good practice)
+
+
 //public class CardData : GodotObject
 //{
 	//public string CardName { get; set; }
@@ -26,13 +27,14 @@
 //
 	//public override void _Ready()
 	//{
-		//// Set up the numerical limits for the SpinBoxes
+	
 		//sebzes.MinValue = 0;
 		//
-		//// FIX: Changed 'elet' to 'eletero'
+	
 		//eletero.MinValue = 1; 
 		//
-		//// Connect the button's 'Pressed' signal to our submission method
+
+
 		//Létrehoz.Pressed += OnCreateButtonPressed;
 		//
 		//// Optional: Ensure the OptionButton has items if it was created dynamically
@@ -63,28 +65,27 @@
 		//{
 			//CardName = nev.Text,
 			//
-			//// FIX: Changed 'DamageInput' to 'sebzes'
+		
 			//Damage = (int)sebzes.Value, 
-			//
-			//// FIX: Changed 'HealthInput' to 'eletero'
-			//Health = (int)eletero.Value, 
-			//
-			//// FIX: Used the correct way to get OptionButton text
+		
+			//Health = (int)elet.Value, 
+			
+		
 			//Type = selectedType 
 		//};
 //
 		//// 3. Process the data (Print for testing)
 		//GD.Print($"--- New Card Created ---");
-		//GD.Print($"Name: {newCard.CardName}");
-		//GD.Print($"Damage: {newCard.Damage}");
-		//GD.Print($"Health: {newCard.Health}");
-		//GD.Print($"Type: {newCard.Type}");
+		//GD.Print($"Name: {newCard.nev}");
+		//GD.Print($"Damage: {newCard.sebzes}");
+		//GD.Print($"Health: {newCard.elet}");
+		//GD.Print($"Type: {newCard.tipus}");
 //
 		//// 4. Reset the form
-		//// FIX: Changed 'NameInput' to 'nev'
+	
 		//nev.Clear();
 		//
-		//// FIX: SpinBoxes must be reset by setting their Value
+	
 		//sebzes.Value = 0;
 		//eletero.Value = 1;
 //
