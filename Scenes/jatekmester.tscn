@@ -1,14 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://qv8em51pcvy1"]
+[gd_scene load_steps=2 format=3 uid="uid://cr2r8ow00vlwt"]
 
-[ext_resource type="Script" uid="uid://dm5pudi6iigbu" path="res://Scripts/Jatekmester.cs" id="1_p2jqn"]
+[ext_resource type="Script" path="res://Scripts/Jatekmester.cs" id="1_p2jqn"]
 
 [node name="Jatekmester" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_p2jqn")
 
-[node name="Label" type="Label" parent="."]
+[node name="vilaglista" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
-text = "Dagadt"
+offset_bottom = 40.0
