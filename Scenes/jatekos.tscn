@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://e3fi35cymgyr"]
+[gd_scene load_steps=2 format=3 uid="uid://e3fi35cymgyr"]
+
+[ext_resource type="Script" uid="uid://bhj20ltshyw2f" path="res://Scripts/Jatekos.cs" id="1_o35tu"]
 
 [node name="Jatekos" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_o35tu")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
