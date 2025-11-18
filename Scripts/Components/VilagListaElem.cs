@@ -7,14 +7,14 @@ public partial class VilagListaElem : HBoxContainer
 	public Button modify;
 	public Button remove;
 	
-	public VilagListaElem() : base()
+	public VilagListaElem(string name, VBoxContainer container) : base()
 	{
 		Name = "ActionBox";
 		AnchorRight = 1.0f; 
 		Alignment = HBoxContainer.AlignmentMode.Center;
 		
 		label = new Label();
-		label.Text = "Világos";
+		label.Text = name;
 		
 		modify = new Button();
 		modify.Text = "Szerkesztés";
@@ -22,8 +22,16 @@ public partial class VilagListaElem : HBoxContainer
 		remove = new Button();
 		remove.Text = "Törlés";
 
-		modify.Pressed += () => label.Text = "szerkesztés";
-		remove.Pressed += () => label.Text = "törlés";
+		modify.Pressed += () =>
+		{
+			throw new NotImplementedException("TODO: Modify action");
+		};
+		remove.Pressed += () =>
+		{
+			VilagExport.Delete(name);
+			container.RemoveChild(this);
+			// throw new NotImplementedException("TODO: Refresh the list, since an element was deleted");
+		};
 		
 		AddChild(label);
 		AddChild(modify);
