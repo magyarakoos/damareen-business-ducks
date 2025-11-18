@@ -35,6 +35,7 @@ public partial class Global : Node
 	public static Global? Instance { get; private set; }
 
 	public List<Vilag> vilagok = [];
+	public Vilag? aktivVilag;
 
 	public override void _Ready()
 	{

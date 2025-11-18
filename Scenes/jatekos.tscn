@@ -11,7 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o35tu")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="VilagKivalasztas" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -21,7 +22,7 @@ anchor_bottom = 0.6
 offset_right = -0.3199997
 offset_bottom = -0.1760025
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VilagKivalasztas"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,18 +30,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="VilagKivalasztas/VBoxContainer"]
 layout_mode = 2
 text = "Világ kiválasztása"
 
-[node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer"]
+[node name="Vilagok" type="OptionButton" parent="VilagKivalasztas/VBoxContainer"]
 layout_mode = 2
-item_count = 2
-popup/item_0/text = "Ballsack"
-popup/item_0/id = 0
-popup/item_1/text = "Shaft"
-popup/item_1/id = 1
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+[node name="Button" type="Button" parent="VilagKivalasztas/VBoxContainer"]
 layout_mode = 2
 text = "Kiválaszt"
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="MainPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Nigger"
+
+[connection signal="pressed" from="VilagKivalasztas/VBoxContainer/Button" to="." method="OnVilagKivalasztPressed"]
