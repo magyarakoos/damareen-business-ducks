@@ -11,3 +11,13 @@ script = ExtResource("1_p2jqn")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="új világ létrehozása" type="Button" parent="."]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 71.0
+offset_right = 428.0
+offset_bottom = 151.0
+text = "új világ létrehozása"
+
+[connection signal="pressed" from="új világ létrehozása" to="." method="ujvilagletrehozasapressed"]

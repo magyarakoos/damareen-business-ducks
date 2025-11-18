@@ -24,7 +24,8 @@ public partial class VilagListaElem : HBoxContainer
 
 		modify.Pressed += () =>
 		{
-			throw new NotImplementedException("TODO: Modify action");
+			//todo menu megnyilik  
+			
 		};
 		remove.Pressed += () =>
 		{

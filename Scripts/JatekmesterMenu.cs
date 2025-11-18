@@ -11,6 +11,11 @@ public partial class JatekmesterMenu : Control
 			CreateUIComponent(vilag.nev);
 		}
 	}
+		private void ujvilagletrehozasapressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/vilagletrehozo.tscn");
+	}
+
 
 	private void CreateUIComponent(string name)
 	{
