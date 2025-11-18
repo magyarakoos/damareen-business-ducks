@@ -2,10 +2,6 @@ using Godot;
 
 public partial class MainMenu : Control
 {
-	// Member variables here, example:
-	private int _a = 2;
-	private string _b = "textvar";
-
 	public override void _Ready()
 	{
 		// Called every time the node is added to the scene.
