@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.5
-offset_top = -46.5
-offset_right = 70.5
-offset_bottom = 46.5
+offset_left = -82.0
+offset_top = -58.5
+offset_right = 82.0
+offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,5 +40,10 @@ text = "Játékmester mód"
 layout_mode = 2
 text = "Játékos mód"
 
+[node name="SugoButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Súgó"
+
 [connection signal="pressed" from="VBoxContainer/JatekmesterButton" to="." method="OnJatekmesterButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/JatekosButton" to="." method="OnJatekosButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/SugoButton" to="." method="OnSugoButttonPressed"]

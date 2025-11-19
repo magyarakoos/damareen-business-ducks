@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dke1gnpxmavmr"]
+
+[node name="Sugo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 0.95
+anchor_bottom = 1.0
+offset_left = -0.38401794
+offset_top = 0.10398865
+offset_right = 0.38391113
+offset_bottom = -0.104034424
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Súgó"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+Ipsa repudiandae fuga quidem maiores?
+Possimus molestiae hic, adipisci eaque cum temporibus nesciunt ex quaerat
+enim nam accusantium tempore sint nobis quod!
+"

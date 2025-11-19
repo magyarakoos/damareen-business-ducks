@@ -2,26 +2,26 @@ using Godot;
 
 public class VilagExport
 {
+	private const string basePath = "user://vilagok/";
 	public static void MakeVilagokDir()
 	{
-		string path = "user://vilagok/";
 		DirAccess dir = DirAccess.Open("user://");
-		Error _ = dir.MakeDirRecursive(path);
+		Error _ = dir.MakeDirRecursive(basePath);
 	}
 	public static void Export(Vilag vilag)
 	{
 		var data = vilag.ExportExtra().ToArray();
 
-		var path = $"user://vilagok/{vilag.nev}.txt";
+		var path = $"{basePath}{vilag.nev}.txt";
 
 		using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
 		file.StoreString(string.Join('\n', data));
 		return;
 	}
 
-	public static Vilag Import(string vilagNev)
+	public static Vilag Import(string vilagNevTxt)
 	{
-		using var file = Godot.FileAccess.Open($"user://vilagok/{vilagNev}", Godot.FileAccess.ModeFlags.Read);
+		using var file = Godot.FileAccess.Open($"{basePath}{vilagNevTxt}", Godot.FileAccess.ModeFlags.Read);
 		string[] data = file.GetAsText().Split('\n');
 
 		return new Vilag(data);
@@ -30,7 +30,7 @@ public class VilagExport
 	public static List<Vilag> ImportAll()
 	{
 		List<Vilag> vilagok = [];
-		var dir = DirAccess.Open("user://vilagok/");
+		var dir = DirAccess.Open(basePath);
 
 		if (dir != null)
 		{
@@ -60,7 +60,7 @@ public class VilagExport
 		GD.Print(vilagNev);
 		VilagExport.MakeVilagokDir();
 
-		DirAccess dir = DirAccess.Open("user://vilagok/");
+		DirAccess dir = DirAccess.Open(basePath);
 		if (dir.FileExists(vilagNev))
 		{
 			Error _ = dir.Remove(vilagNev);

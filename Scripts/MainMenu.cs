@@ -15,9 +15,6 @@ public partial class MainMenu : Control
 		// Update game logic here.
 	}
 	
-	
-
-	
 	private void OnJatekmesterButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/jatekmester.tscn");
@@ -25,5 +22,9 @@ public partial class MainMenu : Control
 	
 	private void OnJatekosButtonPressed() {
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
+	}
+	
+	private void OnSugoButttonPressed() {
+		GetTree().ChangeSceneToFile("res://Scenes/sugo.tscn");
 	}
 }

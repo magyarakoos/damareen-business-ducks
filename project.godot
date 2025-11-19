@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.cs"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Damareen"
+
+[gui]
+
+theme/custom_font="uid://colx6nc7o83ni"
