@@ -1,100 +1,63 @@
 //using Godot;
 //
-
-
-//public class CardData : GodotObject
+//public partial class CardData : GodotObject
 //{
-	//public string CardName { get; set; }
+	//public string CardName { get; set; } = "";
 	//public int Damage { get; set; }
 	//public int Health { get; set; }
-	//public string Type { get; set; }
+	//public string Type { get; set; } = "";
 //}
 //
-//
-//public partial class CardCreatorMenu : Control
+//public partial class KartyaLetrehozo : Control
 //{
-	//// --- 1. Link UI Nodes using [Export] ---
-	//
-	//// Note: Vilaglista must be defined inside the class it's attached to, 
-	//// or as a member of another class that instances it.
-	//// Assuming Vilaglista is for a different purpose and is not part of this class's exports.
-	//
-	//[Export] public LineEdit nev { get; set; }
-	//[Export] public SpinBox sebzes { get; set; }
-	//[Export] public SpinBox eletero { get; set; } // Renamed from 'elet' to match property
-	//[Export] public OptionButton tipus { get; set; } // OptionButton is for selecting from a list
-	//[Export] public Button Létrehoz { get; set; }
+	//[Export] public LineEdit? Nev { get; set; }
+	//[Export] public SpinBox? Sebzes { get; set; }
+	//[Export] public SpinBox? Elet { get; set; }
+	//[Export] public OptionButton? Tipus { get; set; }
+	//[Export] public Button? Letrehoz { get; set; }
 //
 	//public override void _Ready()
 	//{
-	
-		//sebzes.MinValue = 0;
-		//
-	
-		//eletero.MinValue = 1; 
-		//
-
-
-		//Létrehoz.Pressed += OnCreateButtonPressed;
-		//
-		//// Optional: Ensure the OptionButton has items if it was created dynamically
-		//if (tipus.ItemCount == 0)
-		//{
-			//tipus.AddItem("Attack");
-			//tipus.AddItem("Defense");
-			//tipus.AddItem("Utility");
-		//}
+		//Sebzes!.MinValue = 1;
+		//Elet!.MinValue = 1;
+//
+		//Tipus!.AddItem("Tűz");
+		//Tipus.AddItem("Víz");
+		//Tipus.AddItem("Föld");
+		//Tipus.AddItem("Levegő");
+//
+		//// ✔ CONNECT HERE
+		//Letrehoz!.Pressed += _on_Letrehoz_pressed;
 	//}
 //
-	//// --- 2. Data Submission Logic ---
-//
-	//private void OnCreateButtonPressed()
+	//
+	//private void _on_Letrehoz_pressed()
 	//{
-		//// 1. Validate Input
-		//if (string.IsNullOrWhiteSpace(nev.Text))
+		//if (string.IsNullOrEmpty(Nev!.Text))
 		//{
-			//GD.PrintErr("Card Name cannot be empty!");
+			//GD.PrintErr("A név nem lehet üres!");
 			//return;
 		//}
 //
-		//// Get the selected text from the OptionButton
-		//string selectedType = tipus.GetItemText(tipus.Selected);
+		//GD.Print("A név nem üres");
 //
-		//// 2. Collect the data
-		//CardData newCard = new CardData
+		//var newCard = new CardData
 		//{
-			//CardName = nev.Text,
-			//
-		
-			//Damage = (int)sebzes.Value, 
-		
-			//Health = (int)elet.Value, 
-			
-		
-			//Type = selectedType 
+			//CardName = Nev.Text,
+			//Damage = (int)Sebzes!.Value,
+			//Health = (int)Elet!.Value,
+			//Type = Tipus!.GetItemText(Tipus.Selected)
 		//};
 //
-		//// 3. Process the data (Print for testing)
-		//GD.Print($"--- New Card Created ---");
-		//GD.Print($"Name: {newCard.nev}");
-		//GD.Print($"Damage: {newCard.sebzes}");
-		//GD.Print($"Health: {newCard.elet}");
-		//GD.Print($"Type: {newCard.tipus}");
+		//GD.Print("--- Új kártya ---");
+		//GD.Print($"Név: {newCard.CardName}");
+		//GD.Print($"Sebzés: {newCard.Damage}");
+		//GD.Print($"Élet: {newCard.Health}");
+		//GD.Print($"Típus: {newCard.Type}");
 //
-		//// 4. Reset the form
-	
-		//nev.Clear();
-		//
-	
-		//sebzes.Value = 0;
-		//eletero.Value = 1;
-//
-		//// OptionButton is usually reset by selecting the first item (index 0)
-		//tipus.Select(0);
-		//
-		//GD.Print("Form reset.");
+		//Nev.Clear();
+		//Sebzes.Value = 1;
+		//Elet.Value = 1;
+		//Tipus.Select(0);
 	//}
-	//
-	//// You should ensure the Vilaglista logic (adding a new HBox item) is also integrated here 
-	//// if you want to display the new card's data in the VBoxContainer immediately.
 //}

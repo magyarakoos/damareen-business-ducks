@@ -21,7 +21,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Név:"
 
-[node name="nev" type="LineEdit" parent="Kártyák/Név"]
+[node name="Nev" type="LineEdit" parent="Kártyák/Név"]
 layout_mode = 2
 
 [node name="Sebzés" type="HBoxContainer" parent="Kártyák"]
@@ -31,7 +31,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Sebzés:"
 
-[node name="sebzes" type="SpinBox" parent="Kártyák/Sebzés"]
+[node name="Sebzes" type="SpinBox" parent="Kártyák/Sebzés"]
 layout_mode = 2
 
 [node name="Életerő" type="HBoxContainer" parent="Kártyák"]
@@ -41,7 +41,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Életerő:"
 
-[node name="elet" type="SpinBox" parent="Kártyák/Életerő"]
+[node name="Elet" type="SpinBox" parent="Kártyák/Életerő"]
 layout_mode = 2
 
 [node name="tipus" type="HBoxContainer" parent="Kártyák"]
@@ -51,11 +51,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Tipus:"
 
-[node name="tipus" type="OptionButton" parent="Kártyák/tipus"]
+[node name="Tipus" type="OptionButton" parent="Kártyák/tipus"]
 layout_mode = 2
 
-[node name="Létrehoz" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Létrehoz" type="Button" parent="Kártyák"]
+layout_mode = 2
 text = "Létrehoz"
