@@ -1,59 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcgan8l061wil"]
+[gd_scene format=3 uid="uid://3pq4k6jhyodo"]
 
-[ext_resource type="Script" uid="uid://di2m2u5mwjxtr" path="res://Scripts/Vilagletrehozo.cs" id="1_olaqh"]
-
-[node name="Kártya létrehozó" type="Control"]
+[node name="vilagletrehozo" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_olaqh")
-
-[node name="Kártyák" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Név" type="HBoxContainer" parent="Kártyák"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Kártyák/Név"]
-layout_mode = 2
-text = "Név:"
-
-[node name="Nev" type="LineEdit" parent="Kártyák/Név"]
-layout_mode = 2
-
-[node name="Sebzés" type="HBoxContainer" parent="Kártyák"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Kártyák/Sebzés"]
-layout_mode = 2
-text = "Sebzés:"
-
-[node name="Sebzes" type="SpinBox" parent="Kártyák/Sebzés"]
-layout_mode = 2
-
-[node name="Életerő" type="HBoxContainer" parent="Kártyák"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Kártyák/Életerő"]
-layout_mode = 2
-text = "Életerő:"
-
-[node name="Elet" type="SpinBox" parent="Kártyák/Életerő"]
-layout_mode = 2
-
-[node name="tipus" type="HBoxContainer" parent="Kártyák"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Kártyák/tipus"]
-layout_mode = 2
-text = "Tipus:"
-
-[node name="Tipus" type="OptionButton" parent="Kártyák/tipus"]
-layout_mode = 2
-
-[node name="Létrehoz" type="Button" parent="Kártyák"]
-layout_mode = 2
-text = "Létrehoz"
