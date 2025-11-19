@@ -52,10 +52,16 @@ public partial class Jatek : Control
 
 		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
 
+		// var pakli = panel.GetNode<HFlowContainer>("Pakli");
+		// foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.pakli)
+		// {
+		// 	pakli.AddChild(Card.CreateKartya(kartya));
+		// }
+
 		var pakli = panel.GetNode<HFlowContainer>("Pakli");
-		foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.pakli)
+		for (int i = 0; i < (Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count + 1) / 2 + 2; i++)
 		{
-			pakli.AddChild(Card.CreateKartya(kartya));
+			pakli.AddChild(CardHolder.CreateHolder());
 		}
 	}
 

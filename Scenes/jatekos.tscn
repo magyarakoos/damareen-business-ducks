@@ -72,6 +72,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="VilagInfo" type="VBoxContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
 [node name="VilagkartyakLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
@@ -79,7 +80,6 @@ layout_mode = 2
 text = "Világkártyák:"
 
 [node name="Vilagkartyak" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
-custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
 
 [node name="VezerekLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
@@ -96,8 +96,12 @@ text = "Kazamaták:"
 [node name="Kazamatak" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
+[node name="Spacer" type="Control" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="JatekosInfo" type="VBoxContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer"]
-custom_minimum_size = Vector2(450, 0)
+custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
 [node name="GyujtemenyLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
@@ -105,6 +109,7 @@ layout_mode = 2
 text = "A gyűjteményed:"
 
 [node name="Gyujtemeny" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
 [node name="PakliLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
