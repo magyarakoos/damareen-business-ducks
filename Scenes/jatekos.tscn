@@ -41,6 +41,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Kiválaszt"
 
+[node name="Vissza" type="Button" parent="VilagKivalasztas/VBoxContainer"]
+layout_mode = 2
+text = "Vissza"
+
 [node name="MainPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -120,3 +124,4 @@ text = "A paklid:"
 layout_mode = 2
 
 [connection signal="pressed" from="VilagKivalasztas/VBoxContainer/Button" to="." method="OnVilagKivalasztPressed"]
+[connection signal="pressed" from="VilagKivalasztas/VBoxContainer/Vissza" to="." method="Onvisszapressed"]
