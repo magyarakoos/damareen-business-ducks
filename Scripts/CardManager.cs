@@ -19,13 +19,13 @@ public partial class CardManager : Control
 		{
 			if (mouse.Pressed)
 			{
-				GD.Print("Got a mouse down event");
+				//GD.Print("Got a mouse down event");
 				// Mouse pressed - check if we clicked on a card
 				HandleCardPress();
 			}
 			else
 			{
-				GD.Print("Got a mouse UP event");
+				//GD.Print("Got a mouse UP event");
 				// Mouse released - handle card drop
 				HandleCardRelease();
 			}
@@ -43,7 +43,7 @@ public partial class CardManager : Control
 		var query = new PhysicsPointQueryParameters2D
 		{
 			Position = mousePos,
-			CollisionMask = 1, // Use whatever collision layer your cards are on
+			CollisionMask = 1,
 			CollideWithAreas = true,
 			CollideWithBodies = false
 		};
@@ -89,15 +89,8 @@ public partial class CardManager : Control
 		Card? card = GetTopCardUnderMouse();
 		if (card == null) return;
 
-		GD.Print("Currently dragging: " + card.GetNode<Label>("CardName").Text);
-
 		Node par = card.GetParent();
-		if (par.Name == "Gyujtemeny")
-		{
-			fromPakli = false;
-			par.RemoveChild(card);
-		}
-		else if (par.Name == "Pakli")
+		if (par.Name == "Pakli")
 		{
 			fromPakli = true;
 			int i = card.GetIndex();
@@ -108,15 +101,15 @@ public partial class CardManager : Control
 		}
 		else
 		{
-			throw new UnreachableException();
+			fromPakli = false;
+			par.RemoveChild(card);
 		}
 
 		GetTree().CurrentScene.AddChild(card);
 
-		cardDragged = card;
 		card.ZIndex = 2;
-
-		GD.Print("Pressed card: " + card.GetNode<Label>("CardName").Text);
+		card.Scale = new Vector2(1.2f, 1.2f);
+		cardDragged = card;
 	}
 
 	private void HandleCardRelease()
@@ -149,14 +142,13 @@ public partial class CardManager : Control
 			}
 		}
 
-		GD.Print("Released card: " + cardDragged.GetNode<Label>("CardName").Text);
-
 		cardDragged.ZIndex = 1;
+		cardDragged.Scale = new Vector2(1, 1);
+
 		cardDragged = null;
 		fromPakli = false;
 
 		EmitSignal(SignalName.CardsRerender);
-
 	}
 
 	public CardHolder? GetCardHolderUnderMouse()
@@ -167,7 +159,7 @@ public partial class CardManager : Control
 		var query = new PhysicsPointQueryParameters2D
 		{
 			Position = mousePos,
-			CollisionMask = 2, // Use whatever collision layer your card holders are on
+			CollisionMask = 2,
 			CollideWithAreas = true,
 			CollideWithBodies = false
 		};
@@ -176,7 +168,6 @@ public partial class CardManager : Control
 
 		if (result.Count > 0)
 		{
-			// Get the first (topmost) result
 			var collider = result[0]["collider"].As<Area2D>();
 			if (collider != null)
 			{

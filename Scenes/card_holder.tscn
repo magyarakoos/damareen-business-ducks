@@ -7,11 +7,11 @@
 size = Vector2(76, 106)
 
 [node name="CardHolder" type="Control"]
-custom_minimum_size = Vector2(76, 106)
+custom_minimum_size = Vector2(75, 105)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 76.0
-offset_bottom = 106.0
+offset_right = 75.0
+offset_bottom = 105.0
 script = ExtResource("1_ltamu")
 
 [node name="CardHolderImage" type="Sprite2D" parent="."]
