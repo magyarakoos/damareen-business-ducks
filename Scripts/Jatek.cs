@@ -100,4 +100,11 @@ public partial class Jatek : Control
 		RerenderGyujtemeny(jatekosPanel);
 		RerenderPakli(jatekosPanel);
 	}
+
+	private void OnVisszaButtonPressed()
+	{
+		VilagExport.Export(Global.Instance!.aktivVilag!);
+		Global.Instance!.aktivVilag = null;
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+	}
 }

@@ -96,3 +96,20 @@ text = "A paklid:"
 
 [node name="Pakli" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
+
+[node name="VisszaButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.88
+anchor_right = 0.975
+anchor_bottom = 0.92
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kilépés"
+
+[connection signal="pressed" from="Panel/VisszaButton" to="." method="OnVisszaButtonPressed"]
