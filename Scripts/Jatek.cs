@@ -2,10 +2,7 @@ using Godot;
 
 public partial class Jatek : Control
 {
-	private void Onvisszapressed()
-	{
-		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
-	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
