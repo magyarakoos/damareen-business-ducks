@@ -1,13 +1,13 @@
 using System.Diagnostics;
 using Godot;
 
-public class CardHolder
-{	
-	public static Control CreateHolder()
+public partial class CardHolder : Control
+{
+	public static CardHolder CreateHolder()
 	{
 		var scene = GD.Load<PackedScene>("res://Scenes/card_holder.tscn");
-		var card = scene.Instantiate<Control>();
+		var holder = scene.Instantiate<CardHolder>();
 
-		return card;
+		return holder;
 	}
 }

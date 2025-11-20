@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Godot;
 
 public partial class Jatek : Control
@@ -19,51 +20,99 @@ public partial class Jatek : Control
 		{
 			vilaglista.AddItem(vilag.nev);
 		}
-	}
-	
-	private void AddKartyak()
-	{
-		var panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
 
+		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		cardManager.CardsRerender += RerenderKartyak;
+	}
+
+	private void RerenderVilagkartyak(VBoxContainer panel)
+	{
 		var vilagkartyak = panel.GetNode<HFlowContainer>("Vilagkartyak");
+		foreach (Node child in vilagkartyak.GetChildren())
+		{
+			vilagkartyak.RemoveChild(child);
+		}
 		foreach (Kartya kartya in Global.Instance!.aktivVilag!.vilagkartyak)
 		{
 			vilagkartyak.AddChild(Card.CreateKartya(kartya));
 		}
-		
+	}
+
+	private void RerenderVezerek(VBoxContainer panel)
+	{
 		var vilagvezerek = panel.GetNode<HFlowContainer>("Vezerek");
+		foreach (Node child in vilagvezerek.GetChildren())
+		{
+			vilagvezerek.RemoveChild(child);
+		}
 		foreach (Vezer vezer in Global.Instance!.aktivVilag!.vilagvezerek)
 		{
 			vilagvezerek.AddChild(Card.CreateVezer(vezer));
 		}
+	}
 
+	private void RerenderKazamatak(VBoxContainer panel)
+	{
 		var kazamatak = panel.GetNode<HFlowContainer>("Kazamatak");
+		foreach (Node child in kazamatak.GetChildren())
+		{
+			kazamatak.RemoveChild(child);
+		}
 		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
 		{
 			kazamatak.AddChild(KazaCard.CreateKaza(kaza));
 		}
+	}
 
-		panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo");
-
+	private void RerenderGyujtemeny(VBoxContainer panel)
+	{
+		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
 		var gyujtemeny = panel.GetNode<HFlowContainer>("Gyujtemeny");
-		foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.gyujtemeny)
+		foreach (Node child in gyujtemeny.GetChildren())
+		{
+			gyujtemeny.RemoveChild(child);
+		}
+		foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kartya => Global.Instance!.aktivVilag!.jatekos.pakli!.Find(kx => kx.nev == kartya.nev) == null))
 		{
 			gyujtemeny.AddChild(Card.CreateKartya(kartya));
 		}
 
-		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
+		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Gyujtemeny"));
+	}
 
-		// var pakli = panel.GetNode<HFlowContainer>("Pakli");
-		// foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.pakli)
-		// {
-		// 	pakli.AddChild(Card.CreateKartya(kartya));
-		// }
-
+	private void RerenderPakli(VBoxContainer panel)
+	{
 		var pakli = panel.GetNode<HFlowContainer>("Pakli");
-		for (int i = 0; i < (Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count + 1) / 2 + 2; i++)
+		foreach (Node child in pakli.GetChildren())
+		{
+			pakli.RemoveChild(child);
+		}
+		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
+		foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.pakli)
+		{
+			pakli.AddChild(Card.CreateKartya(kartya));
+		}
+
+		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Pakli"));
+		
+		for (int i = 0; i < (Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count + 1) / 2 - Global.Instance!.aktivVilag!.jatekos.pakli.Count; i++)
 		{
 			pakli.AddChild(CardHolder.CreateHolder());
 		}
+	}
+	
+	private void RerenderKartyak()
+	{
+		var panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
+		RerenderVilagkartyak(panel);
+		RerenderVezerek(panel);
+		RerenderKazamatak(panel);
+
+		panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
+		RerenderGyujtemeny(panel);
+		RerenderPakli(panel);
 	}
 
 	private void OnVilagKivalasztPressed()
@@ -76,7 +125,7 @@ public partial class Jatek : Control
 
 		GetNode<Panel>("VilagKivalasztas").Hide();
 		GetNode<Panel>("MainPanel").Show();
-		AddKartyak();
+		RerenderKartyak();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

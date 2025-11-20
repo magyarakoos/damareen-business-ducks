@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://e3fi35cymgyr"]
+[gd_scene load_steps=3 format=3 uid="uid://e3fi35cymgyr"]
 
 [ext_resource type="Script" uid="uid://bs0vtd8v25083" path="res://Scripts/Jatek.cs" id="1_o35tu"]
+[ext_resource type="Script" uid="uid://bcc0qo6mox554" path="res://Scripts/CardManager.cs" id="2_1u0j8"]
 
 [node name="Jatekos" type="Control"]
 layout_mode = 3
@@ -100,23 +101,30 @@ layout_mode = 2
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="JatekosInfo" type="VBoxContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Node2D" type="Control" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
+script = ExtResource("2_1u0j8")
 
-[node name="GyujtemenyLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
+[node name="JatekosInfo" type="VBoxContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D"]
+custom_minimum_size = Vector2(525, 0)
+layout_mode = 0
+offset_right = 525.0
+offset_bottom = 101.0
+
+[node name="GyujtemenyLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 text = "A gyűjteményed:"
 
-[node name="Gyujtemeny" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
+[node name="Gyujtemeny" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="PakliLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
+[node name="PakliLabel" type="Label" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 text = "A paklid:"
 
-[node name="Pakli" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/JatekosInfo"]
+[node name="Pakli" type="HFlowContainer" parent="MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 
 [connection signal="pressed" from="VilagKivalasztas/VBoxContainer/Button" to="." method="OnVilagKivalasztPressed"]

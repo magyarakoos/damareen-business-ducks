@@ -1,8 +1,27 @@
 using System.Diagnostics;
+using System.Security.Principal;
 using Godot;
 
-public class Card
-{	
+public partial class Card : Control
+{
+	[Signal] public delegate void CardPressedEventHandler(Card card);
+	[Signal] public delegate void CardReleasedEventHandler(Card card);
+
+	public override void _GuiInput(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left)
+		{
+			if (mouse.Pressed)
+			{
+				EmitSignal(SignalName.CardPressed, this);
+			}
+			else
+			{
+				EmitSignal(SignalName.CardReleased, this);
+			}
+		}
+	}
+
 	public static Control CreateKartya(Kartya kartya)
 	{
 		var scene = GD.Load<PackedScene>("res://Scenes/card.tscn");
