@@ -58,21 +58,25 @@ public partial class CardManager : Control
 			var area = result["collider"].As<Area2D>();
 			if (area != null)
 			{
-				var card = area.GetParent<Card>();
-				if (card != null && card.Visible)
+				var par = area.GetParent();
+				if (par is Card card)
 				{
-					// Check if this card has a higher Z-index than current top
-					if (card.ZIndex > highestZIndex)
+
+					if (card != null && card.Visible)
 					{
-						highestZIndex = card.ZIndex;
-						topCard = card;
-					}
-					// If same Z-index, use the one that appears later in scene tree (drawn on top)
-					else if (card.ZIndex == highestZIndex && topCard != null)
-					{
-						if (card.GetIndex() > topCard.GetIndex())
+						// Check if this card has a higher Z-index than current top
+						if (card.ZIndex > highestZIndex)
 						{
+							highestZIndex = card.ZIndex;
 							topCard = card;
+						}
+						// If same Z-index, use the one that appears later in scene tree (drawn on top)
+						else if (card.ZIndex == highestZIndex && topCard != null)
+						{
+							if (card.GetIndex() > topCard.GetIndex())
+							{
+								topCard = card;
+							}
 						}
 					}
 				}
@@ -85,7 +89,7 @@ public partial class CardManager : Control
 	private void HandleCardPress()
 	{
 		if (cardDragged != null) return;
-		
+
 		Card? card = GetTopCardUnderMouse();
 		if (card == null) return;
 
@@ -99,11 +103,12 @@ public partial class CardManager : Control
 			par.AddChild(holder);
 			par.MoveChild(holder, i);
 		}
-		else
+		else if (par.Name == "Gyujtemeny")
 		{
 			fromPakli = false;
 			par.RemoveChild(card);
 		}
+		else { return; }
 
 		GetTree().CurrentScene.AddChild(card);
 

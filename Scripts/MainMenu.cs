@@ -21,7 +21,7 @@ public partial class MainMenu : Control
 	}
 	
 	private void OnJatekosButtonPressed() {
-		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/vilag_valaszto.tscn");
 	}
 	
 	private void OnSugoButttonPressed() {

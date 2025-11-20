@@ -1,10 +1,7 @@
-using System.Security.Cryptography;
 using Godot;
 
 public partial class Jatek : Control
 {
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		SetupPanels();
@@ -12,16 +9,8 @@ public partial class Jatek : Control
 	
 	private void SetupPanels()
 	{
-		GetNode<Panel>("MainPanel").Hide();
-		GetNode<Panel>("VilagKivalasztas").Show();
-
-		var vilaglista = GetNode<OptionButton>("VilagKivalasztas/VBoxContainer/Vilagok");
-		foreach (Vilag vilag in Global.Instance!.vilagok)
-		{
-			vilaglista.AddItem(vilag.nev);
-		}
-
-		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		RerenderKartyak(false);
+		var cardManager = GetNode<CardManager>("Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
 		cardManager.CardsRerender += () => RerenderKartyak(true);
 	}
 
@@ -60,7 +49,7 @@ public partial class Jatek : Control
 		}
 		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
 		{
-			kazamatak.AddChild(KazaCard.CreateKaza(kaza));
+			kazamatak.AddChild(KazamataCard.CreateKaza(kaza));
 		}
 	}
 
@@ -76,9 +65,6 @@ public partial class Jatek : Control
 		{
 			gyujtemeny.AddChild(Card.CreateKartya(kartya));
 		}
-
-		//var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
-		//cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Gyujtemeny"));
 	}
 
 	private void RerenderPakli(VBoxContainer panel)
@@ -94,9 +80,6 @@ public partial class Jatek : Control
 			pakli.AddChild(Card.CreateKartya(kartya));
 		}
 
-		//var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
-		//cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Pakli"));
-		
 		for (int i = 0; i < (Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count + 1) / 2 - Global.Instance!.aktivVilag!.jatekos.pakli.Count; i++)
 		{
 			pakli.AddChild(CardHolder.CreateHolder());
@@ -107,32 +90,14 @@ public partial class Jatek : Control
 	{
 		if (!jatekosOnly)
 		{
-			var vilagPanel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
+			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
 			RerenderVilagkartyak(vilagPanel);
 			RerenderVezerek(vilagPanel);
 			RerenderKazamatak(vilagPanel);
 		}
 
-		var jatekosPanel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
+		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
 		RerenderGyujtemeny(jatekosPanel);
 		RerenderPakli(jatekosPanel);
-	}
-
-	private void OnVilagKivalasztPressed()
-	{
-		var vilaglista = GetNode<OptionButton>("VilagKivalasztas/VBoxContainer/Vilagok");
-		string selected = vilaglista.GetItemText(vilaglista.Selected);
-		GD.Print("Selected option: " + selected);
-
-		Global.Instance!.aktivVilag = Global.Instance!.vilagok.Find((vilag) => vilag.nev == selected)!;
-
-		GetNode<Panel>("VilagKivalasztas").Hide();
-		GetNode<Panel>("MainPanel").Show();
-		RerenderKartyak();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 }
