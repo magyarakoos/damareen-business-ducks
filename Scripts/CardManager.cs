@@ -10,25 +10,86 @@ public partial class CardManager : Control
 
 	public override void _Ready()
 	{
-
+		MouseFilter = MouseFilterEnum.Stop;
 	}
 
-	public void ConnectCards(Node parent)
+	public override void _Input(InputEvent @event)
 	{
-		foreach (Node child in parent.GetChildren())
+		if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left)
 		{
-			if (child is Card card)
+			if (mouse.Pressed)
 			{
-				GD.Print("Adding handlers: ", card.GetNode<Label>("CardName").Text);
-				card.CardPressed += OnCardPressed;
-				card.CardReleased += OnCardReleased;
+				GD.Print("Got a mouse down event");
+				// Mouse pressed - check if we clicked on a card
+				HandleCardPress();
 			}
+			else
+			{
+				GD.Print("Got a mouse UP event");
+				// Mouse released - handle card drop
+				HandleCardRelease();
+			}
+
+			// Mark event as handled
+			// AcceptEvent();
 		}
 	}
 
-	private void OnCardPressed(Card card)
+	public Card? GetTopCardUnderMouse()
+	{
+		var mousePos = GetGlobalMousePosition();
+		var spaceState = GetWorld2D().DirectSpaceState;
+
+		var query = new PhysicsPointQueryParameters2D
+		{
+			Position = mousePos,
+			CollisionMask = 1, // Use whatever collision layer your cards are on
+			CollideWithAreas = true,
+			CollideWithBodies = false
+		};
+
+		var results = spaceState.IntersectPoint(query);
+
+		Card? topCard = null;
+		int highestZIndex = -9999;
+
+		foreach (var result in results)
+		{
+			var area = result["collider"].As<Area2D>();
+			if (area != null)
+			{
+				var card = area.GetParent<Card>();
+				if (card != null && card.Visible)
+				{
+					// Check if this card has a higher Z-index than current top
+					if (card.ZIndex > highestZIndex)
+					{
+						highestZIndex = card.ZIndex;
+						topCard = card;
+					}
+					// If same Z-index, use the one that appears later in scene tree (drawn on top)
+					else if (card.ZIndex == highestZIndex && topCard != null)
+					{
+						if (card.GetIndex() > topCard.GetIndex())
+						{
+							topCard = card;
+						}
+					}
+				}
+			}
+		}
+
+		return topCard;
+	}
+
+	private void HandleCardPress()
 	{
 		if (cardDragged != null) return;
+		
+		Card? card = GetTopCardUnderMouse();
+		if (card == null) return;
+
+		GD.Print("Currently dragging: " + card.GetNode<Label>("CardName").Text);
 
 		Node par = card.GetParent();
 		if (par.Name == "Gyujtemeny")
@@ -53,11 +114,12 @@ public partial class CardManager : Control
 		GetTree().CurrentScene.AddChild(card);
 
 		cardDragged = card;
+		card.ZIndex = 2;
 
 		GD.Print("Pressed card: " + card.GetNode<Label>("CardName").Text);
 	}
 
-	private void OnCardReleased(Card card)
+	private void HandleCardRelease()
 	{
 		if (cardDragged == null) return;
 
@@ -87,12 +149,14 @@ public partial class CardManager : Control
 			}
 		}
 
+		GD.Print("Released card: " + cardDragged.GetNode<Label>("CardName").Text);
+
+		cardDragged.ZIndex = 1;
 		cardDragged = null;
 		fromPakli = false;
 
 		EmitSignal(SignalName.CardsRerender);
 
-		GD.Print("Released card: " + card.GetNode<Label>("CardName").Text);
 	}
 
 	public CardHolder? GetCardHolderUnderMouse()

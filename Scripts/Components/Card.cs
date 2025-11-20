@@ -4,28 +4,10 @@ using Godot;
 
 public partial class Card : Control
 {
-	[Signal] public delegate void CardPressedEventHandler(Card card);
-	[Signal] public delegate void CardReleasedEventHandler(Card card);
-
-	public override void _GuiInput(InputEvent @event)
-	{
-		if (@event is InputEventMouseButton mouse && mouse.ButtonIndex == MouseButton.Left)
-		{
-			if (mouse.Pressed)
-			{
-				EmitSignal(SignalName.CardPressed, this);
-			}
-			else
-			{
-				EmitSignal(SignalName.CardReleased, this);
-			}
-		}
-	}
-
-	public static Control CreateKartya(Kartya kartya)
+	public static Card CreateKartya(Kartya kartya)
 	{
 		var scene = GD.Load<PackedScene>("res://Scenes/card.tscn");
-		var card = scene.Instantiate<Control>();
+		var card = scene.Instantiate<Card>();
 
 		card.GetNode<Label>("CardName").Text = kartya.nev;
 		card.GetNode<Label>("CardDamage").Text = $"⚔️ {kartya.sebzes}";
@@ -43,6 +25,8 @@ public partial class Card : Control
 		{
 			card.GetNode<Label>("CardName").AddThemeFontSizeOverride("font_size", 8);
 		}
+
+		var area = card.GetNode<Area2D>("Area2D");
 
 		return card;
 	}

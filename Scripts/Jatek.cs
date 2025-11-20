@@ -22,7 +22,7 @@ public partial class Jatek : Control
 		}
 
 		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
-		cardManager.CardsRerender += RerenderKartyak;
+		cardManager.CardsRerender += () => RerenderKartyak(true);
 	}
 
 	private void RerenderVilagkartyak(VBoxContainer panel)
@@ -77,8 +77,8 @@ public partial class Jatek : Control
 			gyujtemeny.AddChild(Card.CreateKartya(kartya));
 		}
 
-		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
-		cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Gyujtemeny"));
+		//var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		//cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Gyujtemeny"));
 	}
 
 	private void RerenderPakli(VBoxContainer panel)
@@ -94,8 +94,8 @@ public partial class Jatek : Control
 			pakli.AddChild(Card.CreateKartya(kartya));
 		}
 
-		var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
-		cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Pakli"));
+		//var cardManager = GetNode<CardManager>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		//cardManager.ConnectCards(cardManager.GetNode<HFlowContainer>("JatekosInfo/Pakli"));
 		
 		for (int i = 0; i < (Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count + 1) / 2 - Global.Instance!.aktivVilag!.jatekos.pakli.Count; i++)
 		{
@@ -103,16 +103,19 @@ public partial class Jatek : Control
 		}
 	}
 	
-	private void RerenderKartyak()
+	private void RerenderKartyak(bool jatekosOnly = false)
 	{
-		var panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
-		RerenderVilagkartyak(panel);
-		RerenderVezerek(panel);
-		RerenderKazamatak(panel);
+		if (!jatekosOnly)
+		{
+			var vilagPanel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
+			RerenderVilagkartyak(vilagPanel);
+			RerenderVezerek(vilagPanel);
+			RerenderKazamatak(vilagPanel);
+		}
 
-		panel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
-		RerenderGyujtemeny(panel);
-		RerenderPakli(panel);
+		var jatekosPanel = GetNode<VBoxContainer>("MainPanel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
+		RerenderGyujtemeny(jatekosPanel);
+		RerenderPakli(jatekosPanel);
 	}
 
 	private void OnVilagKivalasztPressed()
