@@ -46,10 +46,20 @@ text = "Játékmester mód"
 layout_mode = 2
 text = "Játékos mód"
 
-[node name="SugoButton" type="Button" parent="VBoxContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="SugoButton" type="Button" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(91, 0)
 layout_mode = 2
 text = "Súgó"
 
+[node name="ExitButton" type="Button" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(91, 0)
+layout_mode = 2
+text = "Kilépés"
+
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/JatekmesterButton" to="." method="OnJatekmesterButtonPressed"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/JatekosButton" to="." method="OnJatekosButtonPressed"]
-[connection signal="pressed" from="VBoxContainer2/VBoxContainer/SugoButton" to="." method="OnSugoButttonPressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/HBoxContainer/SugoButton" to="." method="OnSugoButttonPressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/HBoxContainer/ExitButton" to="." method="OnExitButtonPressed"]

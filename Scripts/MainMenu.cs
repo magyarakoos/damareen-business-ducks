@@ -27,4 +27,9 @@ public partial class MainMenu : Control
 	private void OnSugoButttonPressed() {
 		GetTree().ChangeSceneToFile("res://Scenes/sugo.tscn");
 	}
+	
+	private void OnExitButtonPressed()
+	{
+		GetTree().Quit();
+	}
 }
