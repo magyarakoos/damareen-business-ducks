@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://nei2at1yltiu"]
+
+[ext_resource type="Script" uid="uid://d1pjvvqb13ifv" path="res://Scenes/Világcsináló.cs" id="1_eo8lp"]
+
+[node name="vilagcsinalo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_eo8lp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="vilag" type="Label" parent="VBoxContainer"]
+layout_mode = 2

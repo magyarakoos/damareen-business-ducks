@@ -48,11 +48,17 @@ public partial class Vilagletrehozo : Control
 		{
 		  
 			GD.PushError("A név nem lehet üres!");
-		
+		return;
 		
 		}
 
-	 Nev.Clear();
+	
 		GD.Print($"Világ létrehozása ezzel a névvel: {Nev.Text}");
+		vilagnev==Nev.Text;
+		 Nev.Clear();
+			
+	
+		GetTree().ChangeSceneToFile("res://Scenes/világcsináló.tscn");
+	
 	}
 }

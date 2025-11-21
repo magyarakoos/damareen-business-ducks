@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dke1gnpxmavmr"]
 
-[ext_resource type="Script" uid="uid://drdm0he7e8gxb" path="res://Scenes/Sugo.cs" id="1_y41oq"]
+[ext_resource type="Script" uid="uid://drdm0he7e8gxb" path="res://Scripts/Sugo.cs" id="1_y41oq"]
 
 [node name="Sugo" type="Control"]
 layout_mode = 3

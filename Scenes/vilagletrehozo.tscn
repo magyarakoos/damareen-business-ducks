@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3pq4k6jhyodo"]
 
-[ext_resource type="Script" uid="uid://bbh3ypmowch6k" path="res://Scenes/Vilagletrehozo.cs" id="1_olaqh"]
+[ext_resource type="Script" uid="uid://bbh3ypmowch6k" path="res://Scripts/Vilagletrehozo.cs" id="1_olaqh"]
 
 [node name="vilagletrehozo" type="Control" node_paths=PackedStringArray("Letrehoz", "Nev")]
 layout_mode = 3
