@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bge8lymhk0xv7"]
+[gd_scene load_steps=0 format=3 uid="uid://bge8lymhk0xv7"]
 
 [node name="Harc" type="Control"]
 layout_mode = 3
