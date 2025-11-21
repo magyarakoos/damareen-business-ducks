@@ -105,6 +105,7 @@ public partial class Jatek : Control
 	{
 		VilagExport.Export(Global.Instance!.aktivVilag!);
 		Global.Instance!.aktivVilag = null;
+		Global.Instance!.vilagok = VilagExport.ImportAll();
 		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
 	}
 }
