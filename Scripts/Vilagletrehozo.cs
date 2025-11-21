@@ -54,7 +54,7 @@ public partial class Vilagletrehozo : Control
 
 	
 		GD.Print($"Világ létrehozása ezzel a névvel: {Nev.Text}");
-		vilagnev==Nev.Text;
+		//vilagnev==Nev.Text;
 		 Nev.Clear();
 			
 	

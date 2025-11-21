@@ -8,9 +8,7 @@ public partial class Vilagcsinalo : Control
 
 	public override void _Ready()
 	{
-		
-		vilag.Text==vilagnev;
-		
+	
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
