@@ -55,4 +55,9 @@ public partial class KazaViewer : Control
 		Global.Instance!.aktivKaza = null;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
 	}
+
+	private void OnFightButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/harc.tscn");
+	}
 }

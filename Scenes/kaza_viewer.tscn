@@ -116,4 +116,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Vissza"
 
+[connection signal="pressed" from="Panel/FightButton" to="." method="OnFightButtonPressed"]
 [connection signal="pressed" from="Panel/VisszaButton" to="." method="OnVisszaButtonPressed"]

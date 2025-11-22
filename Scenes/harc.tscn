@@ -1,4 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://bge8lymhk0xv7"]
+[gd_scene load_steps=2 format=3 uid="uid://bge8lymhk0xv7"]
+
+[ext_resource type="Script" uid="uid://jfs76k6wo3hm" path="res://Scripts/HarcScene.cs" id="1_kunw7"]
 
 [node name="Harc" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kunw7")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -34,8 +37,103 @@ vertical_alignment = 1
 autowrap_trim_flags = 128
 
 [node name="Title" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "A melyseg kiralynoje"
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="KazaSide" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Kazamata lapjai"
+horizontal_alignment = 2
+
+[node name="Kaza" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide"]
+layout_mode = 2
+alignment = 2
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+
+[node name="MiddleSide" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Panel/MiddleSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Kijátszott lapok"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Panel/MiddleSide"]
+layout_mode = 2
+alignment = 1
+
+[node name="KazaHolder" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Panel/MiddleSide/HBoxContainer"]
+custom_minimum_size = Vector2(75, 105)
+layout_mode = 2
+
+[node name="JatekosHolder" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Panel/MiddleSide/HBoxContainer"]
+custom_minimum_size = Vector2(75, 105)
+layout_mode = 2
+
+[node name="JatekosSide" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Játékos lapjai"
+
+[node name="Jatekos" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="LeptetButton" type="Button" parent="Panel/VBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+text = "Lépés"
+
+[node name="KilepesButton" type="Button" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.88
+anchor_right = 0.975
+anchor_bottom = 0.92
+offset_left = 0.36395264
+offset_top = -0.0039978027
+offset_right = -0.36401367
+offset_bottom = 0.00390625
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kilépés"
+
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer2/LeptetButton" to="." method="OnLeptetButtonPressed"]
+[connection signal="pressed" from="Panel/KilepesButton" to="." method="OnKilepesButtonPressed"]

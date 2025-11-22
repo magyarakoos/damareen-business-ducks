@@ -46,7 +46,7 @@ public class Vilag
 
 		HarcAllapot vegeredmeny = HarcAllapot.Aktiv;
 		for (int kor_i = 1; ; kor_i++)
-		{
+		{	
 			HarcAllapot eredmeny = harc.Lepes(log, kor_i);
 			if (eredmeny != HarcAllapot.Aktiv)
 			{

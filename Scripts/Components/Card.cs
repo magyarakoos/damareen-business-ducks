@@ -20,7 +20,8 @@ public partial class Card : Control
 		var card = scene.Instantiate<Card>();
 
 		card.GetNode<Label>("CardName").Text = kartya.nev;
-		card.GetNode<Label>("CardStats").Text = $"{kartya.sebzes}\n{kartya.eletero}";
+		card.GetNode<Label>("CardDamage").Text = $"{kartya.sebzes}";
+		card.GetNode<Label>("CardHealth").Text = $"{kartya.eletero}";
 
 		string cardPath;
 		Color? textColor = null;
@@ -49,7 +50,6 @@ public partial class Card : Control
 		if (textColor != null)
 		{
 			card.GetNode<Label>("CardName").AddThemeColorOverride("font_color", (Color)textColor);
-			card.GetNode<Label>("CardStats").AddThemeColorOverride("font_color", (Color)textColor);
 		}
 
 		if (kartya.nev.Length >= 10)
