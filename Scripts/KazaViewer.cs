@@ -13,7 +13,7 @@ public partial class KazaViewer : Control
 		panel.GetNode<Label>("Type").Text = KazamataCard.CreateKaza(kaza).GetNode<Label>("KazaType").Text;
 
 		var kartyaPanel = panel.GetNode<HBoxContainer>("HBoxContainer");
-		
+
 		var enemies = kartyaPanel.GetNode<HFlowContainer>("EnemiesControl/Enemies");
 		foreach (Kartya kartya in kaza.kartyak)
 		{
@@ -33,8 +33,17 @@ public partial class KazaViewer : Control
 		var reward = panel.GetNode<Control>("Reward");
 		if (kaza.fejlesztes == null)
 		{
-			Kartya uj_kartya = Global.Instance!.aktivVilag!.vilagkartyak.Find((item) => Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Find((itx) => itx.nev == item.nev) == null)!;
-			reward.AddChild(Card.CreateKartya(uj_kartya));
+			Kartya? uj_kartya = Global.Instance!.aktivVilag!.vilagkartyak.Find((item) => Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Find((itx) => itx.nev == item.nev) == null);
+
+			if (uj_kartya == null)
+			{
+				SetError("Már az összes világkártya a birtokodban van, így nem játszhatsz nagy kazamatában.");
+				return;
+			} 
+			else
+			{
+				reward.AddChild(Card.CreateKartya(uj_kartya));
+			}
 		}
 		else
 		{
@@ -48,6 +57,11 @@ public partial class KazaViewer : Control
 				},
 			});
 		}
+
+		if ((Global.Instance!.aktivVilag!.jatekos.pakli ?? []).Count == 0)
+		{
+			SetError("Harc előtt össze kell állítanod egy paklit.");
+		}
 	}
 
 	private void OnVisszaButtonPressed()
@@ -59,5 +73,16 @@ public partial class KazaViewer : Control
 	private void OnFightButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/harc.tscn");
+	}
+
+	private void SetError(string errorMessage)
+	{
+
+		GetNode<Button>("Panel/FightControl/FightButton").Hide();
+		var errorPanel = GetNode<Panel>("Panel/FightControl/Label");
+		errorPanel.Show();
+		var label = errorPanel.GetNode<Label>("Error"); 
+		label.Text = errorMessage;
+		label.AutowrapMode = TextServer.AutowrapMode.Word;
 	}
 }

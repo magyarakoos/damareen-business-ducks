@@ -86,20 +86,48 @@ text = "Jutalom:"
 [node name="Reward" type="Control" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="FightButton" type="Button" parent="Panel"]
+[node name="FightControl" type="Control" parent="Panel"]
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.35
 anchor_top = 0.85
 anchor_right = 0.65
 anchor_bottom = 0.95
-offset_left = 0.11198425
+offset_left = 0.111968994
 offset_top = 0.05596924
 offset_right = -0.11206055
 offset_bottom = -0.20806885
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="FightButton" type="Button" parent="Panel/FightControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "HARC"
+
+[node name="Label" type="Panel" parent="Panel/FightControl"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Error" type="Label" parent="Panel/FightControl/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.42000002, 0.42000002, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VisszaButton" type="Button" parent="Panel"]
 layout_mode = 1
@@ -116,5 +144,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Vissza"
 
-[connection signal="pressed" from="Panel/FightButton" to="." method="OnFightButtonPressed"]
+[connection signal="pressed" from="Panel/FightControl/FightButton" to="." method="OnFightButtonPressed"]
 [connection signal="pressed" from="Panel/VisszaButton" to="." method="OnVisszaButtonPressed"]

@@ -2,7 +2,7 @@ using Godot;
 
 public class VilagExport
 {
-	private const string basePath = "user://vilagok/";
+	public static readonly string basePath = "user://vilagok/";
 	public static void MakeVilagokDir()
 	{
 		DirAccess dir = DirAccess.Open("user://");

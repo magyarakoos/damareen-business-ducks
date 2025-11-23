@@ -42,7 +42,13 @@ public partial class Global : Node
 	{
 		Instance = this;
 		VilagExport.MakeVilagokDir();
-		VilagExport.Export(new Vilag(ui_vilag));
+
+		var basic_vilag = new Vilag(ui_vilag);
+		if (!Godot.FileAccess.FileExists($"{VilagExport.basePath}{basic_vilag.nev}.txt"))
+		{
+			VilagExport.Export(basic_vilag);
+		}
+		
 		this.vilagok = VilagExport.ImportAll();
 		foreach (Vilag vilag in vilagok)
 		{

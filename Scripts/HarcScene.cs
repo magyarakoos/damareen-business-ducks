@@ -1,6 +1,7 @@
 using Godot;
 using Microsoft.VisualBasic;
 using System;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 public partial class HarcScene : Control
@@ -67,13 +68,14 @@ public partial class HarcScene : Control
 		int i = 0;
 		foreach (Harckartya kartya in harc!.kazamata.Reverse())
 		{
+			bool isVezer = i == 0 && Global.Instance!.aktivKaza!.tipus != KazamataTipus.Egyszeru;
 			if (i + 1 == harc!.kazamata.Count && harc!.kazamata_aktiv)
 			{
-				kazaAktiv.AddChild(Card.CreateHarckartya(kartya, false));	
+				kazaAktiv.AddChild(Card.CreateHarckartya(kartya, isVezer));	
 			}
 			else
 			{
-				var card = Card.CreateHarckartya(kartya, i == 0 && Global.Instance!.aktivKaza!.tipus != KazamataTipus.Egyszeru);
+				var card = Card.CreateHarckartya(kartya, isVezer);
 				kaza.AddChild(card);
 			}
 			i++;
@@ -106,7 +108,6 @@ public partial class HarcScene : Control
 		{
 			harc!.kazamata_aktiv = true;
 			AddMessage($"A kazamata kijáttsza {harc!.kazamata.Peek().nev}-t.");
-			GD.Print($"{kor_i}.kor;kazamata;kijatszik;{harc!.kazamata.Peek().Info()}");
 		}
 		else
 		{
@@ -163,7 +164,6 @@ public partial class HarcScene : Control
 		GetNode<Label>("Panel/VBoxContainer/Message").Text = "";
 	}
 
-
 	public void HarcLepes()
 	{
 		ClearMessage();
@@ -199,20 +199,24 @@ public partial class HarcScene : Control
 			else
 			{
 				Kartya fejlodik = vilag.jatekos.gyujtemeny.Find((item) => item.nev == harc!.jatekos.Peek().nev)!;
+				string msg = $"Játékos nyert, jutalmul {fejlodik} fejlődik, ";
 				switch (kaza.fejlesztes)
 				{
 					case FejlesztesTipus.Sebzes:
 						fejlodik.sebzes += 1;
+						msg += "+1 sebzést szerez.";
 						break;
 					case FejlesztesTipus.Eletero:
+						msg += "+2 életerőt szerez.";
 						fejlodik.eletero += 2;
 						break;
+					default:
+						throw new UnreachableException();
 				}
-				AddMessage($"jatekos nyert;{kaza.fejlesztes.ToString()!.ToLower()};{fejlodik.nev}");
+				AddMessage(msg);
 			}
 		}
 
-		GD.Print("Does dis happen");
 		GetNode<Button>("Panel/KilepesButton").Show();
 		GetNode<Button>("Panel/VBoxContainer/CenterContainer2/LeptetButton").Hide();
 	}
