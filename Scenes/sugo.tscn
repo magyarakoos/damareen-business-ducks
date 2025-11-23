@@ -28,7 +28,7 @@ anchor_bottom = 1.0
 offset_left = -0.38401794
 offset_top = 0.10398865
 offset_right = 0.38391113
-offset_bottom = -0.104034424
+offset_bottom = -0.104003906
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -39,17 +39,40 @@ text = "Súgó"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text" type="Label" parent="Panel/VBoxContainer"]
+[node name="OptionsRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-Ipsa repudiandae fuga quidem maiores?
-Possimus molestiae hic, adipisci eaque cum temporibus nesciunt ex quaerat
-enim nam accusantium tempore sint nobis quod!
-"
 
-[node name="Vissza" type="Button" parent="Panel/VBoxContainer"]
+[node name="Altalanos" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
 layout_mode = 2
+text = "Általános"
+
+[node name="Jatekmester" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
+layout_mode = 2
+text = "Játékmester"
+
+[node name="Jatekos" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
+layout_mode = 2
+text = "Játékos"
+
+[node name="ContentPanel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="ContentLabel" type="RichTextLabel" parent="Panel/VBoxContainer/ContentPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vissza" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.88
+anchor_right = 0.975
+anchor_bottom = 0.92
 text = "Vissza"
 
-[connection signal="pressed" from="Panel/VBoxContainer/Vissza" to="." method="Onvisszapressed"]
+[connection signal="pressed" from="Panel/Vissza" to="." method="Onvisszapressed"]
