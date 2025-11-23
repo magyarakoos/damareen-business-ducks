@@ -28,9 +28,11 @@ public partial class HarcScene : Control
 		var jatekos = GetNode<HFlowContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide/Jatekos");
 		var kaza = GetNode<HFlowContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide/Kaza");
 
+		int i = 0;
 		foreach (Harckartya kartya in harc!.kazamata.Reverse())
 		{
-			kaza.AddChild(Card.CreateHarckartya(kartya, false));
+			kaza.AddChild(Card.CreateHarckartya(kartya, i == 0 && Global.Instance!.aktivKaza!.tipus != KazamataTipus.Egyszeru));
+			i++;
 		}
 		foreach (Harckartya kartya in harc!.jatekos)
 		{
@@ -71,7 +73,7 @@ public partial class HarcScene : Control
 			}
 			else
 			{
-				var card = Card.CreateHarckartya(kartya, false);
+				var card = Card.CreateHarckartya(kartya, i == 0 && Global.Instance!.aktivKaza!.tipus != KazamataTipus.Egyszeru);
 				kaza.AddChild(card);
 			}
 			i++;

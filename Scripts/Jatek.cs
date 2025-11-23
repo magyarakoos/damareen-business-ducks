@@ -49,7 +49,10 @@ public partial class Jatek : Control
 		}
 		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
 		{
-			kazamatak.AddChild(KazamataCard.CreateKaza(kaza));
+			var card = KazamataCard.CreateKaza(kaza);
+			//card.Disabled = false;
+			kazamatak.AddChild(card);
+			//myButton.Disabled = false;
 		}
 	}
 
