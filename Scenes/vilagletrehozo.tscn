@@ -9,22 +9,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_olaqh")
 Letrehoz = NodePath("VBoxContainer/Button")
-Nev = NodePath("VBoxContainer/HBoxContainer/Nev")
+Nev = NodePath("")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="nev" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Az új világ neve:"
-
-[node name="Nev" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

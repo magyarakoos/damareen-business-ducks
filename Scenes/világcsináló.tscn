@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nei2at1yltiu"]
+[gd_scene load_steps=3 format=3 uid="uid://nei2at1yltiu"]
 
-[ext_resource type="Script" uid="uid://d1pjvvqb13ifv" path="res://Scenes/Világcsináló.cs" id="1_eo8lp"]
+[ext_resource type="Script" uid="uid://d1pjvvqb13ifv" path="res://Scripts/Világcsináló.cs" id="1_eo8lp"]
+[ext_resource type="PackedScene" uid="uid://butekklo45bx0" path="res://Scenes/kartyaletrehozo.tscn" id="2_xo76u"]
 
 [node name="vilagcsinalo" type="Control"]
 layout_mode = 3
@@ -14,5 +15,5 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="vilag" type="Label" parent="VBoxContainer"]
+[node name="Kartyaletrehozo" parent="VBoxContainer" instance=ExtResource("2_xo76u")]
 layout_mode = 2

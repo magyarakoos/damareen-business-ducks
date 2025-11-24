@@ -3,7 +3,7 @@ using System;
 
 public partial class Vilagcsinalo : Control
 {
-	[Export] public Label vilag { get; set; } = null!;
+	
 	
 
 	public override void _Ready()

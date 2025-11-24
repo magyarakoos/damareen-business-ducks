@@ -1,8 +1,10 @@
 using Godot;
-
+using System;
 
 public partial class Kartyaletrehozo : Control
 {
+	public event EventHandler<Kartya> KartyaLetrehozva = null!; 
+	
 	[Export] public LineEdit? Nev { get; set; }
 	[Export] public SpinBox? Sebzes { get; set; }
 	[Export] public SpinBox? Elet { get; set; }
@@ -13,31 +15,25 @@ public partial class Kartyaletrehozo : Control
 	{
 		if (Nev == null || Sebzes == null || Elet == null || Tipus == null || Letrehoz == null)
 		{
-			GD.PrintErr("❌ Export mezők nincsenek kitöltve!");
+			GD.PrintErr("Export mezők nincsenek kitöltve!");
 			return;
 		}
 
 		Sebzes.MinValue = 1;
 		Elet.MinValue = 1;
 
-		Tipus.AddItem("Tűz");
-		Tipus.AddItem("Víz");
-		Tipus.AddItem("Föld");
-		Tipus.AddItem("Levegő");
+		// Az enum nevek feltöltése a robusztusabb konverzió érdekében
+		foreach (var tipusNev in Enum.GetNames(typeof(KartyaTipus)))
+		{
+			Tipus.AddItem(tipusNev);
+		}
 
 		Letrehoz.Pressed += _on_Letrehoz_pressed;
 	}
 
-	private KartyaTipus ConvertOption(int index)
+	private KartyaTipus ConvertOption(string selectedName)
 	{
-		return index switch
-		{
-			0 => KartyaTipus.Tuz,
-			1 => KartyaTipus.Viz,
-			2 => KartyaTipus.Fold,
-			3 => KartyaTipus.Levego,
-			_ => KartyaTipus.Fold,
-		};
+		return Enum.Parse<KartyaTipus>(selectedName);
 	}
 
 	private void _on_Letrehoz_pressed()
@@ -48,7 +44,8 @@ public partial class Kartyaletrehozo : Control
 			return;
 		}
 
-		KartyaTipus tipusEnum = ConvertOption(Tipus!.Selected);
+		string tipusNev = Tipus!.GetItemText(Tipus.Selected);
+		KartyaTipus tipusEnum = ConvertOption(tipusNev);
 
 		Kartya newCard = new Kartya(
 			Nev.Text,
@@ -57,8 +54,7 @@ public partial class Kartyaletrehozo : Control
 			tipusEnum
 		);
 
-		GD.Print("--- Új kártya ---");
-		GD.Print(newCard.ToString());
+		KartyaLetrehozva?.Invoke(this, newCard); 
 
 		Nev.Clear();
 		Sebzes.Value = 1;

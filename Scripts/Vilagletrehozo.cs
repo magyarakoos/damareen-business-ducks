@@ -10,7 +10,7 @@ public partial class Vilagletrehozo : Control
 	[Export] public Button Letrehoz { get; set; } = null!;
 	
   
-	[Export] public LineEdit Nev { get; set; } = null!;
+
 
 
 	public override void _Ready()
@@ -37,25 +37,12 @@ public partial class Vilagletrehozo : Control
 	private void _on_Letrehoz_pressed()
 	{
   
-		if (Nev == null)
-		{
-			GD.PushError("Hiba: A 'Nev' LineEdit nincs megfelelően beállítva a scriptben.");
-			return;
-		}
+	
 		
 	  
-		if (string.IsNullOrEmpty(Nev.Text))
-		{
-		  
-			GD.PushError("A név nem lehet üres!");
-		return;
 		
-		}
 
 	
-		GD.Print($"Világ létrehozása ezzel a névvel: {Nev.Text}");
-		//vilagnev==Nev.Text;
-		 Nev.Clear();
 			
 	
 		GetTree().ChangeSceneToFile("res://Scenes/világcsináló.tscn");
