@@ -10,7 +10,13 @@ public partial class KazaViewer : Control
 		var panel = GetNode<VBoxContainer>("Panel/VBoxContainer");
 		var kaza = Global.Instance!.aktivKaza!;
 		panel.GetNode<Label>("Title").Text = kaza.nev;
-		panel.GetNode<Label>("Type").Text = KazamataCard.CreateKaza(kaza).GetNode<Label>("KazaType").Text;
+		panel.GetNode<Label>("Type").Text = kaza.tipus switch
+		{
+			KazamataTipus.Egyszeru => "Egyszerű találkozás",
+			KazamataTipus.Kis => "Kis kazamata",
+			KazamataTipus.Nagy => "Nagy kazamata",
+			_ => throw new UnreachableException(),
+		};
 
 		var kartyaPanel = panel.GetNode<HBoxContainer>("HBoxContainer");
 
