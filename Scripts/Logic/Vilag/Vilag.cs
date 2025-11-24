@@ -201,7 +201,7 @@ public class Vilag
 					{
 						throw new InvalidDataException("Nincs ilyen kártya.");
 					}
-					this.jatekos.gyujtemeny.Add(kartya3);
+					this.jatekos.gyujtemeny.Add(new Kartya(line));
 					break;
 				case "pakli":
 					// We don't import pakli information, that's not actually part of a world config

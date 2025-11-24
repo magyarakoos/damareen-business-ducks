@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Godot;
 
 public enum KartyaTipus
 {
@@ -55,6 +56,7 @@ public class Kartya
 
 	public Kartya(string input)
 	{
+		GD.Print(input);
 		var tokens = input.Split(';');
 		this.nev = tokens[1];
 		this.sebzes = int.Parse(tokens[2]);
