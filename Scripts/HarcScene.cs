@@ -164,7 +164,7 @@ public partial class HarcScene : Control
 		GetNode<Label>("Panel/VBoxContainer/Message").Text = "";
 	}
 
-	public void HarcLepes()
+	public void OnLeptetButtonPressed()
 	{
 		ClearMessage();
 
@@ -182,7 +182,7 @@ public partial class HarcScene : Control
 
 		if (eredmeny == HarcAllapot.KazamataNyert)
 		{
-			AddMessage("Játékos vesztett.");
+			AddMessage("A játékos vesztett.");
 		}
 		else
 		{
@@ -193,13 +193,13 @@ public partial class HarcScene : Control
 				{
 					throw new InvalidOperationException("Nem lehet nagy kazamatazni, mert mar megvan az osszes kartya.");
 				}
-				AddMessage($"Játékos nyert, jutalmul kapja {uj_kartya.nev}-t");
+				AddMessage($"A játékos nyert, jutalmul kapja {uj_kartya.nev}-t");
 				vilag.jatekos.gyujtemeny.Add(uj_kartya.Clone());
 			}
 			else
 			{
 				Kartya fejlodik = vilag.jatekos.gyujtemeny.Find((item) => item.nev == harc!.jatekos.Peek().nev)!;
-				string msg = $"Játékos nyert, jutalmul {fejlodik} fejlődik, ";
+				string msg = $"A játékos nyert, jutalmul {fejlodik.nev} fejlődik, ";
 				switch (kaza.fejlesztes)
 				{
 					case FejlesztesTipus.Sebzes:
@@ -225,10 +225,5 @@ public partial class HarcScene : Control
 	{
 		Global.Instance!.aktivKaza = null;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
-	}
-
-	private void OnLeptetButtonPressed()
-	{
-		HarcLepes();
 	}
 }
