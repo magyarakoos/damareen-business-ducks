@@ -15,5 +15,38 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="Kartyaletrehozo" parent="VBoxContainer" instance=ExtResource("2_xo76u")]
+layout_mode = 2
+
+[node name="Kazamata" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="kaza" type="HBoxContainer" parent="VBoxContainer/Kazamata"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Kazamata/kaza"]
+layout_mode = 2
+text = "Kazamata név:"
+
+[node name="kazanev" type="LineEdit" parent="VBoxContainer/Kazamata/kaza"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Kazamata"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/Kazamata/HBoxContainer"]
+layout_mode = 2
+text = "A kazamata nehézésge:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Kazamata/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Kazamata/HBoxContainer"]
+layout_mode = 2
+text = "A kazamata kártyái"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/Kazamata/HBoxContainer"]
 layout_mode = 2
