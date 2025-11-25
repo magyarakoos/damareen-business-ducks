@@ -19,19 +19,12 @@ public partial class CardManager : Control
 		{
 			if (mouse.Pressed)
 			{
-				//GD.Print("Got a mouse down event");
-				// Mouse pressed - check if we clicked on a card
 				HandleCardPress();
 			}
 			else
 			{
-				//GD.Print("Got a mouse UP event");
-				// Mouse released - handle card drop
 				HandleCardRelease();
 			}
-
-			// Mark event as handled
-			// AcceptEvent();
 		}
 	}
 
