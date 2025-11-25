@@ -12,10 +12,6 @@ public partial class VilagSzerkeszto : Control
 
 		var name = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput");
 		name.Text = Global.Instance!.aktivVilag!.nev;
-		name.TextChanged += text =>
-		{
-			Global.Instance!.aktivVilag.nev = text;
-		};
 
 		RerenderKartyak();
 	}
@@ -41,6 +37,7 @@ public partial class VilagSzerkeszto : Control
 
 					Global.Instance!.aktivVilag!.jatekos.gyujtemeny = [.. Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kx => kx.nev != kartya.nev)];
 					Global.Instance!.aktivVilag!.vilagkartyak = [.. Global.Instance!.aktivVilag!.vilagkartyak.Where(kx => kx.nev != kartya.nev)];
+					Global.Instance!.aktivVilag!.vilagvezerek = [.. Global.Instance!.aktivVilag!.vilagvezerek.Where(kx => kx.kartya.nev != kartya.nev)];
 					card.EmitSignal(Card.SignalName.RerenderKartyak);
 				}
 			};
@@ -49,6 +46,7 @@ public partial class VilagSzerkeszto : Control
 			{
 				RerenderGyujtemeny(GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"));
 				RerenderVilagkartyak(panel);
+				RerenderVezerek(panel);
 			};
 
 			vilagkartyak.AddChild(card);
@@ -85,6 +83,16 @@ public partial class VilagSzerkeszto : Control
 			};
 
 			vilagvezerek.AddChild(card);
+		}
+
+		var button = panel.GetNode<Button>("VezerekTitle/VezerLetrehozo");
+		if (Global.Instance!.aktivVilag!.vilagkartyak.Count == 0)
+		{
+			button.Hide();
+		}
+		else
+		{
+			button.Show();
 		}
 	}
 
@@ -153,6 +161,16 @@ public partial class VilagSzerkeszto : Control
 
 			gyujtemeny.AddChild(card);
 		}
+
+		var button = panel.GetNode<Button>("GyujtemenyTitle/GyujtemenyHozzaado");
+		if (Global.Instance!.aktivVilag!.vilagkartyak.Count == Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count)
+		{
+			button.Hide();
+		}
+		else
+		{
+			button.Show();
+		}
 	}
 
 	private void RerenderKartyak(bool jatekosOnly = false)
@@ -177,11 +195,15 @@ public partial class VilagSzerkeszto : Control
 
 	private void OnMentesButtonPressed()
 	{
-		if (Global.Instance!.aktivVilag!.nev.Length == 0)
+		string nev =  GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput").Text;
+
+		if (nev.Length == 0)
 		{
 			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = "A világnév nem lehet üres.";
 			return;
 		}
+
+		Global.Instance!.aktivVilag!.nev = nev;
 
 		VilagExport.Export(Global.Instance!.aktivVilag!);
 		if (Global.Instance!.aktivVilag!.nev != oldName!)
