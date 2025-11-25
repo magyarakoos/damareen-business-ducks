@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://khlthh1lredb"]
+
+[ext_resource type="Script" uid="uid://tqv0wod8sjs3" path="res://Scripts/VilaglistaElem.cs" id="1_qadyu"]
+
+[node name="VilaglistaElem" type="Control"]
+custom_minimum_size = Vector2(550, 50)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qadyu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.5
+offset_top = -17.5
+offset_right = 191.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vilagnev" type="Label" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Basic világ"
+
+[node name="Szerkesztes" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Szerkesztés"
+
+[node name="Torles" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Törlés"

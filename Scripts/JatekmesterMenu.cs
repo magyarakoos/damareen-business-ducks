@@ -6,27 +6,34 @@ public partial class JatekmesterMenu : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		RerenderVilaglista();
+	}
+
+	private void RerenderVilaglista()
+	{
+		var vilaglista = GetNode<VBoxContainer>("VBoxContainer/CenterContainer/VBoxContainer2/ScrollContainer/Vilaglista");
+		
+		foreach (Node child in vilaglista.GetChildren())
+		{
+			vilaglista.RemoveChild(child);
+		}
+
 		foreach (Vilag vilag in Global.Instance!.vilagok)
 		{
-			CreateUIComponent(vilag.nev);
+			var listaElem = VilaglistaElem.CreateElem(vilag);
+			listaElem.RerenderVilaglista += RerenderVilaglista;
+			vilaglista.AddChild(listaElem);
 		}
 	}
-		private void ujvilagletrehozasapressed()
+
+	private void UjVilagPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/vilagletrehozo.tscn");
+		Global.Instance!.aktivVilag = new Vilag();
+		GetTree().ChangeSceneToFile("res://Scenes/vilag_szerkeszto.tscn");
 	}
 
-
-	private void CreateUIComponent(string name)
+	private void OnVisszaButtonPressed()
 	{
-		var vilaglista = GetNode<VBoxContainer>("Vilaglista");
-		var hbox = new VilagListaElem(name, vilaglista);
-		vilaglista.AddChild(hbox);
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		// Your main game logic for Jatekmester goes here
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
 	}
 }

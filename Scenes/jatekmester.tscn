@@ -4,20 +4,84 @@
 
 [node name="Jatekmester" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_p2jqn")
 
-[node name="Vilaglista" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="új világ létrehozása" type="Button" parent="."]
-layout_mode = 0
-offset_left = 213.0
-offset_top = 71.0
-offset_right = 428.0
-offset_bottom = 151.0
-text = "új világ létrehozása"
+[node name="Title" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Damareen"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="új világ létrehozása" to="." method="ujvilagletrehozasapressed"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Vilaglista" type="VBoxContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/CenterContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(550, 50)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UjVilag" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -17.5
+offset_right = 92.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Új világ létrehozása"
+
+[node name="VisszaButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.88
+anchor_right = 0.975
+anchor_bottom = 0.92
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kilépés"
+
+[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/UjVilag" to="." method="UjVilagPressed"]
+[connection signal="pressed" from="VisszaButton" to="." method="OnVisszaButtonPressed"]
