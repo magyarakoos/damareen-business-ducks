@@ -64,7 +64,27 @@ public partial class VilagSzerkeszto : Control
 		}
 		foreach (Vezer vezer in Global.Instance!.aktivVilag!.vilagvezerek)
 		{
-			vilagvezerek.AddChild(Card.CreateVezer(vezer));
+			var card = Card.CreateVezer(vezer);
+
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (deleteIcon == null) return;
+					deleteIcon.Hide();
+					deleteIcon = null;
+
+					Global.Instance!.aktivVilag!.vilagvezerek = [.. Global.Instance!.aktivVilag!.vilagvezerek.Where(vx => vx.nev != vezer.nev)];
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += () =>
+			{
+				RerenderVezerek(panel);
+			};
+
+			vilagvezerek.AddChild(card);
 		}
 	}
 
@@ -78,6 +98,25 @@ public partial class VilagSzerkeszto : Control
 		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
 		{
 			var card = KazamataCard.CreateKaza(kaza, false);
+			
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (deleteIcon == null) return;
+					deleteIcon.Hide();
+					deleteIcon = null;
+
+					Global.Instance!.aktivVilag!.kazamatak = [.. Global.Instance!.aktivVilag!.kazamatak.Where(kx => kx.nev != kaza.nev)];
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += () =>
+			{
+				RerenderKazamatak(panel);
+			};
+
 			kazamatak.AddChild(card);
 		}
 	}
@@ -158,6 +197,16 @@ public partial class VilagSzerkeszto : Control
 			deleteIcon = GetNode<Sprite2D>("DeleteIcon");
 			deleteIcon.Show();
 		}
+	}
+
+	private void OnGyujtemenyHozzaadoPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/gyujtemeny_hozzaado.tscn");
+	}
+
+	private void OnKartyaLetrehozoPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/kartya_letrehozo.tscn");
 	}
 
 	public override void _Process(double delta)

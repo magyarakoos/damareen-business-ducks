@@ -169,6 +169,8 @@ position = Vector2(27.249996, 27.249996)
 scale = Vector2(0.064375006, 0.064375006)
 texture = ExtResource("2_ya2td")
 
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle/KartyaLetrehozo" to="." method="OnKartyaLetrehozoPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle/GyujtemenyHozzaado" to="." method="OnGyujtemenyHozzaadoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/DeleteButton" to="." method="OnDeleteButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/MentesButton" to="." method="OnMentesButtonPressed"]
