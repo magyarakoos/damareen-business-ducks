@@ -1,8 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://cddsfmld1sgxk"]
+[gd_scene load_steps=2 format=3 uid="uid://bjfy323r84ink"]
 
 [ext_resource type="Script" uid="uid://c0k53juvjw5e6" path="res://Scripts/VezerLetrehozo.cs" id="1_3hx8e"]
 
 [node name="VezerLetrehozo" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3hx8e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.65
+anchor_bottom = 0.558
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.5
+offset_top = -69.5
+offset_right = 165.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Vezérkártya létrehozása"
+
+[node name="Nev" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 120
+
+[node name="NevLabel" type="Label" parent="Panel/VBoxContainer/Nev"]
+layout_mode = 2
+text = "Név:"
+
+[node name="NevInput" type="LineEdit" parent="Panel/VBoxContainer/Nev"]
+layout_mode = 2
+max_length = 16
+
+[node name="Alapkartya" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 120
+
+[node name="AlapkartyaLabel" type="Label" parent="Panel/VBoxContainer/Alapkartya"]
+layout_mode = 2
+text = "Alapkártya:"
+
+[node name="AlapkartyaInput" type="OptionButton" parent="Panel/VBoxContainer/Alapkartya"]
+layout_mode = 2
+
+[node name="Fejlesztes" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 120
+
+[node name="FejlesztesLabel" type="Label" parent="Panel/VBoxContainer/Fejlesztes"]
+layout_mode = 2
+text = "Fejlesztés:"
+
+[node name="FejlesztesInput" type="OptionButton" parent="Panel/VBoxContainer/Fejlesztes"]
+layout_mode = 2
+
+[node name="Error" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
+
+[node name="Buttons" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 230
+
+[node name="HozzaadButton" type="Button" parent="Panel/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Hozzáad"
+
+[node name="MegsemButton" type="Button" parent="Panel/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Mégsem"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Buttons/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Buttons/MegsemButton" to="." method="OnMegsemButtonPressed"]

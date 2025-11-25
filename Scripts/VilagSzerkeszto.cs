@@ -209,6 +209,11 @@ public partial class VilagSzerkeszto : Control
 		GetTree().ChangeSceneToFile("res://Scenes/kartya_letrehozo.tscn");
 	}
 
+	private void OnVezerLetrehozoPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/vezer_letrehozo.tscn");
+	}
+
 	public override void _Process(double delta)
 	{
 		if (deleteIcon != null)
