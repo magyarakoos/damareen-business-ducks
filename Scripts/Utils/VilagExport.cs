@@ -41,7 +41,6 @@ public class VilagExport
 			{
 				if (!dir.CurrentIsDir())
 				{
-					GD.Print(fileName);
 					vilagok.Add(VilagExport.Import(fileName));
 				}
 
@@ -57,7 +56,6 @@ public class VilagExport
 	public static void Delete(string vilagNev)
 	{
 		vilagNev += ".txt";
-		GD.Print(vilagNev);
 		VilagExport.MakeVilagokDir();
 
 		DirAccess dir = DirAccess.Open(basePath);
