@@ -177,8 +177,14 @@ public partial class VilagSzerkeszto : Control
 
 	private void OnMentesButtonPressed()
 	{
+		if (Global.Instance!.aktivVilag!.nev.Length == 0)
+		{
+			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = "A világnév nem lehet üres.";
+			return;
+		}
+
 		VilagExport.Export(Global.Instance!.aktivVilag!);
-		if (Global.Instance.aktivVilag!.nev != oldName!)
+		if (Global.Instance!.aktivVilag!.nev != oldName!)
 		{
 			VilagExport.Delete(oldName!);
 		}

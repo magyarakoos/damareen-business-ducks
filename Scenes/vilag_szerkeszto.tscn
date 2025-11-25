@@ -36,22 +36,31 @@ text = "Damareen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer2" type="SplitContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="Name" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 
+[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer2/Name"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+
 [node name="NameLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer2/Name"]
 layout_mode = 2
 text = "Világ neve:"
+horizontal_alignment = 2
 
 [node name="NameInput" type="LineEdit" parent="Panel/VBoxContainer/CenterContainer2/Name"]
 layout_mode = 2
 max_length = 20
 keep_editing_on_text_submit = true
 expand_to_text_length = true
+
+[node name="Error" type="Label" parent="Panel/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
