@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccrwtjlf228ct"]
+
+[ext_resource type="Script" uid="uid://c266apfrf8fbw" path="res://Scripts/KazaLetrehozo.cs" id="1_m42r6"]
+
+[node name="KazaLetrehozo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m42r6")
