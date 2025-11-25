@@ -23,7 +23,6 @@ public partial class VilaglistaElem : Control
 		{
 			GD.Print($"Starting to delete {vilag.nev}");
 			VilagExport.Delete(vilag.nev);
-			Global.Instance!.vilagok = VilagExport.ImportAll();
 			elem.EmitSignal(SignalName.RerenderVilaglista);
 		};
 

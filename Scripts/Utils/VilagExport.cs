@@ -10,17 +10,23 @@ public class VilagExport
 	}
 	public static void Export(Vilag vilag)
 	{
+		VilagExport.MakeVilagokDir();
+	
 		var data = vilag.ExportExtra().ToArray();
 
 		var path = $"{basePath}{vilag.nev}.txt";
 
 		using var file = Godot.FileAccess.Open(path, Godot.FileAccess.ModeFlags.Write);
 		file.StoreString(string.Join('\n', data));
-		return;
+		file.Close();
+
+		Global.Instance!.vilagok = VilagExport.ImportAll();
 	}
 
 	public static Vilag Import(string vilagNevTxt)
 	{
+		VilagExport.MakeVilagokDir();
+
 		using var file = Godot.FileAccess.Open($"{basePath}{vilagNevTxt}", Godot.FileAccess.ModeFlags.Read);
 		string[] data = file.GetAsText().Split('\n');
 
@@ -63,5 +69,7 @@ public class VilagExport
 		{
 			Error _ = dir.Remove(vilagNev);
 		}
+
+		Global.Instance!.vilagok = VilagExport.ImportAll();
 	}
 }
