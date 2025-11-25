@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public partial class KazamataCard : Control
 {
-	public static Control CreateKaza(Kazamata kaza)
+	public static Control CreateKaza(Kazamata kaza, bool click = true)
 	{
 		var scene = GD.Load<PackedScene>("res://Scenes/kazamata_card.tscn");
 		var card = scene.Instantiate<Control>();
@@ -19,14 +19,17 @@ public partial class KazamataCard : Control
 			_ => throw new UnreachableException(),
 		} + ".svg");
 
-		card.GuiInput += @event =>
+		if (click)
 		{
-			if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+			card.GuiInput += @event =>
 			{
-				Global.Instance!.aktivKaza = Global.Instance!.aktivVilag!.kazamatak.Find(kaza => kaza.nev == card.GetNode<Label>("KazaName").Text)!;
-				card.GetTree().ChangeSceneToFile("res://Scenes/kaza_viewer.tscn");
-			}
-		};
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					Global.Instance!.aktivKaza = Global.Instance!.aktivVilag!.kazamatak.Find(kaza => kaza.nev == card.GetNode<Label>("KazaName").Text)!;
+					card.GetTree().ChangeSceneToFile("res://Scenes/kaza_viewer.tscn");
+				}
+			};
+		}
 
 		return card;
 	}

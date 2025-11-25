@@ -3,12 +3,125 @@ using System;
 
 public partial class VilagSzerkeszto : Control
 {
-	// Called when the node enters the scene tree for the first time.
+	private Sprite2D? deleteIcon;
+
 	public override void _Ready()
-    {
+	{
 		var name = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput");
-        name.Text = Global.Instance!.aktivVilag!.nev;
-    }
+		name.Text = Global.Instance!.aktivVilag!.nev;
+
+		RerenderKartyak();
+	}
+
+	private void RerenderVilagkartyak(VBoxContainer panel)
+	{
+		var vilagkartyak = panel.GetNode<HFlowContainer>("Vilagkartyak");
+		foreach (Node child in vilagkartyak.GetChildren())
+		{
+			vilagkartyak.RemoveChild(child);
+		}
+		foreach (Kartya kartya in Global.Instance!.aktivVilag!.vilagkartyak)
+		{
+			var card = Card.CreateKartya(kartya);
+
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (deleteIcon == null) return;
+					deleteIcon.Hide();
+					deleteIcon = null;
+
+					Global.Instance!.aktivVilag!.jatekos.gyujtemeny = [.. Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kx => kx.nev != kartya.nev)];
+					Global.Instance!.aktivVilag!.vilagkartyak = [.. Global.Instance!.aktivVilag!.vilagkartyak.Where(kx => kx.nev != kartya.nev)];
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += () =>
+			{
+				RerenderGyujtemeny(GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"));
+				RerenderVilagkartyak(panel);
+			};
+
+			vilagkartyak.AddChild(card);
+		}
+	}
+
+	private void RerenderVezerek(VBoxContainer panel)
+	{
+		var vilagvezerek = panel.GetNode<HFlowContainer>("Vezerek");
+		foreach (Node child in vilagvezerek.GetChildren())
+		{
+			vilagvezerek.RemoveChild(child);
+		}
+		foreach (Vezer vezer in Global.Instance!.aktivVilag!.vilagvezerek)
+		{
+			vilagvezerek.AddChild(Card.CreateVezer(vezer));
+		}
+	}
+
+	private void RerenderKazamatak(VBoxContainer panel)
+	{
+		var kazamatak = panel.GetNode<HFlowContainer>("Kazamatak");
+		foreach (Node child in kazamatak.GetChildren())
+		{
+			kazamatak.RemoveChild(child);
+		}
+		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
+		{
+			var card = KazamataCard.CreateKaza(kaza, false);
+			kazamatak.AddChild(card);
+		}
+	}
+
+	private void RerenderGyujtemeny(VBoxContainer panel)
+	{
+		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
+		var gyujtemeny = panel.GetNode<HFlowContainer>("Gyujtemeny");
+		foreach (Node child in gyujtemeny.GetChildren())
+		{
+			gyujtemeny.RemoveChild(child);
+		}
+		foreach (Kartya kartya in Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kartya => Global.Instance!.aktivVilag!.jatekos.pakli!.Find(kx => kx.nev == kartya.nev) == null))
+		{
+			var card = Card.CreateKartya(kartya);
+
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (deleteIcon == null) return;
+					deleteIcon.Hide();
+					deleteIcon = null;
+
+					Global.Instance!.aktivVilag!.jatekos.gyujtemeny = [.. Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kx => kx.nev != kartya.nev)];
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += () =>
+			{
+				RerenderGyujtemeny(panel);
+			};
+
+			gyujtemeny.AddChild(card);
+		}
+	}
+
+	private void RerenderKartyak(bool jatekosOnly = false)
+	{
+		if (!jatekosOnly)
+		{
+			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
+			RerenderVilagkartyak(vilagPanel);
+			RerenderVezerek(vilagPanel);
+			RerenderKazamatak(vilagPanel);
+		}
+
+		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
+		RerenderGyujtemeny(jatekosPanel);
+	}
 
 	private void OnElvetesButtonPressed()
 	{
@@ -20,5 +133,27 @@ public partial class VilagSzerkeszto : Control
 	{
 		VilagExport.Export(Global.Instance!.aktivVilag!);
 		OnElvetesButtonPressed();
+	}
+
+	private void OnDeleteButtonPressed()
+	{
+		if (deleteIcon != null)
+		{
+			deleteIcon.Hide();
+			deleteIcon = null;
+		}
+		else
+		{
+			deleteIcon = GetNode<Sprite2D>("DeleteIcon");
+			deleteIcon.Show();
+		}
+	}
+
+	public override void _Process(double delta)
+	{
+		if (deleteIcon != null)
+		{
+			deleteIcon.Position = GetGlobalMousePosition();
+		}
 	}
 }

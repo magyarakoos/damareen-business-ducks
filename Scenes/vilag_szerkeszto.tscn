@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://febfq4jsa6t6"]
 
 [ext_resource type="Script" uid="uid://u56erwrt4kv1" path="res://Scripts/VilagSzerkeszto.cs" id="1_s45ej"]
-[ext_resource type="Script" uid="uid://bcc0qo6mox554" path="res://Scripts/CardManager.cs" id="2_ya2td"]
+[ext_resource type="Texture2D" uid="uid://bl3nuoi4gw4ff" path="res://Assets/trash-can.svg" id="2_ya2td"]
 
 [node name="VilagSzerkeszto" type="Control"]
 layout_mode = 3
@@ -56,87 +56,92 @@ expand_to_text_length = true
 [node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(1100, 500)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="VilagInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="VilagInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
-[node name="VilagkartyakTitle2" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="VilagkartyakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VilagkartyakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/VilagkartyakTitle2"]
+[node name="VilagkartyakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle"]
 layout_mode = 2
 text = "Világkártyák:"
 
-[node name="KartyaLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/VilagkartyakTitle2"]
+[node name="KartyaLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Vilagkartyak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Vilagkartyak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VezerekTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="VezerekTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/VezerekTitle"]
+[node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
 layout_mode = 2
 text = "Vezérek"
 
-[node name="VezerLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/VezerekTitle"]
+[node name="VezerLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Vezerek" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Vezerek" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="KazamatakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="KazamatakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="KazamatakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
+[node name="KazamatakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
 layout_mode = 2
 text = "Kazamaták:"
 
-[node name="KazamataLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
+[node name="KazamataLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Kazamatak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Kazamatak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Node2D" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Node2D" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
-script = ExtResource("2_ya2td")
 
-[node name="JatekosInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D"]
+[node name="JatekosInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 0
 offset_right = 525.0
 offset_bottom = 101.0
 
-[node name="Gyujtemeny" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
-custom_minimum_size = Vector2(500, 0)
+[node name="GyujtemenyTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 
-[node name="GyujtemenyTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
-layout_mode = 2
-
-[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
+[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
 layout_mode = 2
 text = "A játékos gyűjteménye:"
 
-[node name="GyujtemenyHozzaado" type="Button" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
+[node name="GyujtemenyHozzaado" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
 layout_mode = 2
 text = "Hozzáadás"
+
+[node name="Gyujtemeny" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="DeleteButton" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+layout_mode = 2
+text = "Delete mode"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -158,5 +163,12 @@ text = "Elvetés"
 layout_mode = 2
 text = "Mentés"
 
+[node name="DeleteIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(27.249996, 27.249996)
+scale = Vector2(0.064375006, 0.064375006)
+texture = ExtResource("2_ya2td")
+
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/DeleteButton" to="." method="OnDeleteButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/MentesButton" to="." method="OnMentesButtonPressed"]

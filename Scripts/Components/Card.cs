@@ -4,6 +4,8 @@ using Godot;
 
 public partial class Card : Control
 {
+	[Signal] public delegate void RerenderKartyakEventHandler();
+
 	public static Card CreateKartya(Kartya kartya)
 	{
 		return CreateHarckartya(new Harckartya(kartya), false);
