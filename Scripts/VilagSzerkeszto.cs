@@ -4,11 +4,18 @@ using System;
 public partial class VilagSzerkeszto : Control
 {
 	private Sprite2D? deleteIcon;
+	private string? oldName;
 
 	public override void _Ready()
 	{
+		oldName = Global.Instance!.aktivVilag!.nev;
+
 		var name = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput");
 		name.Text = Global.Instance!.aktivVilag!.nev;
+		name.TextChanged += text =>
+		{
+			Global.Instance!.aktivVilag.nev = text;
+		};
 
 		RerenderKartyak();
 	}
@@ -132,6 +139,10 @@ public partial class VilagSzerkeszto : Control
 	private void OnMentesButtonPressed()
 	{
 		VilagExport.Export(Global.Instance!.aktivVilag!);
+		if (Global.Instance.aktivVilag!.nev != oldName!)
+		{
+			VilagExport.Delete(oldName!);
+		}
 		OnElvetesButtonPressed();
 	}
 
