@@ -4,10 +4,12 @@ using System.Diagnostics;
 
 public partial class KazamataCard : Control
 {
-	public static Control CreateKaza(Kazamata kaza, bool click = true)
+	[Signal] public delegate void RerenderKartyakEventHandler();
+
+	public static KazamataCard CreateKaza(Kazamata kaza, bool click = true)
 	{
 		var scene = GD.Load<PackedScene>("res://Scenes/kazamata_card.tscn");
-		var card = scene.Instantiate<Control>();
+		var card = scene.Instantiate<KazamataCard>();
 
 		card.GetNode<Label>("KazaName").Text = kaza.nev;
 
