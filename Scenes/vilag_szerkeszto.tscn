@@ -87,7 +87,7 @@ layout_mode = 2
 
 [node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
 layout_mode = 2
-text = "Vezérek"
+text = "Vezérek:"
 
 [node name="VezerLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
 layout_mode = 2
