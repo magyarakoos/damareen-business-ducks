@@ -37,7 +37,7 @@ public partial class Global : Node
 	public List<Vilag> vilagok = [];
 	public Vilag? aktivVilag;
 	public Kazamata? aktivKaza;
-	public string vilagnev;
+
 	public override void _Ready()
 	{
 		Instance = this;
@@ -50,9 +50,5 @@ public partial class Global : Node
 		}
 		
 		this.vilagok = VilagExport.ImportAll();
-		foreach (Vilag vilag in vilagok)
-		{
-			GD.Print(vilag);
-		}
 	}
 }
