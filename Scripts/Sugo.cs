@@ -25,6 +25,7 @@ public partial class Sugo : Control
 
 	private void SetupOption(Button button)
 	{
+		button.ActionMode = BaseButton.ActionModeEnum.Press;
 		button.Pressed += () => {
 			ShowContent(button);
 		};
