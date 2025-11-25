@@ -139,9 +139,14 @@ text = "Hozzáadás"
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="DeleteButton" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-text = "Delete mode"
+
+[node name="DeleteButton" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+text = "Törlés mód"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -172,6 +177,6 @@ texture = ExtResource("2_ya2td")
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle/KartyaLetrehozo" to="." method="OnKartyaLetrehozoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle/VezerLetrehozo" to="." method="OnVezerLetrehozoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle/GyujtemenyHozzaado" to="." method="OnGyujtemenyHozzaadoPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/DeleteButton" to="." method="OnDeleteButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer/DeleteButton" to="." method="OnDeleteButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/MentesButton" to="." method="OnMentesButtonPressed"]
