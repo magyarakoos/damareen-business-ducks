@@ -56,7 +56,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-text = "Kazamata lapjai"
+text = "Kazamata lapjai  "
 horizontal_alignment = 2
 
 [node name="Kaza" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide"]
@@ -101,7 +101,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-text = "Játékos lapjai"
+text = "  Játékos lapjai"
 
 [node name="Jatekos" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide"]
 layout_mode = 2
