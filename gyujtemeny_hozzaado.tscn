@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://btbrvbewnbgbg"]
-
-[ext_resource type="Script" uid="uid://cfn8reixgxjua" path="res://Scripts/GyujtemenyHozzaado.cs" id="1_fogqx"]
-
-[node name="GyujtemenyHozzaado" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_fogqx")
