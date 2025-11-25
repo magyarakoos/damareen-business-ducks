@@ -56,6 +56,8 @@ public class VilagExport
 			dir.ListDirEnd();
 		}
 
+		vilagok.Sort((a, b) => a.nev.CompareTo(b.nev));
+		
 		return vilagok;
 	}
 
