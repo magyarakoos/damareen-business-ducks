@@ -22,6 +22,26 @@ public class Kazamata
 		this.fejlesztes = fejlesztes;
 	}
 
+	public Kazamata(Kazamata masik)
+    {
+        this.tipus = masik.tipus;
+		this.nev = (string)masik.nev.Clone();
+		this.kartyak = [];
+		foreach (Kartya kartya in masik.kartyak)
+        {
+            this.kartyak.Add(kartya.Clone());
+        }
+		if (masik.vezer == null)
+        {
+			this.vezer = null;
+        }
+		else
+        {
+            this.vezer = new Vezer(masik.vezer);
+        }
+		this.fejlesztes = masik.fejlesztes;
+    }
+
 	public Kazamata(string input, List<Kartya> kartyak, Vezer? vezer)
 	{
 		string[] tokens = input.Split(';');

@@ -29,6 +29,13 @@ public class Vezer
 		};
 	}
 
+	public Vezer(Vezer masik)
+    {
+        this.nev = (string)masik.nev.Clone();
+		this.kartya = masik.kartya.Clone();
+		this.tipus = masik.tipus;
+    }
+
 	public string Info()
 	{
 		return $"{this.nev};{this.kartya.nev};{this.tipus.ToString().ToLower()}";

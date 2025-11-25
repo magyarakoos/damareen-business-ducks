@@ -18,6 +18,27 @@ public class Vilag
 		this.jatekos = new Jatekos();
 	}
 
+	public Vilag(Vilag masik)
+	{
+		this.nev = masik.nev;
+		this.vilagkartyak = [];
+		foreach (Kartya kartya in masik.vilagkartyak)
+		{
+			this.vilagkartyak.Add(kartya.Clone());
+		}
+		this.vilagvezerek = [];
+		foreach (Vezer vezer in masik.vilagvezerek)
+		{
+			this.vilagvezerek.Add(new Vezer(vezer));
+		}
+		this.kazamatak = [];
+		foreach (Kazamata kaza in masik.kazamatak)
+		{
+			this.kazamatak.Add(new Kazamata(kaza));
+		}
+		this.jatekos = new Jatekos(masik.jatekos);
+	}
+
 	public List<string> Harc(string input)
 	{
 		var tokens = input.Split(';');
@@ -148,7 +169,6 @@ public class Vilag
 	public Vilag(string[] data) : this()
 	{
 		this.nev = data[0];
-		GD.Print(this.nev);
 		data = data.Skip(1).ToArray();
 		foreach (string line in data)
 		{

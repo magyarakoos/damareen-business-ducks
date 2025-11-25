@@ -9,6 +9,27 @@ public class Jatekos
 		this.pakli = null;
 	}
 
+	public Jatekos(Jatekos masik)
+	{
+		this.gyujtemeny = [];
+		foreach (Kartya kartya in masik.gyujtemeny)
+		{
+			this.gyujtemeny.Add(kartya.Clone());
+		}
+		if (masik.pakli != null)
+		{
+			this.pakli = [];
+			foreach (Kartya kartya in masik.pakli)
+			{
+				this.pakli.Add(kartya.Clone());
+			}
+		}
+		else
+		{
+			this.pakli = null;
+		}
+	}
+
 	public void UjPakli(string input)
 	{
 		var nevek = input.Split(';')[1].Split(',');
