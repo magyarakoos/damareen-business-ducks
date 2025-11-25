@@ -36,9 +36,9 @@ public partial class VezerLetrehozo : Control
 		{
 			error = "A névmező nem lehet üres.";
 		}
-		else if (Global.Instance!.aktivVilag!.vilagvezerek.Find(kartya => kartya.nev == nevInput.Text) != null)
+		else if (Global.Instance!.aktivVilag!.vilagvezerek.Find(kartya => kartya.nev == nevInput.Text) != null || Global.Instance!.aktivVilag!.vilagkartyak.Find(kartya => kartya.nev == nevInput.Text) != null)
 		{
-			error = "Létezik már vezérkártya ilyen névvel.";
+			error = "Létezik már kártyal ilyen névvel.";
 		}
 
 		if (error != null)
