@@ -10,7 +10,7 @@ public partial class Jatek : Control
 	private void SetupPanels()
 	{
 		RerenderKartyak(false);
-		var cardManager = GetNode<CardManager>("Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D");
+		var cardManager = GetNode<CardManager>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D");
 		cardManager.CardsRerender += () => RerenderKartyak(true);
 	}
 
@@ -93,13 +93,13 @@ public partial class Jatek : Control
 	{
 		if (!jatekosOnly)
 		{
-			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo");
+			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
 			RerenderVilagkartyak(vilagPanel);
 			RerenderVezerek(vilagPanel);
 			RerenderKazamatak(vilagPanel);
 		}
 
-		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo");
+		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
 		RerenderGyujtemeny(jatekosPanel);
 		RerenderPakli(jatekosPanel);
 	}

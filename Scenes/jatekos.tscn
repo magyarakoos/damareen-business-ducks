@@ -39,62 +39,66 @@ vertical_alignment = 1
 [node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(1110, 550)
 layout_mode = 2
 
-[node name="VilagInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="VilagInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
-[node name="VilagkartyakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="VilagkartyakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 text = "Világkártyák:"
 
-[node name="Vilagkartyak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Vilagkartyak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 text = "Vezérek:"
 
-[node name="Vezerek" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Vezerek" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="KazamatakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="KazamatakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 text = "Kazamaták:"
 
-[node name="Kazamatak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/VilagInfo"]
+[node name="Kazamatak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="Node2D" type="Control" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Node2D" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 script = ExtResource("2_1u0j8")
 
-[node name="JatekosInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D"]
+[node name="JatekosInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D"]
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 0
 offset_right = 525.0
 offset_bottom = 101.0
 
-[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 text = "A gyűjteményed:"
 
-[node name="Gyujtemeny" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
-custom_minimum_size = Vector2(500, 0)
+[node name="Gyujtemeny" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+custom_minimum_size = Vector2(500, 106)
 layout_mode = 2
 
-[node name="PakliLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="PakliLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 text = "A paklid:"
 
-[node name="Pakli" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="Pakli" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 
 [node name="VisszaButton" type="Button" parent="Panel"]
