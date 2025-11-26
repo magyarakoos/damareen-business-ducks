@@ -9,29 +9,29 @@ public partial class VezerLetrehozo : Control
 		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
 		var alapkartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/Alapkartya/AlapkartyaInput");
 		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
-		
-		
+
+
 		foreach (Kartya kartya in Global.Instance!.aktivVilag!.vilagkartyak)
 		{
 			alapkartyaInput.AddItem(kartya.nev);
 		}
 
-		
+
 		List<string> fejlesztesek = ["Sebzés duplázás", "Életerő duplázás"];
 		foreach (string fejlesztes in fejlesztesek)
 		{
 			fejlesztesInput.AddItem(fejlesztes);
 		}
-		nevInput.TextChanged+=text=>Kartyaupdate();
-		alapkartyaInput.ItemSelected+=index=>Kartyaupdate();
-		fejlesztesInput.ItemSelected+=index=>Kartyaupdate();
+		nevInput.TextChanged += text => Kartyaupdate();
+		alapkartyaInput.ItemSelected += index => Kartyaupdate();
+		fejlesztesInput.ItemSelected += index => Kartyaupdate();
 	}
-public void Kartyaupdate()
-{
-	GD.Print("alma");
-	var vezertarto = GetNode<Control>("Vezertarto");
-		foreach(Node child in vezertarto.GetChildren())
-		{vezertarto.RemoveChild(child);}
+	public void Kartyaupdate()
+	{
+		GD.Print("alma");
+		var vezertarto = GetNode<Control>("Vezertarto");
+		foreach (Node child in vezertarto.GetChildren())
+		{ vezertarto.RemoveChild(child); }
 		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
 		var alapkartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/Alapkartya/AlapkartyaInput");
 		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
@@ -46,11 +46,11 @@ public void Kartyaupdate()
 		{
 			error = "A névmező nem lehet üres.";
 		}
-	
+
 
 		if (error != null)
 		{
-			
+
 			return;
 		}
 
@@ -68,8 +68,8 @@ public void Kartyaupdate()
 
 		var vezer = new Vezer(nev, kartya, fejlesztes);
 		vezertarto.AddChild(Card.CreateVezer(vezer));
-	
-}
+
+	}
 
 
 	private void OnHozzaadButtonPressed()
