@@ -14,14 +14,12 @@ public partial class VilaglistaElem : Control
 		elem.GetNode<Button>("Panel/HBoxContainer/Szerkesztes").Pressed += () =>
 		{
 			var copy = new Vilag(vilag);
-			GD.Print($"Original:\n{vilag}\nClone:\n{copy}");
 			Global.Instance!.aktivVilag = copy;
 			elem.GetTree().ChangeSceneToFile("res://Scenes/vilag_szerkeszto.tscn");
 		};
 
 		elem.GetNode<Button>("Panel/HBoxContainer/Torles").Pressed += () =>
 		{
-			GD.Print($"Starting to delete {vilag.nev}");
 			VilagExport.Delete(vilag.nev);
 			elem.EmitSignal(SignalName.RerenderVilaglista);
 		};
