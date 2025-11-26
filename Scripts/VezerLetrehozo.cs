@@ -6,19 +6,71 @@ public partial class VezerLetrehozo : Control
 {
 	public override void _Ready()
 	{
+		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
 		var alapkartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/Alapkartya/AlapkartyaInput");
+		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
+		
+		
 		foreach (Kartya kartya in Global.Instance!.aktivVilag!.vilagkartyak)
 		{
 			alapkartyaInput.AddItem(kartya.nev);
 		}
 
-		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
+		
 		List<string> fejlesztesek = ["Sebzés duplázás", "Életerő duplázás"];
 		foreach (string fejlesztes in fejlesztesek)
 		{
 			fejlesztesInput.AddItem(fejlesztes);
 		}
+		nevInput.TextChanged+=text=>Kartyaupdate();
+		alapkartyaInput.ItemSelected+=index=>Kartyaupdate();
+		fejlesztesInput.ItemSelected+=index=>Kartyaupdate();
 	}
+public void Kartyaupdate()
+{
+	GD.Print("alma");
+	var vezertarto = GetNode<Control>("Vezertarto");
+		foreach(Node child in vezertarto.GetChildren())
+		{vezertarto.RemoveChild(child);}
+		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
+		var alapkartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/Alapkartya/AlapkartyaInput");
+		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
+
+		if (alapkartyaInput.ItemCount == 0)
+		{
+			return;
+		}
+
+		string? error = null;
+		if (nevInput.Text.Length == 0)
+		{
+			error = "A névmező nem lehet üres.";
+		}
+	
+
+		if (error != null)
+		{
+			
+			return;
+		}
+
+		string nev = nevInput.Text;
+		string kartyaNev = alapkartyaInput.GetItemText(alapkartyaInput.Selected);
+
+		var kartya = Global.Instance!.aktivVilag!.vilagkartyak.Find(kartya => kartya.nev == kartyaNev)!;
+
+		FejlesztesTipus fejlesztes = fejlesztesInput.GetItemText(fejlesztesInput.Selected) switch
+		{
+			"Sebzés duplázás" => FejlesztesTipus.Sebzes,
+			"Életerő duplázás" => FejlesztesTipus.Eletero,
+			_ => throw new UnreachableException(),
+		};
+
+		var vezer = new Vezer(nev, kartya, fejlesztes);
+		vezertarto.AddChild(Card.CreateVezer(vezer));
+	
+}
+
 
 	private void OnHozzaadButtonPressed()
 	{

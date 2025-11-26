@@ -6,13 +6,68 @@ public partial class KartyaLetrehozo : Control
 {
 	public override void _Ready()
 	{
+		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
+		var sebzesInput = GetNode<SpinBox>("Panel/VBoxContainer/Sebzes/SebzesInput");
+		var eleteroInput = GetNode<SpinBox>("Panel/VBoxContainer/Eletero/EleteroInput");
 		var tipusInput = GetNode<OptionButton>("Panel/VBoxContainer/Tipus/TipusInput");
 		List<string> tipusok = ["Föld", "Levegő", "Tűz", "Víz"];
 		foreach (string tipus in tipusok)
 		{
 			tipusInput.AddItem(tipus);
 		}
+		
+		nevInput.TextChanged+=text=>Kartyaupdate();
+		sebzesInput.ValueChanged+=number=>Kartyaupdate();
+		eleteroInput.ValueChanged+=number=>Kartyaupdate();
+		tipusInput.ItemSelected+=index=>Kartyaupdate();
 	}
+	
+	public void Kartyaupdate()
+	{
+		var kartyatarto = GetNode<Control>("Kartyatarto");
+		foreach(Node child in kartyatarto.GetChildren())
+		{kartyatarto.RemoveChild(child);}
+		
+		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
+		var sebzesInput = GetNode<SpinBox>("Panel/VBoxContainer/Sebzes/SebzesInput");
+		var eleteroInput = GetNode<SpinBox>("Panel/VBoxContainer/Eletero/EleteroInput");
+		var tipusInput = GetNode<OptionButton>("Panel/VBoxContainer/Tipus/TipusInput");
+		
+
+		string? error = null;
+		if (nevInput.Text.Length == 0)
+		{
+			error = "A névmező nem lehet üres.";
+		}
+	
+
+		if (error != null)
+		{
+		
+			return;
+		}
+
+		string nev = nevInput.Text;
+		int sebzes = (int)sebzesInput.Value;
+		int eletero = (int)eleteroInput.Value;
+		KartyaTipus tipus = tipusInput.GetItemText(tipusInput.Selected) switch
+		{
+			"Föld" => KartyaTipus.Fold,
+			"Levegő" => KartyaTipus.Levego,
+			"Tűz" => KartyaTipus.Tuz,
+			"Víz" => KartyaTipus.Viz,
+			_ => throw new UnreachableException(),
+		};
+
+		var kartya = new Kartya(nev, sebzes, eletero, tipus);
+		
+		kartyatarto.AddChild(Card.CreateKartya(kartya));
+	}
+	 
+	
+	
+	
+
 
 	private void OnHozzaadButtonPressed()
 	{

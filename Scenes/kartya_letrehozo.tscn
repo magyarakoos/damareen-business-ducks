@@ -107,9 +107,9 @@ text = "Mégsem"
 [node name="Kartyatarto" type="Control" parent="."]
 custom_minimum_size = Vector2(75, 105)
 anchors_preset = 0
-offset_left = 905.0
+offset_left = 869.0
 offset_top = 193.0
-offset_right = 980.0
+offset_right = 944.0
 offset_bottom = 298.0
 
 [connection signal="pressed" from="Panel/VBoxContainer/Buttons/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
