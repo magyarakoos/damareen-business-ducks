@@ -32,14 +32,12 @@ public partial class Card : Control
 		{
 			case KartyaTipus.Fold:
 				cardPath = "res://Assets/card_earth";
-				//textColor = new Color(1, 1, 1);
 				break;
 			case KartyaTipus.Levego:
 				cardPath = "res://Assets/card_wind";
 				break;
 			case KartyaTipus.Tuz:
 				cardPath = "res://Assets/card_fire";
-				//textColor = new Color(1, 1, 1);
 				break;
 			case KartyaTipus.Viz:
 				cardPath = "res://Assets/card_water";
@@ -47,22 +45,41 @@ public partial class Card : Control
 			default:
 				throw new UnreachableException();
 		}
-		
+
 		if (vezer)
 		{
 			cardPath += "_vezer";
 		}
-		
+
 		card.GetNode<Sprite2D>("CardImage").Texture = GD.Load<Texture2D>(cardPath + ".svg");
 		if (textColor != null)
 		{
 			card.GetNode<Label>("CardName").AddThemeColorOverride("font_color", (Color)textColor);
 		}
 
-		if (kartya.nev.Length >= 10)
+		var label = card.GetNode<Label>("CardName");
+		var font = label.GetThemeDefaultFont();
+
+		int fontSize = 12;
+		int maxWidth = 0;
+		while (fontSize > 6)
 		{
-			card.GetNode<Label>("CardName").AddThemeFontSizeOverride("font_size", 8);
+			maxWidth = kartya.nev
+				.Split(' ')
+				.Select(szo => new Label() { Text = szo })
+				.Select(l => font.GetStringSize(l.Text, HorizontalAlignment.Left, -1, fontSize).X)
+				.Select(f => (int)Math.Round(f))
+				.Max();
+			
+			if (maxWidth <= 67)
+			{
+				break;
+			}
+			
+			fontSize--;
 		}
+
+		label.AddThemeFontSizeOverride("font_size", fontSize);
 
 		var area = card.GetNode<Area2D>("Area2D");
 
