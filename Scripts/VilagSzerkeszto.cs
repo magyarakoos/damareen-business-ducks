@@ -106,7 +106,7 @@ public partial class VilagSzerkeszto : Control
 		foreach (Kazamata kaza in Global.Instance!.aktivVilag!.kazamatak)
 		{
 			var card = KazamataCard.CreateKaza(kaza, false);
-			
+
 			card.GuiInput += @event =>
 			{
 				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
@@ -195,15 +195,21 @@ public partial class VilagSzerkeszto : Control
 
 	private void OnMentesButtonPressed()
 	{
-		string nev =  GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput").Text;
-		if(nev.Contains(";"))
-		{
-			return;
-			
-		}
+		string nev = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput").Text;
+
+		string? error = null;
 		if (nev.Length == 0)
 		{
-			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = "A világnév nem lehet üres.";
+			error = "A név nem lehet üres.";
+		}
+		else if (nev.Contains(';'))
+		{
+			error = "A névben nem lehet \";\" karakter.";
+		}
+
+		if (error != null)
+		{
+			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = error;
 			return;
 		}
 

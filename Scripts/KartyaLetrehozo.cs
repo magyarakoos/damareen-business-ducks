@@ -15,35 +15,28 @@ public partial class KartyaLetrehozo : Control
 		{
 			tipusInput.AddItem(tipus);
 		}
-		
-		nevInput.TextChanged+=text=>Kartyaupdate();
-		sebzesInput.ValueChanged+=number=>Kartyaupdate();
-		eleteroInput.ValueChanged+=number=>Kartyaupdate();
-		tipusInput.ItemSelected+=index=>Kartyaupdate();
+
+		nevInput.TextChanged += text => UpdateKartya();
+		sebzesInput.ValueChanged += number => UpdateKartya();
+		eleteroInput.ValueChanged += number => UpdateKartya();
+		tipusInput.ItemSelected += index => UpdateKartya();
 	}
-	
-	public void Kartyaupdate()
+
+	public void UpdateKartya()
 	{
 		var kartyatarto = GetNode<Control>("Kartyatarto");
-		foreach(Node child in kartyatarto.GetChildren())
-		{kartyatarto.RemoveChild(child);}
-		
+		foreach (Node child in kartyatarto.GetChildren())
+		{
+			kartyatarto.RemoveChild(child);
+		}
+
 		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
 		var sebzesInput = GetNode<SpinBox>("Panel/VBoxContainer/Sebzes/SebzesInput");
 		var eleteroInput = GetNode<SpinBox>("Panel/VBoxContainer/Eletero/EleteroInput");
 		var tipusInput = GetNode<OptionButton>("Panel/VBoxContainer/Tipus/TipusInput");
-		
 
-		string? error = null;
-		if (nevInput.Text.Length == 0)
+		if (nevInput.Text.Length == 0 || nevInput.Text.Contains(';'))
 		{
-			error = "A névmező nem lehet üres.";
-		}
-	
-
-		if (error != null)
-		{
-		
 			return;
 		}
 
@@ -60,14 +53,9 @@ public partial class KartyaLetrehozo : Control
 		};
 
 		var kartya = new Kartya(nev, sebzes, eletero, tipus);
-		
+
 		kartyatarto.AddChild(Card.CreateKartya(kartya));
 	}
-	 
-	
-	
-	
-
 
 	private void OnHozzaadButtonPressed()
 	{
@@ -79,12 +67,11 @@ public partial class KartyaLetrehozo : Control
 		string? error = null;
 		if (nevInput.Text.Length == 0)
 		{
-			error = "A névmező nem lehet üres.";
+			error = "A név nem lehet üres.";
 		}
-		if(nevInput.Text.Contains(";"))
+		if (nevInput.Text.Contains(';'))
 		{
-			error ="; ezt a karaktert nem hasznáhatod.";
-			
+			error = "A névben nem lehet \";\" karakter.";
 		}
 		else if (Global.Instance!.aktivVilag!.vilagkartyak.Find(kartya => kartya.nev == nevInput.Text) != null || Global.Instance!.aktivVilag!.vilagvezerek.Find(kartya => kartya.nev == nevInput.Text) != null)
 		{

@@ -22,35 +22,24 @@ public partial class VezerLetrehozo : Control
 		{
 			fejlesztesInput.AddItem(fejlesztes);
 		}
-		nevInput.TextChanged += text => Kartyaupdate();
-		alapkartyaInput.ItemSelected += index => Kartyaupdate();
-		fejlesztesInput.ItemSelected += index => Kartyaupdate();
+		nevInput.TextChanged += text => UpdateKartya();
+		alapkartyaInput.ItemSelected += index => UpdateKartya();
+		fejlesztesInput.ItemSelected += index => UpdateKartya();
 	}
-	public void Kartyaupdate()
+	public void UpdateKartya()
 	{
-		GD.Print("alma");
 		var vezertarto = GetNode<Control>("Vezertarto");
 		foreach (Node child in vezertarto.GetChildren())
-		{ vezertarto.RemoveChild(child); }
+		{
+			vezertarto.RemoveChild(child);
+		}
+
 		var nevInput = GetNode<LineEdit>("Panel/VBoxContainer/Nev/NevInput");
 		var alapkartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/Alapkartya/AlapkartyaInput");
 		var fejlesztesInput = GetNode<OptionButton>("Panel/VBoxContainer/Fejlesztes/FejlesztesInput");
 
-		if (alapkartyaInput.ItemCount == 0)
+		if (alapkartyaInput.ItemCount == 0 || nevInput.Text.Length == 0 || nevInput.Text.Contains(';'))
 		{
-			return;
-		}
-
-		string? error = null;
-		if (nevInput.Text.Length == 0)
-		{
-			error = "A névmező nem lehet üres.";
-		}
-
-
-		if (error != null)
-		{
-
 			return;
 		}
 
@@ -68,9 +57,7 @@ public partial class VezerLetrehozo : Control
 
 		var vezer = new Vezer(nev, kartya, fejlesztes);
 		vezertarto.AddChild(Card.CreateVezer(vezer));
-
 	}
-
 
 	private void OnHozzaadButtonPressed()
 	{
@@ -86,12 +73,11 @@ public partial class VezerLetrehozo : Control
 		string? error = null;
 		if (nevInput.Text.Length == 0)
 		{
-			error = "A névmező nem lehet üres.";
+			error = "A név nem lehet üres.";
 		}
-		if(nevInput.Text.Contains(";"))
+		else if (nevInput.Text.Contains(';'))
 		{
-			error ="; ezt a karaktert nem hasznáhatod.";
-			
+			error = "A névben nem lehet \";\" karakter.";
 		}
 		else if (Global.Instance!.aktivVilag!.vilagvezerek.Find(kartya => kartya.nev == nevInput.Text) != null || Global.Instance!.aktivVilag!.vilagkartyak.Find(kartya => kartya.nev == nevInput.Text) != null)
 		{
