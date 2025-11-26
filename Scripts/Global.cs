@@ -29,7 +29,6 @@ public partial class Global : Node
 		"gyujtemeny;Kael;3;5;tuz",
 		"gyujtemeny;Myra;2;6;fold",
 		"gyujtemeny;Thalen;3;5;levego",
-		"gyujtemeny;Isara;2;6;void",
 	];
 
 	public static Global? Instance { get; private set; }

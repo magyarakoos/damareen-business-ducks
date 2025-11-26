@@ -10,7 +10,7 @@ public partial class KartyaLetrehozo : Control
 		var sebzesInput = GetNode<SpinBox>("Panel/VBoxContainer/Sebzes/SebzesInput");
 		var eleteroInput = GetNode<SpinBox>("Panel/VBoxContainer/Eletero/EleteroInput");
 		var tipusInput = GetNode<OptionButton>("Panel/VBoxContainer/Tipus/TipusInput");
-		List<string> tipusok = ["Föld", "Levegő", "Tűz", "Víz", "Void"];
+		List<string> tipusok = ["Föld", "Levegő", "Tűz", "Víz"];
 		foreach (string tipus in tipusok)
 		{
 			tipusInput.AddItem(tipus);
@@ -56,7 +56,6 @@ public partial class KartyaLetrehozo : Control
 			"Levegő" => KartyaTipus.Levego,
 			"Tűz" => KartyaTipus.Tuz,
 			"Víz" => KartyaTipus.Viz,
-			"Void" => KartyaTipus.Void,
 			_ => throw new UnreachableException(),
 		};
 
@@ -102,7 +101,6 @@ public partial class KartyaLetrehozo : Control
 			"Levegő" => KartyaTipus.Levego,
 			"Tűz" => KartyaTipus.Tuz,
 			"Víz" => KartyaTipus.Viz,
-			"Void" => KartyaTipus.Void,
 			_ => throw new UnreachableException(),
 		};
 
