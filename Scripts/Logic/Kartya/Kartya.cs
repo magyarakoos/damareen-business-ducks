@@ -7,6 +7,7 @@ public enum KartyaTipus
 	Levego,
 	Viz,
 	Tuz,
+	Void,
 }
 
 public static class Extensions
@@ -66,6 +67,7 @@ public class Kartya
 			"levego" => KartyaTipus.Levego,
 			"viz" => KartyaTipus.Viz,
 			"tuz" => KartyaTipus.Tuz,
+			"void" => KartyaTipus.Void,
 			_ => throw new InvalidDataException(),
 		};
 	}

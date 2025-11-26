@@ -44,6 +44,9 @@ public partial class Card : Control
 			case KartyaTipus.Viz:
 				cardPath = "res://Assets/card_water";
 				break;
+			case KartyaTipus.Void:
+				cardPath = "res://Assets/card_void";
+				break;
 			default:
 				throw new UnreachableException();
 		}
