@@ -196,7 +196,11 @@ public partial class VilagSzerkeszto : Control
 	private void OnMentesButtonPressed()
 	{
 		string nev =  GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput").Text;
-
+		if(nev.Contains(";"))
+		{
+			return;
+			
+		}
 		if (nev.Length == 0)
 		{
 			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = "A világnév nem lehet üres.";

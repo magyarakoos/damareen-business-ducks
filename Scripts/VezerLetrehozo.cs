@@ -88,6 +88,11 @@ public partial class VezerLetrehozo : Control
 		{
 			error = "A névmező nem lehet üres.";
 		}
+		if(nevInput.Text.Contains(";"))
+		{
+			error ="; ezt a karaktert nem hasznáhatod.";
+			
+		}
 		else if (Global.Instance!.aktivVilag!.vilagvezerek.Find(kartya => kartya.nev == nevInput.Text) != null || Global.Instance!.aktivVilag!.vilagkartyak.Find(kartya => kartya.nev == nevInput.Text) != null)
 		{
 			error = "Létezik már kártyal ilyen névvel.";
