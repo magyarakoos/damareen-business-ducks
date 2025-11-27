@@ -14,7 +14,7 @@ public partial class Sugo : Control
 		altalanos = panel.GetNode<Button>("OptionsRow/Altalanos");
 		jatekmester = panel.GetNode<Button>("OptionsRow/Jatekmester");
 		jatekos = panel.GetNode<Button>("OptionsRow/Jatekos");
-		content = panel.GetNode<RichTextLabel>("ContentPanel/ContentLabel");
+		content = panel.GetNode<RichTextLabel>("ContentPanel/MarginContainer/ContentLabel");
 
 		SetupOption(altalanos);
 		SetupOption(jatekmester);
@@ -38,8 +38,8 @@ public partial class Sugo : Control
 		content!.Text = selected.Text switch
 		{
 			"Általános" => "Üdvözlünk a Damareen világában!\n\nA játékmester módban létrehozhat és szerkeszthet világokat.\nA játékos módban pedig végig tudja játszani ezeket a világokat.",
-			"Játékmester" => "A világokat szerkeszteni vagy törölni lehet.\nSzerkesztés opciót választva minden aspektusát a világnak megváltoztathatod.\nA törlés gombra kattintva a következő kattintással kitörölhetsz egy kártyát vagy kazamatát ami minden vele kapcsolatos játékelemet kitöröl.",
-			"Játékos" => "Lorem játékos ipsum dolor sit amet, ut enim ad minim veniam.",
+			"Játékmester" => "A játékmester gombra nyomva feljön a világ kiválasztó menü.\nItt hozhat létre a játékmester új világokat és törölhet ki korábbiakat, továbbá szerkesztheti is őket.\n\nA világ szerkesztési menüben található gombokkal a játékmester képes létrehozni új világkártyákat, vezéreket és kazamatákat. Továbbá megszabhatja hogy mi található a játékos gyűjteményében a játék kezdetekor.\n\nA 'törlés mód' gombra kattintva a kurzoron megjelenik egy szemetes, ilyenkor az első dolog amire rákattint a játékmester ki lesz törölve, ezután kilép a törlés módból.",
+			"Játékos" => "A játékos módra kattintva kiválaszthatja melyik lokálisan elmentett világgal szeretne játszani.\nEzután bedob a játékba ahol a játékos összeállíthatja saját pakliját meglévő gyűjteményéből.\nA bal alul található kazamata kártyákra kattintva megkezdheti velük a csatát!\n\nKazamata fokozatok:\nZöld sisak - egyszerű találkozás\nKék kardok - kis kazamata\nVörös zászló - nagy kazamata",
 			_ => throw new UnreachableException(),
 		};
 	}
