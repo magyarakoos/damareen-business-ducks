@@ -14,7 +14,7 @@ public partial class Sugo : Control
 		altalanos = panel.GetNode<Button>("OptionsRow/Altalanos");
 		jatekmester = panel.GetNode<Button>("OptionsRow/Jatekmester");
 		jatekos = panel.GetNode<Button>("OptionsRow/Jatekos");
-		content = panel.GetNode<RichTextLabel>("ContentPanel/MarginContainer/ContentLabel");
+		content = panel.GetNode<RichTextLabel>("ContentPanel/ContentLabel");
 
 		SetupOption(altalanos);
 		SetupOption(jatekmester);
