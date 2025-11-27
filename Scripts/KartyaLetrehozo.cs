@@ -69,7 +69,7 @@ public partial class KartyaLetrehozo : Control
 		{
 			error = "A név nem lehet üres.";
 		}
-		if (nevInput.Text.Contains(';'))
+		else if (nevInput.Text.Contains(';'))
 		{
 			error = "A névben nem lehet \";\" karakter.";
 		}
