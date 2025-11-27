@@ -62,7 +62,7 @@ public partial class Card : Control
 
 		int fontSize = 12;
 		int maxWidth = 0;
-		while (fontSize > 6)
+		while (fontSize > 8)
 		{
 			maxWidth = kartya.nev
 				.Split(' ')
