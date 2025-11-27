@@ -37,8 +37,8 @@ public partial class Sugo : Control
 
 		content!.Text = selected.Text switch
 		{
-			"Általános" => "Lorem általános ipsum dolor sit amet, consectetur adipiscing elit.",
-			"Játékmester" => "Lorem játékmester ipsum dolor sit amet, sed do eiusmod tempor incididunt.",
+			"Általános" => "Ez egy fantasy kártyajáték melyben a pakliddal meghódíthatod a világ kazamatáit.",
+			"Játékmester" => "A világokat szerkeszteni vagy törölni lehet.Szerkesztés opciót választva minden aspektusát a világnak megváltoztathatod.A törlés gombra kattintva a következő kattintással kitörölhetsz egy kártyát ami minden vele kapcsolatos játékelemet kitöröl.",
 			"Játékos" => "Lorem játékos ipsum dolor sit amet, ut enim ad minim veniam.",
 			_ => throw new UnreachableException(),
 		};
