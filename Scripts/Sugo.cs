@@ -37,8 +37,8 @@ public partial class Sugo : Control
 
 		content!.Text = selected.Text switch
 		{
-			"Általános" => "Ez egy fantasy kártyajáték melyben a pakliddal meghódíthatod a világ kazamatáit.",
-			"Játékmester" => "A világokat szerkeszteni vagy törölni lehet.Szerkesztés opciót választva minden aspektusát a világnak megváltoztathatod.A törlés gombra kattintva a következő kattintással kitörölhetsz egy kártyát ami minden vele kapcsolatos játékelemet kitöröl.",
+			"Általános" => "Üdvözlünk a Damareen világában!\n\nA játékmester módban létrehozhat és szerkeszthet világokat.\nA játékos módban pedig végig tudja játszani ezeket a világokat.",
+			"Játékmester" => "A világokat szerkeszteni vagy törölni lehet.\nSzerkesztés opciót választva minden aspektusát a világnak megváltoztathatod.\nA törlés gombra kattintva a következő kattintással kitörölhetsz egy kártyát vagy kazamatát ami minden vele kapcsolatos játékelemet kitöröl.",
 			"Játékos" => "Lorem játékos ipsum dolor sit amet, ut enim ad minim veniam.",
 			_ => throw new UnreachableException(),
 		};
