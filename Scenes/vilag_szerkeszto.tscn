@@ -185,6 +185,7 @@ texture = ExtResource("2_ya2td")
 
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle/KartyaLetrehozo" to="." method="OnKartyaLetrehozoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle/VezerLetrehozo" to="." method="OnVezerLetrehozoPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle/KazamataLetrehozo" to="." method="OnKazamataLetrehozoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle/GyujtemenyHozzaado" to="." method="OnGyujtemenyHozzaadoPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer/DeleteButton" to="." method="OnDeleteButtonPressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]

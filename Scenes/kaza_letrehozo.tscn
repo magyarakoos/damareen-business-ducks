@@ -64,17 +64,22 @@ split_offset = 170
 layout_mode = 2
 text = "Kazamata típusa:"
 
-[node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Type"]
+[node name="TypeInput" type="OptionButton" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Type"]
 layout_mode = 2
 selected = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "Egyszerű találkozás"
 popup/item_0/id = 0
+popup/item_1/text = "Kis kazamata"
 popup/item_1/id = 1
+popup/item_2/text = "Nagy kazamata"
+popup/item_2/id = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer"]
+[node name="Error" type="Label" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -83,19 +88,25 @@ layout_mode = 2
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
-[node name="Kartyak" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
-layout_mode = 2
-
 [node name="KartyakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
 layout_mode = 2
 
 [node name="KartyakLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle"]
 layout_mode = 2
-text = "A Kazamata kártyái:"
+text = "Kártyák:"
 
-[node name="KartyakButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle"]
+[node name="KartyakHozzaad" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle"]
 layout_mode = 2
-text = "Hozzáadás"
+
+[node name="KartyakInput" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
+layout_mode = 2
+
+[node name="KartyakButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
+layout_mode = 2
+text = "Hozzáad"
+
+[node name="Kartyak" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -105,9 +116,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(525, 0)
 layout_mode = 2
 
-[node name="VezerLapok" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl"]
-layout_mode = 2
-
 [node name="VezerTitle" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl"]
 layout_mode = 2
 
@@ -115,20 +123,43 @@ layout_mode = 2
 layout_mode = 2
 text = "Vezérkártya:"
 
-[node name="VezerButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle"]
+[node name="VezerHozzaad" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle"]
 layout_mode = 2
-text = "Hozzáadás"
+
+[node name="VezerInput" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad"]
+layout_mode = 2
+
+[node name="VezerButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad"]
+layout_mode = 2
+text = "Hozzáad"
+
+[node name="VezerLapok" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl"]
+layout_mode = 2
 
 [node name="Spacer2" type="Control" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="RewardLabel" type="Label" parent="Panel/VBoxContainer"]
+[node name="RewardTitle" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RewardLabel" type="Label" parent="Panel/VBoxContainer/RewardTitle"]
 layout_mode = 2
 text = "Jutalom:"
 
-[node name="Reward" type="Control" parent="Panel/VBoxContainer"]
+[node name="RewardInput" type="OptionButton" parent="Panel/VBoxContainer/RewardTitle"]
 layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "+1 sebzés"
+popup/item_0/id = 0
+popup/item_1/text = "+2 életerő"
+popup/item_1/id = 1
+
+[node name="RewardText" type="Label" parent="Panel/VBoxContainer/RewardTitle"]
+visible = false
+layout_mode = 2
+text = "Az első olyan kártya a világból, ami még nincs a játékos gyűjteményében."
 
 [node name="FightControl" type="CenterContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -140,6 +171,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Hozzáad"
 
-[node name="HozzaadButton2" type="Button" parent="Panel/VBoxContainer/FightControl/SplitContainer"]
+[node name="MegsemButton" type="Button" parent="Panel/VBoxContainer/FightControl/SplitContainer"]
 layout_mode = 2
 text = "Mégsem"
+
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakButton" to="." method="OnKartyakButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad/VezerButton" to="." method="OnVezerButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]

@@ -38,6 +38,7 @@ public partial class VilagSzerkeszto : Control
 					Global.Instance!.aktivVilag!.jatekos.gyujtemeny = [.. Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Where(kx => kx.nev != kartya.nev)];
 					Global.Instance!.aktivVilag!.vilagkartyak = [.. Global.Instance!.aktivVilag!.vilagkartyak.Where(kx => kx.nev != kartya.nev)];
 					Global.Instance!.aktivVilag!.vilagvezerek = [.. Global.Instance!.aktivVilag!.vilagvezerek.Where(kx => kx.kartya.nev != kartya.nev)];
+					Global.Instance!.aktivVilag!.kazamatak = [.. Global.Instance!.aktivVilag!.kazamatak.Where(kaza => kaza.kartyak.Find(kx => kx.nev == kartya.nev) == null)];
 					card.EmitSignal(Card.SignalName.RerenderKartyak);
 				}
 			};
@@ -73,6 +74,7 @@ public partial class VilagSzerkeszto : Control
 					deleteIcon = null;
 
 					Global.Instance!.aktivVilag!.vilagvezerek = [.. Global.Instance!.aktivVilag!.vilagvezerek.Where(vx => vx.nev != vezer.nev)];
+					Global.Instance!.aktivVilag!.kazamatak = [.. Global.Instance!.aktivVilag!.kazamatak.Where(kaza => kaza.vezer == null || kaza.vezer.nev != vezer.nev)];
 					card.EmitSignal(Card.SignalName.RerenderKartyak);
 				}
 			};
@@ -250,6 +252,11 @@ public partial class VilagSzerkeszto : Control
 	private void OnVezerLetrehozoPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/vezer_letrehozo.tscn");
+	}
+
+	private void OnKazamataLetrehozoPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/kaza_letrehozo.tscn");
 	}
 
 	public override void _Process(double delta)
