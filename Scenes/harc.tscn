@@ -107,6 +107,7 @@ text = "  Játékos lapjai"
 layout_mode = 2
 
 [node name="Message" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 horizontal_alignment = 1
 

@@ -20,4 +20,9 @@ public partial class VilagValaszto : Control
 		Global.Instance!.aktivVilag = Global.Instance!.vilagok.Find((vilag) => vilag.nev == selected)!;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
 	}
+	
+	private void OnVisszaButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+	}
 }

@@ -7,11 +7,13 @@ public partial class MainMenu : Control
 		GetTree().ChangeSceneToFile("res://Scenes/jatekmester.tscn");
 	}
 	
-	private void OnJatekosButtonPressed() {
+	private void OnJatekosButtonPressed()
+	{
 		GetTree().ChangeSceneToFile("res://Scenes/vilag_valaszto.tscn");
 	}
 	
-	private void OnSugoButttonPressed() {
+	private void OnSugoButttonPressed()
+	{
 		GetTree().ChangeSceneToFile("res://Scenes/sugo.tscn");
 	}
 	

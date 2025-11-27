@@ -11,6 +11,9 @@ public partial class HarcScene : Control
 
 	public override void _Ready()
 	{
+		var title = GetNode<Label>("Panel/VBoxContainer/Title");
+		title.Text = Global.Instance!.aktivKaza!.nev;
+		
 		Vilag vilag = Global.Instance!.aktivVilag!;
 
 		List<Vezer> vezerek = [];

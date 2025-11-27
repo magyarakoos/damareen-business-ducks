@@ -9,9 +9,15 @@ public partial class VilagSzerkeszto : Control
 	public override void _Ready()
 	{
 		oldName = Global.Instance!.aktivVilag!.nev;
+		Global.Instance!.aktivNev ??= oldName;
 
 		var name = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput");
-		name.Text = Global.Instance!.aktivVilag!.nev;
+		name.Text = Global.Instance!.aktivNev;
+
+		name.TextChanged += text =>
+		{
+			Global.Instance!.aktivNev = text;
+		};
 
 		RerenderKartyak();
 	}
@@ -197,14 +203,15 @@ public partial class VilagSzerkeszto : Control
 
 	private void OnMentesButtonPressed()
 	{
-		string nev = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput").Text;
+		string nev = Global.Instance!.aktivNev!;
+		Global.Instance!.aktivNev = null;
 
 		string? error = null;
-		if (nev.Length == 0)
+		if (nev!.Length == 0)
 		{
 			error = "A név nem lehet üres.";
 		}
-		else if (nev.Contains(';'))
+		else if (nev!.Contains(';'))
 		{
 			error = "A névben nem lehet \";\" karakter.";
 		}
