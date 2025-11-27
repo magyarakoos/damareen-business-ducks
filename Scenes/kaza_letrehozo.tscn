@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmbkr5e61qcq3"]
+[gd_scene load_steps=3 format=3 uid="uid://bmbkr5e61qcq3"]
 
 [ext_resource type="Script" uid="uid://c266apfrf8fbw" path="res://Scripts/KazaLetrehozo.cs" id="1_1fb0r"]
+[ext_resource type="Texture2D" uid="uid://bl3nuoi4gw4ff" path="res://Assets/trash-can.svg" id="2_v8rus"]
 
 [node name="KazaLetrehozo" type="Control"]
 layout_mode = 3
@@ -106,6 +107,7 @@ layout_mode = 2
 text = "Hozzáad"
 
 [node name="Kartyak" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
+custom_minimum_size = Vector2(0, 105)
 layout_mode = 2
 
 [node name="Spacer" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
@@ -175,7 +177,23 @@ text = "Hozzáad"
 layout_mode = 2
 text = "Mégsem"
 
+[node name="DeleteButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 0
+offset_left = 824.0
+offset_top = 382.0
+offset_right = 974.0
+offset_bottom = 427.0
+text = "Törlés mód"
+
+[node name="DeleteIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(27.249996, 27.249996)
+scale = Vector2(0.064375006, 0.064375006)
+texture = ExtResource("2_v8rus")
+
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakButton" to="." method="OnKartyakButtonPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad/VezerButton" to="." method="OnVezerButtonPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]
+[connection signal="pressed" from="Panel/DeleteButton" to="." method="OnDeleteButtonPressed"]

@@ -6,6 +6,8 @@ using System.Diagnostics.Tracing;
 
 public partial class KazaLetrehozo : Control
 {
+	private Sprite2D? deleteIcon;
+
 	private string name = "";
 	private KazamataTipus tipus = KazamataTipus.Egyszeru;
 	private FejlesztesTipus rewardType = FejlesztesTipus.Sebzes;
@@ -83,7 +85,24 @@ public partial class KazaLetrehozo : Control
 		}
 		foreach (Kartya kartya in kartyak)
 		{
-			kartyakLapok.AddChild(Card.CreateKartya(kartya));
+			var card = Card.CreateKartya(kartya);
+
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (deleteIcon == null) return;
+					deleteIcon.Hide();
+					deleteIcon = null;
+
+					kartyak = [.. kartyak.Where(kx => kx.nev != kartya.nev)];
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += RerenderKartyak;
+			
+			kartyakLapok.AddChild(card);
 		}
 
 		var kartyakInput = kartyakHozzaad.GetNode<OptionButton>("KartyakInput");
@@ -124,7 +143,25 @@ public partial class KazaLetrehozo : Control
 				else
 				{
 					vezerHozzaad.Hide();
-					vezerLapok.AddChild(Card.CreateVezer(vezer));
+
+					var vezerCard = Card.CreateVezer(vezer);
+
+					vezerCard.GuiInput += @event =>
+					{
+						if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+						{
+							if (deleteIcon == null) return;
+							deleteIcon.Hide();
+							deleteIcon = null;
+
+							vezer = null;
+							vezerCard.EmitSignal(Card.SignalName.RerenderKartyak);
+						}
+					};
+
+					vezerCard.RerenderKartyak += RerenderVezer;
+
+					vezerLapok.AddChild(vezerCard);
 				}
 
 				break;
@@ -232,8 +269,30 @@ public partial class KazaLetrehozo : Control
 		OnMegsemButtonPressed();
 	}
 
+	private void OnDeleteButtonPressed()
+	{
+		if (deleteIcon != null)
+		{
+			deleteIcon.Hide();
+			deleteIcon = null;
+		}
+		else
+		{
+			deleteIcon = GetNode<Sprite2D>("DeleteIcon");
+			deleteIcon.Show();
+		}
+	}
+
 	private void OnMegsemButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/vilag_szerkeszto.tscn");
+	}
+
+	public override void _Process(double delta)
+	{
+		if (deleteIcon != null)
+		{
+			deleteIcon.Position = GetGlobalMousePosition();
+		}
 	}
 }
