@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://mic7igoj6vcw"]
+[gd_scene load_steps=3 format=3 uid="uid://mic7igoj6vcw"]
 
 [ext_resource type="Script" uid="uid://b4gplq1ico7gd" path="res://Scripts/MainMenu.cs" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://b6q1g6kjgwqho" path="res://Scripts/damareen.jpg" id="2_48xlc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,16 @@ offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48xlc")
+expand_mode = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(500, 0)
