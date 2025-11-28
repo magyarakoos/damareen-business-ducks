@@ -203,6 +203,7 @@ public partial class VilagSzerkeszto : Control
 	private void OnElvetesButtonPressed()
 	{
 		Global.Instance!.aktivVilag = null;
+		Global.Instance!.aktivNev = null;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekmester.tscn");
 	}
 
