@@ -42,9 +42,6 @@ text = "Világ kiválasztása"
 
 [node name="Vilagok" type="OptionButton" parent="Panel/VBoxContainer"]
 layout_mode = 2
-item_count = 1
-popup/item_0/text = "MMMMMMMMMMMMMMMMMMMM"
-popup/item_0/id = 0
 
 [node name="Spacer" type="Control" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
