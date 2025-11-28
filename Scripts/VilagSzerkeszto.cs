@@ -221,6 +221,10 @@ public partial class VilagSzerkeszto : Control
 		{
 			error = "A névben nem lehet \";\" karakter.";
 		}
+		else if (nev != oldName! && Global.Instance!.vilagok.Find(vilag => vilag.nev == nev) != null)
+		{
+			error = "Létezik már világ ezzel a névvel.";
+		}
 
 		if (error != null)
 		{
