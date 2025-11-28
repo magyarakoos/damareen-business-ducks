@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class VilagSzerkeszto : Control
 {
@@ -38,6 +39,7 @@ public partial class VilagSzerkeszto : Control
 				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
 				{
 					if (deleteIcon == null) return;
+					
 					deleteIcon.Hide();
 					deleteIcon = null;
 
@@ -76,6 +78,7 @@ public partial class VilagSzerkeszto : Control
 				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
 				{
 					if (deleteIcon == null) return;
+					
 					deleteIcon.Hide();
 					deleteIcon = null;
 
@@ -120,6 +123,7 @@ public partial class VilagSzerkeszto : Control
 				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
 				{
 					if (deleteIcon == null) return;
+					
 					deleteIcon.Hide();
 					deleteIcon = null;
 
@@ -154,6 +158,7 @@ public partial class VilagSzerkeszto : Control
 				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
 				{
 					if (deleteIcon == null) return;
+					
 					deleteIcon.Hide();
 					deleteIcon = null;
 
@@ -264,6 +269,21 @@ public partial class VilagSzerkeszto : Control
 	private void OnKazamataLetrehozoPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/kaza_letrehozo.tscn");
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouseEvent)
+		{
+			if (mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
+			{
+				// Csak akkor kapcsolja ki, ha már be van kapcsolva
+				if (deleteIcon != null)
+				{
+					OnDeleteButtonPressed();
+				}
+			}
+		}
 	}
 
 	public override void _Process(double delta)
