@@ -10,7 +10,7 @@ public partial class Sugo : Control
 
 	public override void _Ready()
 	{
-		var panel = GetNode<VBoxContainer>("Panel/VBoxContainer");
+		var panel = GetNode<VBoxContainer>("VBoxContainer");
 		altalanos = panel.GetNode<Button>("OptionsRow/Altalanos");
 		jatekmester = panel.GetNode<Button>("OptionsRow/Jatekmester");
 		jatekos = panel.GetNode<Button>("OptionsRow/Jatekos");

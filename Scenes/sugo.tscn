@@ -11,15 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y41oq")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -32,33 +24,33 @@ offset_bottom = -0.104003906
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Súgó"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="OptionsRow" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Altalanos" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
+[node name="Altalanos" type="Button" parent="VBoxContainer/OptionsRow"]
 layout_mode = 2
 text = "Általános"
 
-[node name="Jatekmester" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
+[node name="Jatekmester" type="Button" parent="VBoxContainer/OptionsRow"]
 layout_mode = 2
 text = "Játékmester"
 
-[node name="Jatekos" type="Button" parent="Panel/VBoxContainer/OptionsRow"]
+[node name="Jatekos" type="Button" parent="VBoxContainer/OptionsRow"]
 layout_mode = 2
 text = "Játékos"
 
-[node name="ContentPanel" type="Panel" parent="Panel/VBoxContainer"]
+[node name="ContentPanel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
-[node name="ContentLabel" type="RichTextLabel" parent="Panel/VBoxContainer/ContentPanel"]
+[node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/ContentPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -68,13 +60,14 @@ anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Vissza" type="Button" parent="Panel"]
+[node name="Vissza" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.9
 anchor_top = 0.88
 anchor_right = 0.975
 anchor_bottom = 0.92
+offset_bottom = 9.079956
 text = "Vissza"
 
-[connection signal="pressed" from="Panel/Vissza" to="." method="Onvisszapressed"]
+[connection signal="pressed" from="Vissza" to="." method="Onvisszapressed"]
