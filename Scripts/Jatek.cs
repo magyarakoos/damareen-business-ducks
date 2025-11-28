@@ -10,13 +10,13 @@ public partial class Jatek : Control
 	private void SetupPanels()
 	{
 		RerenderKartyak(false);
-		var cardManager = GetNode<CardManager>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D");
+		var cardManager = GetNode<CardManager>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D");
 		cardManager.CardsRerender += () => RerenderKartyak(true);
 	}
 
 	private void RerenderVilagkartyak(VBoxContainer panel)
 	{
-		var vilagkartyak = panel.GetNode<HFlowContainer>("Vilagkartyak");
+		var vilagkartyak = panel.GetNode<HFlowContainer>("VilagkartyakPanel/MarginContainer/VBoxContainer/Vilagkartyak");
 		foreach (Node child in vilagkartyak.GetChildren())
 		{
 			vilagkartyak.RemoveChild(child);
@@ -29,7 +29,7 @@ public partial class Jatek : Control
 
 	private void RerenderVezerek(VBoxContainer panel)
 	{
-		var vilagvezerek = panel.GetNode<HFlowContainer>("Vezerek");
+		var vilagvezerek = panel.GetNode<HFlowContainer>("VezerekPanel/MarginContainer/VBoxContainer/Vezerek");
 		foreach (Node child in vilagvezerek.GetChildren())
 		{
 			vilagvezerek.RemoveChild(child);
@@ -42,7 +42,7 @@ public partial class Jatek : Control
 
 	private void RerenderKazamatak(VBoxContainer panel)
 	{
-		var kazamatak = panel.GetNode<HFlowContainer>("Kazamatak");
+		var kazamatak = panel.GetNode<HFlowContainer>("KazamatakPanel/MarginContainer/VBoxContainer/Kazamatak");
 		foreach (Node child in kazamatak.GetChildren())
 		{
 			kazamatak.RemoveChild(child);
@@ -59,7 +59,7 @@ public partial class Jatek : Control
 	private void RerenderGyujtemeny(VBoxContainer panel)
 	{
 		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
-		var gyujtemeny = panel.GetNode<HFlowContainer>("Gyujtemeny");
+		var gyujtemeny = panel.GetNode<HFlowContainer>("GyujtemenyPanel/MarginContainer/VBoxContainer/Gyujtemeny");
 		foreach (Node child in gyujtemeny.GetChildren())
 		{
 			gyujtemeny.RemoveChild(child);
@@ -72,7 +72,7 @@ public partial class Jatek : Control
 
 	private void RerenderPakli(VBoxContainer panel)
 	{
-		var pakli = panel.GetNode<HFlowContainer>("Pakli");
+		var pakli = panel.GetNode<HFlowContainer>("PakliPanel/MarginContainer/VBoxContainer/Pakli");
 		foreach (Node child in pakli.GetChildren())
 		{
 			pakli.RemoveChild(child);
@@ -93,13 +93,13 @@ public partial class Jatek : Control
 	{
 		if (!jatekosOnly)
 		{
-			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
+			var vilagPanel = GetNode<VBoxContainer>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
 			RerenderVilagkartyak(vilagPanel);
 			RerenderVezerek(vilagPanel);
 			RerenderKazamatak(vilagPanel);
 		}
 
-		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
+		var jatekosPanel = GetNode<VBoxContainer>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
 		RerenderGyujtemeny(jatekosPanel);
 		RerenderPakli(jatekosPanel);
 	}

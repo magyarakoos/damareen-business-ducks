@@ -121,7 +121,7 @@ public partial class CardManager : Control
 		CardHolder? holder = GetCardHolderUnderMouse();
 		if (holder == null)
 		{
-			GetNode<HFlowContainer>("JatekosInfo/Gyujtemeny").AddChild(cardDragged);
+			GetNode<HFlowContainer>("JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer/Gyujtemeny").AddChild(cardDragged);
 
 			Global.Instance!.aktivVilag!.jatekos.pakli!.Remove(kartya);
 		}
