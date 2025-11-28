@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s45ej")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,15 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -36,128 +28,179 @@ text = "Damareen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer2" type="SplitContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer2" type="SplitContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Name" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer2"]
+[node name="Name" type="HBoxContainer" parent="VBoxContainer/CenterContainer2"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer2/Name"]
+[node name="Spacer" type="Control" parent="VBoxContainer/CenterContainer2/Name"]
 custom_minimum_size = Vector2(14, 0)
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer2/Name"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer2/Name"]
 layout_mode = 2
 text = "Világ neve:"
 horizontal_alignment = 2
 
-[node name="NameInput" type="LineEdit" parent="Panel/VBoxContainer/CenterContainer2/Name"]
+[node name="NameInput" type="LineEdit" parent="VBoxContainer/CenterContainer2/Name"]
 layout_mode = 2
 max_length = 20
 keep_editing_on_text_submit = true
 expand_to_text_length = true
 
-[node name="Error" type="Label" parent="Panel/VBoxContainer/CenterContainer2"]
+[node name="Error" type="Label" parent="VBoxContainer/CenterContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(1100, 500)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="VilagInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
+[node name="VilagInfo" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 
-[node name="VilagkartyakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="VilagkartyakPanel" type="PanelContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VilagkartyakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VilagkartyakTitle" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VilagkartyakLabel" type="Label" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer/VBoxContainer/VilagkartyakTitle"]
 layout_mode = 2
 text = "Világkártyák:"
 
-[node name="KartyaLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle"]
+[node name="KartyaLetrehozo" type="Button" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer/VBoxContainer/VilagkartyakTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Vilagkartyak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="Vilagkartyak" type="HFlowContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 105)
 layout_mode = 2
 
-[node name="VezerekTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="VezerekPanel" type="PanelContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="VezerekLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VezerekTitle" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VezerekLabel" type="Label" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer/VBoxContainer/VezerekTitle"]
 layout_mode = 2
 text = "Vezérek:"
 
-[node name="VezerLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle"]
+[node name="VezerLetrehozo" type="Button" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer/VBoxContainer/VezerekTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Vezerek" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="Vezerek" type="HFlowContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 105)
 layout_mode = 2
 
-[node name="KazamatakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="KazamatakPanel" type="PanelContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
 layout_mode = 2
 
-[node name="KazamatakLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="KazamatakTitle" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KazamatakLabel" type="Label" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer/VBoxContainer/KazamatakTitle"]
 layout_mode = 2
 text = "Kazamaták:"
 
-[node name="KazamataLetrehozo" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle"]
+[node name="KazamataLetrehozo" type="Button" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer/VBoxContainer/KazamatakTitle"]
 layout_mode = 2
 text = "Létrehozás"
 
-[node name="Kazamatak" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo"]
+[node name="Kazamatak" type="HFlowContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 105)
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="Node2D" type="Control" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 
-[node name="Node2D" type="Control" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
-layout_mode = 2
-
-[node name="JatekosInfo" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D"]
-custom_minimum_size = Vector2(525, 0)
+[node name="JatekosInfo" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 0
 offset_right = 525.0
 offset_bottom = 101.0
 
-[node name="GyujtemenyTitle" type="HBoxContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="GyujtemenyPanel" type="PanelContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 layout_mode = 2
 
-[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="GyujtemenyTitle" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GyujtemenyLabel" type="Label" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer/GyujtemenyTitle"]
 layout_mode = 2
 text = "A játékos gyűjteménye:"
 
-[node name="GyujtemenyHozzaado" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle"]
+[node name="GyujtemenyHozzaado" type="Button" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer/GyujtemenyTitle"]
 layout_mode = 2
 text = "Hozzáadás"
 
-[node name="Gyujtemeny" type="HFlowContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
-custom_minimum_size = Vector2(500, 0)
+[node name="Gyujtemeny" type="HFlowContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 105)
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="DeleteButton" type="Button" parent="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer"]
+[node name="DeleteButton" type="Button" parent="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer"]
 custom_minimum_size = Vector2(150, 45)
 layout_mode = 2
 text = "Törlés mód"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.97
@@ -169,11 +212,11 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="ElvetesButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="ElvetesButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Elvetés"
 
-[node name="MentesButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="MentesButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Mentés"
 
@@ -183,10 +226,10 @@ position = Vector2(27.249996, 27.249996)
 scale = Vector2(0.064375006, 0.064375006)
 texture = ExtResource("2_ya2td")
 
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakTitle/KartyaLetrehozo" to="." method="OnKartyaLetrehozoPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekTitle/VezerLetrehozo" to="." method="OnVezerLetrehozoPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakTitle/KazamataLetrehozo" to="." method="OnKazamataLetrehozoPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyTitle/GyujtemenyHozzaado" to="." method="OnGyujtemenyHozzaadoPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer/DeleteButton" to="." method="OnDeleteButtonPressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/MentesButton" to="." method="OnMentesButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VilagkartyakPanel/MarginContainer/VBoxContainer/VilagkartyakTitle/KartyaLetrehozo" to="." method="OnKartyaLetrehozoPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/VezerekPanel/MarginContainer/VBoxContainer/VezerekTitle/VezerLetrehozo" to="." method="OnVezerLetrehozoPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo/KazamatakPanel/MarginContainer/VBoxContainer/KazamatakTitle/KazamataLetrehozo" to="." method="OnKazamataLetrehozoPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/GyujtemenyPanel/MarginContainer/VBoxContainer/GyujtemenyTitle/GyujtemenyHozzaado" to="." method="OnGyujtemenyHozzaadoPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo/CenterContainer/DeleteButton" to="." method="OnDeleteButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/ElvetesButton" to="." method="OnElvetesButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/MentesButton" to="." method="OnMentesButtonPressed"]

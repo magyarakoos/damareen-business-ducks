@@ -18,9 +18,9 @@ public partial class KazaLetrehozo : Control
 
 	public override void _Ready()
 	{
-		var nameInput = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer/VBoxContainer/Name/NameInput");
-		var typeInput = GetNode<OptionButton>("Panel/VBoxContainer/CenterContainer/VBoxContainer/Type/TypeInput");
-		var rewardInput = GetNode<OptionButton>("Panel/VBoxContainer/RewardTitle/RewardInput");
+		var nameInput = GetNode<LineEdit>("VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Name/NameInput");
+		var typeInput = GetNode<OptionButton>("VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Type/TypeInput");
+		var rewardInput = GetNode<OptionButton>("VBoxContainer/HSplitContainer/RewardTitle/RewardInput");
 
 		nameInput.TextChanged += text =>
 		{
@@ -66,7 +66,7 @@ public partial class KazaLetrehozo : Control
 
 	private void RerenderKartyak()
 	{
-		var kartyaControl = GetNode<VBoxContainer>("Panel/VBoxContainer/HBoxContainer/KartyakControl");
+		var kartyaControl = GetNode<VBoxContainer>("VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl");
 		var kartyakLapok = kartyaControl.GetNode<HFlowContainer>("Kartyak");
 		var kartyakHozzaad = kartyaControl.GetNode<HBoxContainer>("KartyakTitle/KartyakHozzaad");
 
@@ -119,14 +119,14 @@ public partial class KazaLetrehozo : Control
 
 	private void RerenderVezer()
 	{
-		var vezerControl = GetNode<VBoxContainer>("Panel/VBoxContainer/HBoxContainer/VezerControl");
+		var vezerControl = GetNode<VBoxContainer>("VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl");
 		var vezerLapok = vezerControl.GetNode<HFlowContainer>("VezerLapok");
 		var vezerHozzaad = vezerControl.GetNode<HBoxContainer>("VezerTitle/VezerHozzaad");
 
 		switch (tipus)
 		{
 			case KazamataTipus.Egyszeru:
-				vezerControl.Hide();
+				vezerControl.GetParent().GetParent<PanelContainer>().Hide();
 				foreach (Node child in vezerLapok.GetChildren())
 				{
 					vezerLapok.RemoveChild(child);
@@ -134,7 +134,7 @@ public partial class KazaLetrehozo : Control
 				break;
 			case KazamataTipus.Kis:
 			case KazamataTipus.Nagy:
-				vezerControl.Show();
+				vezerControl.GetParent().GetParent<PanelContainer>().Show();
 				foreach (Node child in vezerLapok.GetChildren())
 				{
 					vezerLapok.RemoveChild(child);
@@ -182,7 +182,7 @@ public partial class KazaLetrehozo : Control
 
 	private void RerenderReward()
 	{
-		var rewardTitle = GetNode<HBoxContainer>("Panel/VBoxContainer/RewardTitle");
+		var rewardTitle = GetNode<HBoxContainer>("VBoxContainer/HSplitContainer/RewardTitle");
 		switch (tipus)
 		{
 			case KazamataTipus.Egyszeru:
@@ -208,7 +208,7 @@ public partial class KazaLetrehozo : Control
 
 	private void OnKartyakButtonPressed()
 	{
-		var kartyaInput = GetNode<OptionButton>("Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakInput");
+		var kartyaInput = GetNode<OptionButton>("VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakInput");
 
 		int index = kartyaInput.Selected;
 		if (index < 0) return;
@@ -223,7 +223,7 @@ public partial class KazaLetrehozo : Control
 
 	private void OnVezerButtonPressed()
 	{
-		var vezerInput = GetNode<OptionButton>("Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad/VezerInput");
+		var vezerInput = GetNode<OptionButton>("VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle/VezerHozzaad/VezerInput");
 
 		int index = vezerInput.Selected;
 		if (index < 0) return;
@@ -262,7 +262,7 @@ public partial class KazaLetrehozo : Control
 
 		if (error != null)
 		{
-			GetNode<Label>("Panel/VBoxContainer/Error").Text = error;
+			GetNode<Label>("VBoxContainer/Error").Text = error;
 			return;
 		}
 

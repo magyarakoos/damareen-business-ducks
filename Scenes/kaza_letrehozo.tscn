@@ -12,25 +12,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1fb0r")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -554.0
 offset_right = 554.0
-offset_bottom = 225.0
+offset_bottom = 422.0
 grow_horizontal = 2
 
-[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -38,34 +30,44 @@ text = "Damareen"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 
-[node name="Name" type="SplitContainer" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Name" type="SplitContainer" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 split_offset = 170
 
-[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Name"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Name"]
 layout_mode = 2
 text = "Kazamata neve:"
 
-[node name="NameInput" type="LineEdit" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Name"]
+[node name="NameInput" type="LineEdit" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Name"]
 layout_mode = 2
 max_length = 20
 
-[node name="Type" type="SplitContainer" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Type" type="SplitContainer" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 split_offset = 170
 
-[node name="TypeLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Type"]
+[node name="TypeLabel" type="Label" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Type"]
 layout_mode = 2
 text = "Kazamata típusa:"
 
-[node name="TypeInput" type="OptionButton" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer/Type"]
+[node name="TypeInput" type="OptionButton" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Type"]
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -76,80 +78,100 @@ popup/item_1/id = 1
 popup/item_2/text = "Nagy kazamata"
 popup/item_2/id = 2
 
-[node name="Error" type="Label" parent="Panel/VBoxContainer"]
+[node name="Error" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="KartyakControl" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
+[node name="KartyakPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="KartyakTitle" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/KartyakPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="KartyakControl" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 
-[node name="KartyakLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle"]
+[node name="KartyakTitle" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl"]
+layout_mode = 2
+
+[node name="KartyakLabel" type="Label" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle"]
 layout_mode = 2
 text = "Kártyák:"
 
-[node name="KartyakHozzaad" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle"]
+[node name="KartyakHozzaad" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle"]
 layout_mode = 2
 
-[node name="KartyakInput" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
+[node name="KartyakInput" type="OptionButton" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
 layout_mode = 2
 
-[node name="KartyakButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
+[node name="KartyakButton" type="Button" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle/KartyakHozzaad"]
 layout_mode = 2
 text = "Hozzáad"
 
-[node name="Kartyak" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/KartyakControl"]
+[node name="Kartyak" type="HFlowContainer" parent="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl"]
 custom_minimum_size = Vector2(0, 105)
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="VezerPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="VezerControl" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(525, 0)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VezerPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VezerControl" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer"]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 
-[node name="VezerTitle" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl"]
+[node name="VezerTitle" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl"]
 layout_mode = 2
 
-[node name="VezerLabel" type="Label" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle"]
+[node name="VezerLabel" type="Label" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle"]
 layout_mode = 2
 text = "Vezérkártya:"
 
-[node name="VezerHozzaad" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle"]
+[node name="VezerHozzaad" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle"]
 layout_mode = 2
 
-[node name="VezerInput" type="OptionButton" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad"]
+[node name="VezerInput" type="OptionButton" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle/VezerHozzaad"]
 layout_mode = 2
 
-[node name="VezerButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad"]
+[node name="VezerButton" type="Button" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle/VezerHozzaad"]
 layout_mode = 2
 text = "Hozzáad"
 
-[node name="VezerLapok" type="HFlowContainer" parent="Panel/VBoxContainer/HBoxContainer/VezerControl"]
+[node name="VezerLapok" type="HFlowContainer" parent="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl"]
 layout_mode = 2
 
-[node name="Spacer2" type="Control" parent="Panel/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="RewardTitle" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 560
+
+[node name="RewardTitle" type="HBoxContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="RewardLabel" type="Label" parent="Panel/VBoxContainer/RewardTitle"]
+[node name="RewardLabel" type="Label" parent="VBoxContainer/HSplitContainer/RewardTitle"]
 layout_mode = 2
 text = "Jutalom:"
 
-[node name="RewardInput" type="OptionButton" parent="Panel/VBoxContainer/RewardTitle"]
+[node name="RewardInput" type="OptionButton" parent="VBoxContainer/HSplitContainer/RewardTitle"]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -158,33 +180,32 @@ popup/item_0/id = 0
 popup/item_1/text = "+2 életerő"
 popup/item_1/id = 1
 
-[node name="RewardText" type="Label" parent="Panel/VBoxContainer/RewardTitle"]
+[node name="RewardText" type="Label" parent="VBoxContainer/HSplitContainer/RewardTitle"]
 visible = false
 layout_mode = 2
-text = "Az első olyan kártya a világból, ami még nincs a játékos gyűjteményében."
+text = "Új kártya"
 
-[node name="FightControl" type="CenterContainer" parent="Panel/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="SplitContainer" type="SplitContainer" parent="Panel/VBoxContainer/FightControl"]
+[node name="DeleteButton" type="Button" parent="VBoxContainer/HSplitContainer/CenterContainer"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+text = "Törlés mód"
+
+[node name="FightControl" type="CenterContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="HozzaadButton" type="Button" parent="Panel/VBoxContainer/FightControl/SplitContainer"]
+[node name="SplitContainer" type="SplitContainer" parent="VBoxContainer/FightControl"]
+layout_mode = 2
+
+[node name="HozzaadButton" type="Button" parent="VBoxContainer/FightControl/SplitContainer"]
 layout_mode = 2
 text = "Hozzáad"
 
-[node name="MegsemButton" type="Button" parent="Panel/VBoxContainer/FightControl/SplitContainer"]
+[node name="MegsemButton" type="Button" parent="VBoxContainer/FightControl/SplitContainer"]
 layout_mode = 2
 text = "Mégsem"
-
-[node name="DeleteButton" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(150, 45)
-layout_mode = 0
-offset_left = 824.0
-offset_top = 382.0
-offset_right = 974.0
-offset_bottom = 427.0
-text = "Törlés mód"
 
 [node name="DeleteIcon" type="Sprite2D" parent="."]
 visible = false
@@ -192,8 +213,8 @@ position = Vector2(27.249996, 27.249996)
 scale = Vector2(0.064375006, 0.064375006)
 texture = ExtResource("2_v8rus")
 
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakButton" to="." method="OnKartyakButtonPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/VezerControl/VezerTitle/VezerHozzaad/VezerButton" to="." method="OnVezerButtonPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/FightControl/SplitContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]
-[connection signal="pressed" from="Panel/DeleteButton" to="." method="OnDeleteButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/KartyakPanel/MarginContainer/KartyakControl/KartyakTitle/KartyakHozzaad/KartyakButton" to="." method="OnKartyakButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VezerPanel/MarginContainer/VezerControl/VezerTitle/VezerHozzaad/VezerButton" to="." method="OnVezerButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/CenterContainer/DeleteButton" to="." method="OnDeleteButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/FightControl/SplitContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/FightControl/SplitContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]

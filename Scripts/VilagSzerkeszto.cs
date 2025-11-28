@@ -12,7 +12,7 @@ public partial class VilagSzerkeszto : Control
 		oldName = Global.Instance!.aktivVilag!.nev;
 		Global.Instance!.aktivNev ??= oldName;
 
-		var name = GetNode<LineEdit>("Panel/VBoxContainer/CenterContainer2/Name/NameInput");
+		var name = GetNode<LineEdit>("VBoxContainer/CenterContainer2/Name/NameInput");
 		name.Text = Global.Instance!.aktivNev;
 
 		name.TextChanged += text =>
@@ -25,7 +25,7 @@ public partial class VilagSzerkeszto : Control
 
 	private void RerenderVilagkartyak(VBoxContainer panel)
 	{
-		var vilagkartyak = panel.GetNode<HFlowContainer>("Vilagkartyak");
+		var vilagkartyak = panel.GetNode<HFlowContainer>("VilagkartyakPanel/MarginContainer/VBoxContainer/Vilagkartyak");
 		foreach (Node child in vilagkartyak.GetChildren())
 		{
 			vilagkartyak.RemoveChild(child);
@@ -53,9 +53,10 @@ public partial class VilagSzerkeszto : Control
 
 			card.RerenderKartyak += () =>
 			{
-				RerenderGyujtemeny(GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"));
+				RerenderGyujtemeny(GetNode<VBoxContainer>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo"));
 				RerenderVilagkartyak(panel);
 				RerenderVezerek(panel);
+				RerenderKazamatak(panel);
 			};
 
 			vilagkartyak.AddChild(card);
@@ -64,7 +65,7 @@ public partial class VilagSzerkeszto : Control
 
 	private void RerenderVezerek(VBoxContainer panel)
 	{
-		var vilagvezerek = panel.GetNode<HFlowContainer>("Vezerek");
+		var vilagvezerek = panel.GetNode<HFlowContainer>("VezerekPanel/MarginContainer/VBoxContainer/Vezerek");
 		foreach (Node child in vilagvezerek.GetChildren())
 		{
 			vilagvezerek.RemoveChild(child);
@@ -91,12 +92,13 @@ public partial class VilagSzerkeszto : Control
 			card.RerenderKartyak += () =>
 			{
 				RerenderVezerek(panel);
+				RerenderKazamatak(panel);
 			};
 
 			vilagvezerek.AddChild(card);
 		}
 
-		var button = panel.GetNode<Button>("VezerekTitle/VezerLetrehozo");
+		var button = panel.GetNode<Button>("VezerekPanel/MarginContainer/VBoxContainer/VezerekTitle/VezerLetrehozo");
 		if (Global.Instance!.aktivVilag!.vilagkartyak.Count == 0)
 		{
 			button.Hide();
@@ -109,7 +111,7 @@ public partial class VilagSzerkeszto : Control
 
 	private void RerenderKazamatak(VBoxContainer panel)
 	{
-		var kazamatak = panel.GetNode<HFlowContainer>("Kazamatak");
+		var kazamatak = panel.GetNode<HFlowContainer>("KazamatakPanel/MarginContainer/VBoxContainer/Kazamatak");
 		foreach (Node child in kazamatak.GetChildren())
 		{
 			kazamatak.RemoveChild(child);
@@ -144,7 +146,7 @@ public partial class VilagSzerkeszto : Control
 	private void RerenderGyujtemeny(VBoxContainer panel)
 	{
 		Global.Instance!.aktivVilag!.jatekos.pakli ??= [];
-		var gyujtemeny = panel.GetNode<HFlowContainer>("Gyujtemeny");
+		var gyujtemeny = panel.GetNode<HFlowContainer>("GyujtemenyPanel/MarginContainer/VBoxContainer/Gyujtemeny");
 		foreach (Node child in gyujtemeny.GetChildren())
 		{
 			gyujtemeny.RemoveChild(child);
@@ -175,7 +177,7 @@ public partial class VilagSzerkeszto : Control
 			gyujtemeny.AddChild(card);
 		}
 
-		var button = panel.GetNode<Button>("GyujtemenyTitle/GyujtemenyHozzaado");
+		var button = panel.GetNode<Button>("GyujtemenyPanel/MarginContainer/VBoxContainer/GyujtemenyTitle/GyujtemenyHozzaado");
 		if (Global.Instance!.aktivVilag!.vilagkartyak.Count == Global.Instance!.aktivVilag!.jatekos.gyujtemeny.Count)
 		{
 			button.Hide();
@@ -190,13 +192,13 @@ public partial class VilagSzerkeszto : Control
 	{
 		if (!jatekosOnly)
 		{
-			var vilagPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
+			var vilagPanel = GetNode<VBoxContainer>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/VilagInfo");
 			RerenderVilagkartyak(vilagPanel);
 			RerenderVezerek(vilagPanel);
 			RerenderKazamatak(vilagPanel);
 		}
 
-		var jatekosPanel = GetNode<VBoxContainer>("Panel/VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
+		var jatekosPanel = GetNode<VBoxContainer>("VBoxContainer/CenterContainer/ScrollContainer/HBoxContainer/Node2D/JatekosInfo");
 		RerenderGyujtemeny(jatekosPanel);
 	}
 
@@ -228,7 +230,7 @@ public partial class VilagSzerkeszto : Control
 
 		if (error != null)
 		{
-			GetNode<Label>("Panel/VBoxContainer/CenterContainer2/Error").Text = error;
+			GetNode<Label>("VBoxContainer/CenterContainer2/Error").Text = error;
 			return;
 		}
 
