@@ -9,6 +9,8 @@ public class Vilag
 	public List<Kazamata> kazamatak;
 	public Jatekos jatekos;
 
+	public int difficulty = 0;
+
 	public Vilag()
 	{
 		this.nev = "";
@@ -63,7 +65,7 @@ public class Vilag
 			throw new InvalidOperationException("Pakli nelkul nem lehet harcolni.");
 		}
 
-		Harc harc = new Harc(this.jatekos.pakli, kaza.kartyak, vezerek);
+		Harc harc = new Harc(this.jatekos.pakli, kaza.kartyak, vezerek, difficulty);
 
 		HarcAllapot vegeredmeny = HarcAllapot.Aktiv;
 		for (int kor_i = 1; ; kor_i++)

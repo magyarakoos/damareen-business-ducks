@@ -11,30 +11,43 @@ public enum KartyaTipus
 
 public static class Extensions
 {
-	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes)
+	private static readonly Random rnd = new();
+	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes, double difficulty)
 	{
-		if (enyem == ellenseg)
+		int BaseSebzes()
 		{
-			return sebzes;
+			if (enyem == ellenseg)
+			{
+				return sebzes;
+			}
+			switch (enyem)
+			{
+				case KartyaTipus.Levego:
+				case KartyaTipus.Tuz:
+					if (ellenseg == KartyaTipus.Fold || ellenseg == KartyaTipus.Viz)
+					{
+						return 2 * sebzes;
+					}
+					return sebzes / 2;
+				case KartyaTipus.Fold:
+				case KartyaTipus.Viz:
+					if (ellenseg == KartyaTipus.Levego || ellenseg == KartyaTipus.Tuz)
+					{
+						return 2 * sebzes;
+					}
+					return sebzes / 2;
+			}
+			throw new UnreachableException();
 		}
-		switch (enyem)
-		{
-			case KartyaTipus.Levego:
-			case KartyaTipus.Tuz:
-				if (ellenseg == KartyaTipus.Fold || ellenseg == KartyaTipus.Viz)
-				{
-					return 2 * sebzes;
-				}
-				return sebzes / 2;
-			case KartyaTipus.Fold:
-			case KartyaTipus.Viz:
-				if (ellenseg == KartyaTipus.Levego || ellenseg == KartyaTipus.Tuz)
-				{
-					return 2 * sebzes;
-				}
-				return sebzes / 2;
-		}
-		throw new UnreachableException();
+
+		int baseSebzes = BaseSebzes();
+		double rndVal = rnd.NextDouble();
+
+		int result = (int)Math.Round(baseSebzes * (1.0 + rndVal * difficulty));
+
+		GD.Print($"UjSebzes = round({baseSebzes} * (1 + {rndVal} * {difficulty})) = {result}");
+
+		return result;
 	}
 }
 

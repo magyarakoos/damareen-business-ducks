@@ -11,7 +11,8 @@ public class Harc
 	public Queue<Harckartya> kazamata;
 	public bool jatekos_aktiv;
 	public bool kazamata_aktiv;
-	public Harc(List<Kartya> jatekos_kartya, List<Kartya> kazamata_kartya, List<Vezer> kazamata_vezer)
+	public int difficulty;
+	public Harc(List<Kartya> jatekos_kartya, List<Kartya> kazamata_kartya, List<Vezer> kazamata_vezer, int difficulty)
 	{
 		this.jatekos = [];
 		this.kazamata = [];
@@ -29,6 +30,8 @@ public class Harc
 		{
 			kazamata.Enqueue(new Harckartya(vezer));
 		}
+
+		this.difficulty = difficulty;
 	}
 
 	public HarcAllapot Lepes(List<string> log, int kor_i)
@@ -45,7 +48,7 @@ public class Harc
 		}
 		else
 		{
-			log.Add($"{kor_i}.kor;kazamata;tamad;{jatekos.Peek().Megut(kazamata.Peek())}");
+			log.Add($"{kor_i}.kor;kazamata;tamad;{jatekos.Peek().Megut(kazamata.Peek(), 0)}");
 			if (jatekos.Peek().eletero == 0)
 			{
 				jatekos.Dequeue();
@@ -65,7 +68,7 @@ public class Harc
 		}
 		else
 		{
-			log.Add($"{kor_i}.kor;jatekos;tamad;{kazamata.Peek().Megut(jatekos.Peek())}");
+			log.Add($"{kor_i}.kor;jatekos;tamad;{kazamata.Peek().Megut(jatekos.Peek(), 0)}");
 			if (kazamata.Peek().eletero == 0)
 			{
 				kazamata.Dequeue();

@@ -27,7 +27,7 @@ public partial class HarcScene : Control
 			throw new InvalidOperationException("Pakli nelkul nem lehet harcolni.");
 		}
 
-		harc = new Harc(vilag.jatekos.pakli, Global.Instance!.aktivKaza!.kartyak, vezerek);
+		harc = new Harc(vilag.jatekos.pakli, Global.Instance!.aktivKaza!.kartyak, vezerek, vilag.difficulty);
 
 		var jatekos = GetNode<HFlowContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/JatekosSide/Jatekos");
 		var kaza = GetNode<HFlowContainer>("Panel/VBoxContainer/CenterContainer/HBoxContainer/KazaSide/Kaza");
@@ -114,7 +114,7 @@ public partial class HarcScene : Control
 		}
 		else
 		{
-			string msg = $"A kazamata támad {harc!.jatekos.Peek().Megut(harc!.kazamata.Peek()).Split(';')[1]} sebzéssel.";
+			string msg = $"A kazamata támad {harc!.jatekos.Peek().Megut(harc!.kazamata.Peek(), Global.Instance!.aktivVilag!.difficulty / 10.0).Split(';')[1]} sebzéssel.";
 			if (harc!.jatekos.Peek().eletero == 0)
 			{
 				harc!.jatekos.Dequeue();
@@ -137,7 +137,7 @@ public partial class HarcScene : Control
 		}
 		else
 		{
-			string msg = $"A játékos támad {harc!.kazamata.Peek().Megut(harc!.jatekos.Peek()).Split(';')[1]} sebzéssel.";
+			string msg = $"A játékos támad {harc!.kazamata.Peek().Megut(harc!.jatekos.Peek(), -(Global.Instance!.aktivVilag!.difficulty / 20.0)).Split(';')[1]} sebzéssel.";
 			if (harc!.kazamata.Peek().eletero == 0)
 			{
 				harc!.kazamata.Dequeue();

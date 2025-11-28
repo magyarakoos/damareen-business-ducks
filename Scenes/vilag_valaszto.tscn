@@ -17,7 +17,7 @@ anchors_preset = -1
 anchor_left = 0.325
 anchor_top = 0.3
 anchor_right = 0.675
-anchor_bottom = 0.535
+anchor_bottom = 0.64
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -43,21 +43,32 @@ text = "Világ kiválasztása"
 [node name="Vilagok" type="OptionButton" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
+[node name="DifficultyLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Nehézségi szint:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="DifficultyInput" type="SpinBox" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+
 [node name="Spacer" type="Control" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+[node name="Buttons" type="HSplitContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 split_offset = 275
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/HSplitContainer"]
+[node name="Button" type="Button" parent="Panel/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Kiválaszt"
 
-[node name="VisszaButton" type="Button" parent="Panel/VBoxContainer/HSplitContainer"]
+[node name="VisszaButton" type="Button" parent="Panel/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Vissza"
 
-[connection signal="pressed" from="Panel/VBoxContainer/HSplitContainer/Button" to="." method="OnVilagKivalasztPressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HSplitContainer/VisszaButton" to="." method="OnVisszaButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Buttons/Button" to="." method="OnVilagKivalasztPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Buttons/VisszaButton" to="." method="OnVisszaButtonPressed"]

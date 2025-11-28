@@ -18,6 +18,7 @@ public partial class VilagValaszto : Control
 		string selected = vilaglista.GetItemText(vilaglista.Selected);
 
 		Global.Instance!.aktivVilag = Global.Instance!.vilagok.Find((vilag) => vilag.nev == selected)!;
+		Global.Instance!.aktivVilag.difficulty = (int)GetNode<SpinBox>("Panel/VBoxContainer/HBoxContainer/DifficultyInput").Value;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
 	}
 	
