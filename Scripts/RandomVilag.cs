@@ -8,38 +8,35 @@ public partial class RandomVilag : Control
 	private static readonly Random rng = new();
 
 	private static readonly string[] kartyaNevek = [
-		"cmwjwfee", "xkfgwveu", "yjtvkcnf", "nuegvydz", "wcmwrzuw", "azwwfkaz", "gokesism", "ibnmsacw", "tdwyeduq", "ooyhdzns",
-		"vcbxzevb", "ekoedbgt", "fslneeih", "zvtemupm", "eybwejmr", "rgntdgbz", "oosclryl", "elgmrayr", "lgfpoils", "wggtrwkn",
-		"xnmfqjdt", "botvcicl", "hsbppjrd", "szhupxpu", "dpauagtz", "kwkopstw", "mrygzeuv", "uwubqkny", "owhyjbnf", "ddaiplkd",
-		"roxsouhn", "xrlimjkc", "ihxplyhi", "gfchrwih", "glbrkfnl", "djodlcdo", "ymiilahq", "ozzsqtix", "vgiwohtr", "shxtrbae",
-		"nxcrmlfp", "gdvkncos", "vlvptfqx", "chfvyjrt", "vjtmaoov", "orexniav", "rjotdpjv", "gpcpkyop", "bpuvfoka", "jivtojeo",
-		"qsrtseet", "gojbziuk", "jtvyeccw", "kyeuaosp", "rhjopwgs", "laumvlbm", "nrqobrmr", "tvzpkfvg", "vhipzblb", "cqcqevxj",
-		"llgvahjl", "thxskwqy", "xaukbuis", "icfwrenx", "jywuybfk", "uyluqhol", "tybpqhhd", "lkenqswc", "njtfiyne", "fkecgiku",
-		"awvuwfvg", "qgcxnnxx", "wvajkcwl", "dfedacll", "xgmcmftk", "mtfybkup", "kwzsuvub", "vrxtkvcj", "vhffisur", "hflvnyme",
-		"qnrdlwzy", "kkaxxfod", "qzzaywzf", "shvivqlz", "elpttusz", "davjccto", "lcvmshxf", "btbsdoou", "gujsumlq", "jxqytwge",
-		"zlscfqhc", "ydmagnay", "wuqbjfop", "fovrufjr", "kaaozhyy", "bnsvuewa", "cenakbkq", "uspaqreo", "oioopawn", "crsooovx"
+"Thargol", "Ravmok", "Khardin", "Brugath", "Valrok", "Morvak", "Draven", "Korvul", "Jorhak", "Targan",
+"Rhalgor", "Vornak", "Grumor", "Kelvok", "Thalven", "Darvok", "Lorgath", "Marvok", "Zurgan", "Fralor",
+"Kharven", "Drogar", "Varkul", "Gorath", "Hagrun", "Torvak", "Ragnor", "Brakor", "Thirak", "Malgor",
+"Jargun", "Krodar", "Vyrnak", "Ulthor", "Drakor", "Zorvun", "Haldor", "Grynak", "Thornak", "Vorgal",
+"Krulon", "Mordak", "Yargol", "Thavok", "Durnak", "Gorvak", "Harven", "Ralvok", "Vishar", "Korath",
+"Grendor", "Varkos", "Trovak", "Murnok", "Dalven", "Strakor", "Branak", "Torhal", "Kravor", "Vurnak",
+"Falgrin", "Kurnok", "Raldor", "Gorven", "Hrakan", "Zurnok", "Bralgor", "Torkin", "Vashor", "Malruk",
+"Gralvek", "Dorvun", "Krylor", "Thorgat", "Varlok", "Marvol", "Jalkor", "Hurnak", "Dravon", "Rukmar",
+"Korzal", "Frakor", "Vragun", "Brumak", "Thrakor", "Gorzak", "Marhul", "Dragan", "Korven", "Zarlok",
+"Vandor", "Thrunak", "Groltar", "Morgul", "Harkon", "Ralmar", "Zorlan", "Trakor", "Varnok", "Drakor"
 	];
 
 	private static readonly string[] vezerNevek = [
-		"Lord ewufaelz", "Lord jczeexak", "Lord dymwfrbi", "Lord qgguekgk", "Lord smhsmujf", "Lord jowjngtw", "Lord taviyqrg", "Lord hvanejml", "Lord vwtfowbj", "Lord ualwapmh",
-		"Lord lwsxwojp", "Lord vbpsbhbo", "Lord qidfmfhp", "Lord dvxxzaby", "Lord fmzrguir", "Lord ndcpvksl", "Lord vztskoqe", "Lord raoasfgk", "Lord slqxnumi", "Lord nfezoqyn",
-		"Lord wilqrspx", "Lord rtddilit", "Lord feepfzub", "Lord tnljxqup", "Lord exmogoaw", "Lord ciaxazpx", "Lord dquelfvw", "Lord oqwxvrjy", "Lord fokphbpp", "Lord scasalss",
-		"Lord hsmhifom", "Lord txnlilwl", "Lord llnkgafu", "Lord igusicyc", "Lord mzfetpqi", "Lord fscgohhb", "Lord jxkdhfzi", "Lord sztbdofk", "Lord nultexiz", "Lord wkvrrxvf",
-		"Lord qauoasal", "Lord folaxdol", "Lord kqvykxes", "Lord grbajmgw", "Lord kbeyrcop", "Lord cxyervfc", "Lord zyjshpmu", "Lord tnokirkv", "Lord ukmoiqgn", "Lord hzbzkqpg",
-		"Lord vwntehct", "Lord nsewozup", "Lord yozekqvp", "Lord uvqhniws", "Lord frkzofma", "Lord jmulobfg", "Lord lydoqlxj", "Lord dacwxlru", "Lord jbkorenx", "Lord dhlcjfcl",
-		"Lord hjbbgzvl", "Lord cdrdotsg", "Lord jijfpacr", "Lord zkagunog", "Lord ycyqxiri", "Lord pgaokzds", "Lord jcgcdgcb", "Lord wrhaybqq", "Lord siacopbu", "Lord qwdshewb",
-		"Lord rdzqqoip", "Lord uldemuam", "Lord beyydrcj", "Lord irbrngds", "Lord mbpxoyuq", "Lord qpalbqea", "Lord gkofbdco", "Lord nftjvvrk", "Lord gnsvfqhj", "Lord vrgxyrij",
-		"Lord cdauoqyf", "Lord ghonhplh", "Lord rlnpnwls", "Lord ebxvveys", "Lord qallhuvd", "Lord jvxpkvmw", "Lord pztwwrez", "Lord fuvkczld", "Lord gjlrtdgj", "Lord rbdxmbey",
-		"Lord ictwlhhw", "Lord jbkjvxez", "Lord bpklfurr", "Lord isgcmnru", "Lord pdfxsuwj", "Lord yizkjwxd", "Lord cqskfnmg", "Lord fkwsahug", "Lord kudszpuz", "Lord kxgnvsiy"
+	"Arvok", "Belmor", "Cadrin", "Dargul", "Elvran", "Farrok", "Galven", "Harvox", "Ilmora", "Jorvak",
+	"Kalder", "Lirvon", "Morrek", "Norvak", "Orlien", "Pirram", "Quelar", "Rhalin", "Sorvak", "Torven",
+	"Ulrath", "Valmor", "Werrin", "Xandor", "Yravel", "Zaroth", "Arlina", "Brovak", "Cevarn", "Dorlak",
+	"Eltora", "Feryon", "Gralor", "Helvak", "Irveth", "Jandor", "Korlin", "Lelran", "Mirval", "Narith",
+	"Orveth", "Palron", "Qirath", "Randon", "Selvak", "Tirren", "Ulvorn", "Varlek", "Welmar", "Xirvon",
+	"Ylthar", "Zorvak", "Atheon", "Bronar", "Celyth", "Dralor", "Elthon", "Fynrak", "Ghoran", "Hyrven",
+	"Ivthor", "Jorlan", "Kylmar", "Lornak", "Myrvol", "Norlith", "Orvran", "Pyrron", "Quivar", "Rolvik",
+	"Sylvar", "Tragon", "Ulthor", "Vaelth", "Wyrlen", "Xandil", "Yvronn", "Zalthor", "Arveth", "Balnor",
+	"Crenar", "Dalmir", "Enthor", "Faldor", "Garion", "Halrek", "Islor", "Jorvek", "Kelnor", "Lanthor",
+	"Marvik", "Nalthor", "Othrin", "Pyrion", "Qalvor", "Ralvek", "Sornak", "Tylmor", "Uvron", "Velrak"
 	];
 
 	private static readonly string[] kazaNevek = [
-		"syixqieztzpyqyl", "ockeqhdshpdchpr", "earqhkstdblgest", "kywefligtkmppju", "holyrxbdauuhudd",
-		"iztywludylmiklf", "byqbftclyfsdhcg", "doyekhmqeaxxzzu", "sfspqjsqfbygkic", "bmbzlcyergoijel",
-		"jzmpbtwxwimahvl", "knokntnniyyddnz", "yirlziyqxjvynew", "rfablbknmjcbqmw", "bqhubxfzgzddwrh",
-		"toitdbgkmsbskwl", "cvkqfkgtlafzank", "ejlzzdiefeigetb", "yoelttcmiuxixol", "ngeiinrajxbxpmo",
-		"zgjolfjacecolbi", "oubbpeemxvyajlu", "mdbpxsjralcxhll", "ztthjogselvvnme", "cjxvcqjoojeqqnu",
-		"jnggwulumdjnqdb", "mqvmpbtiztppvub", "sjpzbfenyphoivk", "hudcraxrdqepxzw", "hykdwffpkdoyxsa"
+	"Vérmély", "Ködárka", "Sötétverem", "Csontodú", "Kovácsüreg", "Feketevájat", "Pengelabirintus", "Homálygödör", "Vesztetörés", "Fagyüregek",
+"Vészszurdok", "Siralomjárat", "Viharkamra", "Porverem", "Láncszakadék", "Mérgesszirt", "Árnyékrács", "Földmoraj", "Sírdereglye", "Vaskoporsó",
+"Zúzmaraverem", "Hollóodú", "Kárpitbarlang", "Zordonvájat", "Kormodú", "Halálszirt", "Fátyolrács", "Vasfészek", "Suttogóverem", "Kátrányüreg"
 	];
 
 	public override void _Ready()
