@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://b66j86qu82qpk"]
+
+[ext_resource type="Script" uid="uid://bqw1mxcvit2xr" path="res://Scripts/RandomVilag.cs" id="1_l7cbj"]
+
+[node name="RandomVilag" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l7cbj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.65
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.5
+offset_top = -69.5
+offset_right = 165.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Random világ generálása"
+
+[node name="Spacer3" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="NevContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="NevLabel" type="Label" parent="Panel/VBoxContainer/NevContainer"]
+layout_mode = 2
+text = "Világ neve:"
+
+[node name="NevInput" type="LineEdit" parent="Panel/VBoxContainer/NevContainer"]
+layout_mode = 2
+max_length = 20
+
+[node name="Error" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.41960785, 0.41960785, 1)
+
+[node name="KartyaContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 220
+
+[node name="KartyaLabel" type="Label" parent="Panel/VBoxContainer/KartyaContainer"]
+layout_mode = 2
+text = "Világkártyák száma:"
+
+[node name="KartyaInput" type="SpinBox" parent="Panel/VBoxContainer/KartyaContainer"]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+
+[node name="GyujtemenyContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 220
+
+[node name="GyujtemenyLabel" type="Label" parent="Panel/VBoxContainer/GyujtemenyContainer"]
+layout_mode = 2
+text = "Gyűjteményben:"
+
+[node name="GyujtemenyInput" type="SpinBox" parent="Panel/VBoxContainer/GyujtemenyContainer"]
+layout_mode = 2
+max_value = 1.0
+
+[node name="VezerContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 220
+
+[node name="VezerLabel" type="Label" parent="Panel/VBoxContainer/VezerContainer"]
+layout_mode = 2
+text = "Vezérek száma:"
+
+[node name="VezerInput" type="SpinBox" parent="Panel/VBoxContainer/VezerContainer"]
+layout_mode = 2
+
+[node name="KazaContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 220
+
+[node name="KazaLabel" type="Label" parent="Panel/VBoxContainer/KazaContainer"]
+layout_mode = 2
+text = "Kazamaták száma:"
+
+[node name="KazaInput" type="SpinBox" parent="Panel/VBoxContainer/KazaContainer"]
+layout_mode = 2
+max_value = 30.0
+
+[node name="Spacer2" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ButtonsContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+split_offset = 230
+
+[node name="HozzaadButton" type="Button" parent="Panel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Létrehoz"
+
+[node name="MegsemButton" type="Button" parent="Panel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Mégsem"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonsContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonsContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]

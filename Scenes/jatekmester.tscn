@@ -53,20 +53,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UjVilag" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = -17.5
-offset_right = 92.0
-offset_bottom = 17.5
+offset_left = -217.5
+offset_top = -20.0
+offset_right = 217.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UjVilag" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/HSplitContainer"]
+layout_mode = 2
 text = "Új világ létrehozása"
+
+[node name="RandomVilag" type="Button" parent="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/HSplitContainer"]
+layout_mode = 2
+text = "Random világ generálása"
 
 [node name="VisszaButton" type="Button" parent="."]
 layout_mode = 1
@@ -83,5 +90,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Kilépés"
 
-[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/UjVilag" to="." method="UjVilagPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/HSplitContainer/UjVilag" to="." method="UjVilagPressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/VBoxContainer2/Control/Panel/HSplitContainer/RandomVilag" to="." method="OnRandomVilagPressed"]
 [connection signal="pressed" from="VisszaButton" to="." method="OnVisszaButtonPressed"]

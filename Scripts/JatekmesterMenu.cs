@@ -32,6 +32,11 @@ public partial class JatekmesterMenu : Control
 		GetTree().ChangeSceneToFile("res://Scenes/vilag_szerkeszto.tscn");
 	}
 
+	private void OnRandomVilagPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/random_vilag.tscn");
+	}
+
 	private void OnVisszaButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
