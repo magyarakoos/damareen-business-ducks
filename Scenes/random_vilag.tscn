@@ -115,7 +115,7 @@ layout_mode = 2
 layout_mode = 2
 split_offset = 230
 
-[node name="HozzaadButton" type="Button" parent="Panel/VBoxContainer/ButtonsContainer"]
+[node name="LetrehozButton" type="Button" parent="Panel/VBoxContainer/ButtonsContainer"]
 layout_mode = 2
 text = "Létrehoz"
 
@@ -123,5 +123,5 @@ text = "Létrehoz"
 layout_mode = 2
 text = "Mégsem"
 
-[connection signal="pressed" from="Panel/VBoxContainer/ButtonsContainer/HozzaadButton" to="." method="OnHozzaadButtonPressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonsContainer/LetrehozButton" to="." method="OnLetrehozButtonPressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/ButtonsContainer/MegsemButton" to="." method="OnMegsemButtonPressed"]
