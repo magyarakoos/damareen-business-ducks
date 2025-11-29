@@ -46,6 +46,11 @@ public partial class Card : Control
 				throw new UnreachableException();
 		}
 
+		if (kartya.isVoid)
+		{
+			cardPath = "res://Assets/card_void";
+		}
+
 		if (vezer)
 		{
 			cardPath += "_vezer";

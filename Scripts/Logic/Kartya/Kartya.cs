@@ -12,10 +12,15 @@ public enum KartyaTipus
 public static class Extensions
 {
 	private static readonly Random rnd = new();
-	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes, double difficulty)
+	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes, double difficulty, bool isVoid)
 	{
 		int BaseSebzes()
 		{
+			if (isVoid)
+			{
+				return 2 * sebzes;
+			}
+			
 			if (enyem == ellenseg)
 			{
 				return sebzes;

@@ -9,11 +9,13 @@ public partial class HarcScene : Control
 	Harc? harc = null;
 	int kor_i = 1;
 
+	Sprite2D? voidIcon = null;
+
 	public override void _Ready()
 	{
 		var title = GetNode<Label>("Panel/VBoxContainer/Title");
 		title.Text = Global.Instance!.aktivKaza!.nev;
-		
+
 		Vilag vilag = Global.Instance!.aktivVilag!;
 
 		List<Vezer> vezerek = [];
@@ -40,7 +42,25 @@ public partial class HarcScene : Control
 		}
 		foreach (Harckartya kartya in harc!.jatekos)
 		{
-			jatekos.AddChild(Card.CreateHarckartya(kartya, false));
+			var card = Card.CreateHarckartya(kartya, false);
+
+			card.GuiInput += @event =>
+			{
+				if (@event is InputEventMouseButton btn && btn.Pressed && btn.ButtonMask == MouseButtonMask.Left)
+				{
+					if (voidIcon == null) return;
+					voidIcon.Hide();
+					voidIcon = null;
+					var leptetButton = GetNode<Button>("Panel/VBoxContainer/CenterContainer2/LeptetButton");
+					leptetButton.Text = "Lépés";
+					kartya.isVoid = true;
+					card.EmitSignal(Card.SignalName.RerenderKartyak);
+				}
+			};
+
+			card.RerenderKartyak += RerenderCards;
+
+			jatekos.AddChild(card);
 		}
 	}
 
@@ -74,7 +94,7 @@ public partial class HarcScene : Control
 			bool isVezer = i == 0 && Global.Instance!.aktivKaza!.tipus != KazamataTipus.Egyszeru;
 			if (i + 1 == harc!.kazamata.Count && harc!.kazamata_aktiv)
 			{
-				kazaAktiv.AddChild(Card.CreateHarckartya(kartya, isVezer));	
+				kazaAktiv.AddChild(Card.CreateHarckartya(kartya, isVezer));
 			}
 			else
 			{
@@ -144,7 +164,7 @@ public partial class HarcScene : Control
 				harc!.kazamata_aktiv = false;
 				msg = msg.Substr(0, msg.Length - 1);
 				msg += ", ebbe a kazamata lapja belehal.";
-				
+
 				if (harc!.kazamata.Count == 0)
 				{
 					AddMessage(msg);
@@ -169,6 +189,22 @@ public partial class HarcScene : Control
 
 	public void OnLeptetButtonPressed()
 	{
+		var leptetButton = GetNode<Button>("Panel/VBoxContainer/CenterContainer2/LeptetButton");
+		if (leptetButton.Text == "Void fejlesztés")
+		{
+			if (voidIcon == null)
+			{
+				voidIcon = GetNode<Sprite2D>("VoidIcon");
+				voidIcon.Show();
+			}
+			else
+			{
+				voidIcon.Hide();
+				voidIcon = null;
+			}
+			return;
+		}
+
 		ClearMessage();
 
 		Vilag vilag = Global.Instance!.aktivVilag!;
@@ -228,5 +264,13 @@ public partial class HarcScene : Control
 	{
 		Global.Instance!.aktivKaza = null;
 		GetTree().ChangeSceneToFile("res://Scenes/jatekos.tscn");
+	}
+
+	public override void _Process(double delta)
+	{
+		if (voidIcon != null)
+		{
+			voidIcon.Position = GetGlobalMousePosition();
+		}
 	}
 }

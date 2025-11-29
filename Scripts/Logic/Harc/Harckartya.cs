@@ -5,6 +5,7 @@ public class Harckartya
 	public int sebzes;
 	public int eletero;
 	public KartyaTipus tipus;
+	public bool isVoid = false;
 
 	public Harckartya(Kartya kartya)
 	{
@@ -34,7 +35,7 @@ public class Harckartya
 
 	public string Megut(Harckartya utokartya, double difficulty)
 	{
-		int valodi_sebzes = utokartya.tipus.Sebzes(this.tipus, utokartya.sebzes, difficulty);
+		int valodi_sebzes = utokartya.tipus.Sebzes(this.tipus, utokartya.sebzes, difficulty, utokartya.isVoid);
 		this.eletero -= Math.Min(valodi_sebzes, this.eletero);
 		return $"{utokartya.nev};{valodi_sebzes};{this.nev};{this.eletero}";
 	}

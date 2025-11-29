@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bge8lymhk0xv7"]
+[gd_scene load_steps=3 format=3 uid="uid://bge8lymhk0xv7"]
 
 [ext_resource type="Script" uid="uid://jfs76k6wo3hm" path="res://Scripts/HarcScene.cs" id="1_kunw7"]
+[ext_resource type="Texture2D" uid="uid://djt55pqr1d8ic" path="res://Assets/voidIcon.svg" id="2_afpxb"]
 
 [node name="Harc" type="Control"]
 layout_mode = 3
@@ -118,7 +119,7 @@ layout_mode = 2
 [node name="LeptetButton" type="Button" parent="Panel/VBoxContainer/CenterContainer2"]
 custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
-text = "Lépés"
+text = "Void fejlesztés"
 
 [node name="KilepesButton" type="Button" parent="Panel"]
 visible = false
@@ -135,6 +136,12 @@ offset_bottom = 0.00390625
 grow_horizontal = 2
 grow_vertical = 2
 text = "Kilépés"
+
+[node name="VoidIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(27.00003, 26.00003)
+scale = Vector2(0.53124976, 0.5312499)
+texture = ExtResource("2_afpxb")
 
 [connection signal="pressed" from="Panel/VBoxContainer/CenterContainer2/LeptetButton" to="." method="OnLeptetButtonPressed"]
 [connection signal="pressed" from="Panel/KilepesButton" to="." method="OnKilepesButtonPressed"]
