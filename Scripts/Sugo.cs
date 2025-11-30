@@ -31,15 +31,34 @@ public partial class Sugo : Control
 		};
 	}
 
+	private static readonly string[] altalanosText = [
+		"A játékmester módban létrehozhatsz és szerkeszthetsz világokat.",
+		"A játékos módban játszhatsz ezekben a világokban.",
+		"A kezelőfelületen megtalálható gombok és input mezők akadálymentesítettek, vagyis pusztán billentyűzettel is kezelhetők. [Tab] gombbal, illetve nyilakkal lehet lépkedni, az [Enter] gomb leütése pedig az aktuálisan kijelölt gomb megnyomását szimulálja.",
+	];
+
+	private static readonly string[] jatekmesterText = [
+		"Itt hozhatsz létre új világokat, törölhetsz és szerkeszthetsz meglévőket, továbbá random világot is generálhasz.",
+		"A [Basic Vilag] nevű világot nem lehet törölni, itt a [Törlés] gomb alaphelyzetbe állítja a világot.",
+		"A [Törlés mód] gombra kattintva a kurzoron megjelenik egy szemetes. Ilyenkor az első dolog, amire rákattintasz, törlésre kerül. Törlés módból kilépni jobb kattintással, vagy a gomb újbóli megnyomásával lehet.",
+	];
+
+	private static readonly string[] jatekosText = [
+		"Itt lehet a korábban elkészített világokban játszani. A Játékos módból való kilépésnél a rendszer automatikusan menti a játékos haladását.",
+		"Kártyákat a pakliban elhelyezni, illetve onnan a gyűjteménybe visszarakni drag-and-drop módszerrel lehet. (Ha egy kártyát kihúzol a pakliból, magától visszaugrik a gyűjteménybe.)",
+		"Adott kazamatában harcolni a kazamata kártyájára való kattintással lehet. Ezek nehézség szerint színkódolva vannak:\n- Zöld:  Egyszerű találkozás\n- Kék:   Kis kazamata\n- Piros: Nagy kazamata",
+		"A harc elején ki kell választani azt a kártyát a pakliból, amire [Void] fejlesztést raknál. Ez a kiválasztás ugyanúgy működik, mint a játékmesternél a [Törlés mód].",
+	];
+
 	private void ShowContent(Button selected)
 	{
 		selected.GrabFocus();
 
 		content!.Text = selected.Text switch
 		{
-			"Általános" => "Üdvözlünk a Damareen világában!\n\nA játékmester módban létrehozhat és szerkeszthet világokat.\nA játékos módban pedig végig tudja játszani ezeket a világokat.",
-			"Játékmester" => "A játékmester gombra nyomva feljön a világ kiválasztó menü.\nItt hozhat létre a játékmester új világokat és törölhet ki korábbiakat, továbbá szerkesztheti is őket.\n\nA világ szerkesztési menüben található gombokkal a játékmester képes létrehozni új világkártyákat, vezéreket és kazamatákat. Továbbá megszabhatja hogy mi található a játékos gyűjteményében a játék kezdetekor.\n\nA 'törlés mód' gombra kattintva a kurzoron megjelenik egy szemetes, ilyenkor az első dolog amire rákattint a játékmester ki lesz törölve, ezután kilép a törlés módból.",
-			"Játékos" => "A játékos módra kattintva kiválaszthatja melyik lokálisan elmentett világgal szeretne játszani.\nEzután bedob a játékba ahol a játékos összeállíthatja saját pakliját meglévő gyűjteményéből.\nA bal alul található kazamata kártyákra kattintva megkezdheti velük a csatát!\n\nKazamata fokozatok:\nZöld sisak - egyszerű találkozás\nKék kardok - kis kazamata\nVörös zászló - nagy kazamata",
+			"Általános" => string.Join("\n\n", altalanosText),
+			"Játékmester" => string.Join("\n\n", jatekmesterText),
+			"Játékos" => string.Join("\n\n", jatekosText),
 			_ => throw new UnreachableException(),
 		};
 	}
