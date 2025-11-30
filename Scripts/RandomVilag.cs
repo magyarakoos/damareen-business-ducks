@@ -8,35 +8,38 @@ public partial class RandomVilag : Control
 	private static readonly Random rng = new();
 
 	private static readonly string[] kartyaNevek = [
-"Thargol", "Ravmok", "Khardin", "Brugath", "Valrok", "Morvak", "Draven", "Korvul", "Jorhak", "Targan",
-"Rhalgor", "Vornak", "Grumor", "Kelvok", "Thalven", "Darvok", "Lorgath", "Marvok", "Zurgan", "Fralor",
-"Kharven", "Drogar", "Varkul", "Gorath", "Hagrun", "Torvak", "Ragnor", "Brakor", "Thirak", "Malgor",
-"Jargun", "Krodar", "Vyrnak", "Ulthor", "Drakor", "Zorvun", "Haldor", "Grynak", "Thornak", "Vorgal",
-"Krulon", "Mordak", "Yargol", "Thavok", "Durnak", "Gorvak", "Harven", "Ralvok", "Vishar", "Korath",
-"Grendor", "Varkos", "Trovak", "Murnok", "Dalven", "Strakor", "Branak", "Torhal", "Kravor", "Vurnak",
-"Falgrin", "Kurnok", "Raldor", "Gorven", "Hrakan", "Zurnok", "Bralgor", "Torkin", "Vashor", "Malruk",
-"Gralvek", "Dorvun", "Krylor", "Thorgat", "Varlok", "Marvol", "Jalkor", "Hurnak", "Dravon", "Rukmar",
-"Korzal", "Frakor", "Vragun", "Brumak", "Thrakor", "Gorzak", "Marhul", "Dragan", "Korven", "Zarlok",
-"Vandor", "Thrunak", "Groltar", "Morgul", "Harkon", "Ralmar", "Zorlan", "Trakor", "Varnok", "Drakor"
+		"Thargol", "Ravmok", "Khardin", "Brugath", "Valrok", "Morvak", "Draven", "Korvul", "Jorhak", "Targan",
+		"Rhalgor", "Vornak", "Grumor", "Kelvok", "Thalven", "Darvok", "Lorgath", "Marvok", "Zurgan", "Fralor",
+		"Kharven", "Drogar", "Varkul", "Gorath", "Hagrun", "Torvak", "Ragnor", "Brakor", "Thirak", "Malgor",
+		"Jargun", "Krodar", "Vyrnak", "Ulthor", "Drakor", "Zorvun", "Haldor", "Grynak", "Thornak", "Vorgal",
+		"Krulon", "Mordak", "Yargol", "Thavok", "Durnak", "Gorvak", "Harven", "Ralvok", "Vishar", "Korath",
+		"Grendor", "Varkos", "Trovak", "Murnok", "Dalven", "Strakor", "Branak", "Torhal", "Kravor", "Vurnak",
+		"Falgrin", "Kurnok", "Raldor", "Gorven", "Hrakan", "Zurnok", "Bralgor", "Torkin", "Vashor", "Malruk",
+		"Gralvek", "Dorvun", "Krylor", "Thorgat", "Varlok", "Marvol", "Jalkor", "Hurnak", "Dravon", "Rukmar",
+		"Korzal", "Frakor", "Vragun", "Brumak", "Thrakor", "Gorzak", "Marhul", "Dragan", "Korven", "Zarlok",
+		"Vandor", "Thrunak", "Groltar", "Morgul", "Harkon", "Ralmar", "Zorlan", "Trakor", "Varnok", "Arin"
 	];
 
 	private static readonly string[] vezerNevek = [
-	"Arvok", "Belmor", "Cadrin", "Dargul", "Elvran", "Farrok", "Galven", "Harvox", "Ilmora", "Jorvak",
-	"Kalder", "Lirvon", "Morrek", "Norvak", "Orlien", "Pirram", "Quelar", "Rhalin", "Sorvak", "Torven",
-	"Ulrath", "Valmor", "Werrin", "Xandor", "Yravel", "Zaroth", "Arlina", "Brovak", "Cevarn", "Dorlak",
-	"Eltora", "Feryon", "Gralor", "Helvak", "Irveth", "Jandor", "Korlin", "Lelran", "Mirval", "Narith",
-	"Orveth", "Palron", "Qirath", "Randon", "Selvak", "Tirren", "Ulvorn", "Varlek", "Welmar", "Xirvon",
-	"Ylthar", "Zorvak", "Atheon", "Bronar", "Celyth", "Dralor", "Elthon", "Fynrak", "Ghoran", "Hyrven",
-	"Ivthor", "Jorlan", "Kylmar", "Lornak", "Myrvol", "Norlith", "Orvran", "Pyrron", "Quivar", "Rolvik",
-	"Sylvar", "Tragon", "Ulthor", "Vaelth", "Wyrlen", "Xandil", "Yvronn", "Zalthor", "Arveth", "Balnor",
-	"Crenar", "Dalmir", "Enthor", "Faldor", "Garion", "Halrek", "Islor", "Jorvek", "Kelnor", "Lanthor",
-	"Marvik", "Nalthor", "Othrin", "Pyrion", "Qalvor", "Ralvek", "Sornak", "Tylmor", "Uvron", "Velrak"
+		"Arvok", "Belmor", "Cadrin", "Dargul", "Elvran", "Farrok", "Galven", "Harvox", "Ilmora", "Jorvak",
+		"Kalder", "Lirvon", "Morrek", "Norvak", "Orlien", "Pirram", "Quelar", "Rhalin", "Sorvak", "Torven",
+		"Ulrath", "Valmor", "Werrin", "Xandor", "Yravel", "Zaroth", "Arlina", "Brovak", "Cevarn", "Dorlak",
+		"Eltora", "Feryon", "Gralor", "Helvak", "Irveth", "Jandor", "Korlin", "Lelran", "Mirval", "Narith",
+		"Orveth", "Palron", "Qirath", "Randon", "Selvak", "Tirren", "Ulvorn", "Varlek", "Welmar", "Xirvon",
+		"Ylthar", "Zorvak", "Atheon", "Bronar", "Celyth", "Dralor", "Elthon", "Fynrak", "Ghoran", "Hyrven",
+		"Ivthor", "Jorlan", "Kylmar", "Lornak", "Myrvol", "Norlith", "Orvran", "Pyrron", "Quivar", "Rolvik",
+		"Sylvar", "Tragon", "Lord Ulthor", "Vaelth", "Wyrlen", "Xandil", "Yvronn", "Zalthor", "Arveth", "Balnor",
+		"Crenar", "Dalmir", "Enthor", "Faldor", "Garion", "Halrek", "Islor", "Jorvek", "Kelnor", "Lanthor",
+		"Marvik", "Nalthor", "Othrin", "Pyrion", "Qalvor", "Ralvek", "Sornak", "Tylmor", "Uvron", "Velrak"
 	];
 
 	private static readonly string[] kazaNevek = [
-	"Vérmély", "Ködárka", "Sötétverem", "Csontodú", "Kovácsüreg", "Feketevájat", "Pengelabirintus", "Homálygödör", "Vesztetörés", "Fagyüregek",
-"Vészszurdok", "Siralomjárat", "Viharkamra", "Porverem", "Láncszakadék", "Mérgesszirt", "Árnyékrács", "Földmoraj", "Sírdereglye", "Vaskoporsó",
-"Zúzmaraverem", "Hollóodú", "Kárpitbarlang", "Zordonvájat", "Kormodú", "Halálszirt", "Fátyolrács", "Vasfészek", "Suttogóverem", "Kátrányüreg"
+		"Vérmély", "Ködárka", "Sötétverem", "Csontodú", "Kovácsüreg",
+		"Feketevájat", "Pengelabirintus", "Homálygödör", "Vesztetörés", "Fagyüregek",
+		"Vészszurdok", "Siralomjárat", "Viharkamra", "Porverem", "Láncszakadék",
+		"Mérgesszirt", "Árnyékrács", "Földmoraj", "Sírdereglye", "Vaskoporsó",
+		"Zúzmaraverem", "Hollóodú", "Kárpitbarlang", "Zordonvájat", "Kormodú",
+		"Halálszirt", "Fátyolrács", "Vasfészek", "Suttogóverem", "Kátrányüreg"
 	];
 
 	public override void _Ready()
