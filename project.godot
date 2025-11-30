@@ -30,3 +30,7 @@ project/assembly_name="Damareen"
 [gui]
 
 theme/custom_font="uid://colx6nc7o83ni"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
