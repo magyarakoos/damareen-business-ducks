@@ -35,7 +35,7 @@ public class Harckartya
 
 	public string Megut(Harckartya utokartya, double difficulty)
 	{
-		int valodi_sebzes = utokartya.tipus.Sebzes(this.tipus, utokartya.sebzes, difficulty, utokartya.isVoid);
+		int valodi_sebzes = utokartya.tipus.Sebzes(this.tipus, utokartya.sebzes, difficulty, utokartya.isVoid, this.isVoid);
 		this.eletero -= Math.Min(valodi_sebzes, this.eletero);
 		return $"{utokartya.nev};{valodi_sebzes};{this.nev};{this.eletero}";
 	}

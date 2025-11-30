@@ -12,19 +12,23 @@ public enum KartyaTipus
 public static class Extensions
 {
 	private static readonly Random rnd = new();
-	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes, double difficulty, bool isVoid)
+	public static int Sebzes(this KartyaTipus enyem, KartyaTipus ellenseg, int sebzes, double difficulty, bool isVoid, bool ellensegIsVoid)
 	{
 		int BaseSebzes()
 		{
-			if (isVoid)
-			{
-				return 2 * sebzes;
-			}
-			
 			if (enyem == ellenseg)
 			{
 				return sebzes;
 			}
+			if (isVoid)
+			{
+				return 2 * sebzes;
+			}
+			if (ellensegIsVoid)
+			{
+				return sebzes;
+			}
+			
 			switch (enyem)
 			{
 				case KartyaTipus.Levego:
