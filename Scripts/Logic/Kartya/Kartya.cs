@@ -16,15 +16,16 @@ public static class Extensions
 	{
 		int BaseSebzes()
 		{
-			if (enyem == ellenseg)
-			{
-				return sebzes;
-			}
 			if (isVoid)
 			{
 				return 2 * sebzes;
 			}
 			if (ellensegIsVoid)
+			{
+				return sebzes;
+			}
+			
+			if (enyem == ellenseg)
 			{
 				return sebzes;
 			}
